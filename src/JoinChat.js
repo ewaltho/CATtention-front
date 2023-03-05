@@ -33,8 +33,7 @@ function JoinChat() {
       // Check if the room exists on the server
       socket.emit("joinRoom", { roomId }, (response) => {
         if (response.success) {
-          // Redirect the user to the chat room
-          // history.push(/chat/${roomId});
+     
         } else {
           // Display an error message if the room does not exist
           alert(response.message);
