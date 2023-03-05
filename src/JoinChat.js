@@ -16,14 +16,16 @@ setRoomName(event.target.value);
 const handleJoinRoom = (event) => {
 event.preventDefault();
 if (roomName.trim() !== "") {
-// Generate a unique room code
+// 6 random characters FOR ROOM CODE 
 const roomCode = Math.random().toString(36).substring(2, 8);
 // Save the room details to the server
+
 socket.emit("createRoom", { roomId: roomCode, roomName });
 // Redirect the user to the chat room
 // history.push(/chat/${roomCode});
+console.log(roomCode)
 }
-};
+};      
 
 const handleJoinExistingRoom = (event) => {
 event.preventDefault();
