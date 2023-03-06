@@ -24,7 +24,10 @@ function ChatFeature({ roomData }) {
   const handleSend = (event) => {
     event.preventDefault();
     if (message) {
-      socket.emit("chat message", message); // Emit the message to the server
+      const currentTime = new Date();
+      const timestamp = currentTime.toLocaleTimeString();
+      const fullMessage = `[${timestamp}] ${message}`; // Add timestamp to message
+      socket.emit("chat message", fullMessage); // Emit the message to the server
       setMessage("");
     }
   };
@@ -50,10 +53,13 @@ function ChatFeature({ roomData }) {
         <p>Room Code: {room.code}</p>
       </div>
       <div className="messages">
-        {messages.map((message, index) => (
-          <div key={index}>{message}</div>
-        ))}
-      </div>
+  {messages.map((message, index) => (
+    <div key={index}>
+     <span className="timestamp">{message.timestamp}</span>
+      {message}
+    </div>
+  ))}
+</div>
       <form onSubmit={handleSend}>
         <input type="text" value={message} onChange={handleInputChange} />
         <button type="submit">Send</button>
