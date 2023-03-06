@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
-const socket = io('http://localhost:3001');
+// const socket = io('http://localhost:3001');
 
 function JoinChat() {
-  const [roomId, setRoomId] = useState("");
+  const [roomCode, setRoomCode] = useState("");
   const [roomName, setRoomName] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const handleRoomNameChange = (event) => {
     setRoomName(event.target.value);
@@ -27,18 +27,16 @@ function JoinChat() {
     }
   }; 
 
-  const handleJoinExistingRoom = (event) => {
+  const handleJoinExistingRoom = async (event) => {
     event.preventDefault();
-    if (roomId.trim() !== "") {
-      // Check if the room exists on the server
-      socket.emit("joinRoom", { roomId }, (response) => {
-        if (response.success) {
-     
-        } else {
-          // Display an error message if the room does not exist
-          alert(response.message);
-        }
-      });
+    if (roomCode.trim() !== "") {
+      try {
+        const response = await axios.get(`http://localhost:3001/api/rooms/${roomCode}`);
+        const roomId = response.data.id;
+         navigate(`/chat/${roomId}`);
+      } catch (error) {
+        alert("Room not found");
+      }
     }
   };
 
@@ -53,7 +51,7 @@ function JoinChat() {
       <hr />
       <form onSubmit={handleJoinExistingRoom}>
         <label htmlFor="room-id">Room Code:</label>
-        <input type="text" id="room-id" value={roomId} onChange={(e) => setRoomId(e.target.value)} />
+        <input type="text" id="room-code" value={roomCode} onChange={(e) => setRoomCode(e.target.value)} />
         <button type="submit">Join Room</button>
       </form>
     </div>
