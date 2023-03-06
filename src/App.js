@@ -11,6 +11,7 @@ import Login from "./components/Login";
 function App() {
   const [userToken, setUserToken] = useState("");
   const [userObject, setUserObject] = useState({});
+  const [roomData, setRoomData] = useState("");
   const [signUpFormData, setSignUpFormData] = useState({
     username: "",
     password: "",
@@ -62,7 +63,10 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/chat" element={<JoinChat roomData={roomData} setRoomData={setRoomData} />} />
+        <Route
+          path="/chat"
+          element={<JoinChat roomData={roomData} setRoomData={setRoomData} />}
+        />
         <Route path="/chat/:roomId" element={<Chat roomData={roomData} />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
       </Routes>
