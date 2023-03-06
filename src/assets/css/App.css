@@ -28,6 +28,11 @@ body {
   width: 400px;
 }
 
+.login-btn {
+  text-decoration: none;
+  color: black;
+}
+
 .bio {
   width: 60vw;
   margin: auto;
