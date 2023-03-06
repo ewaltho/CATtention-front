@@ -11,6 +11,7 @@ function ChatFeature({ roomData }) {
 
   useEffect(() => {
     async function fetchRoom() {
+      if (!roomData) return; // Exit early if roomData is not available
       const response = await axios.get(`http://localhost:3001/api/rooms/${roomData.code}`);
       setRoom(response.data);
     }
@@ -53,13 +54,13 @@ function ChatFeature({ roomData }) {
         <p>Room Code: {room.code}</p>
       </div>
       <div className="messages">
-  {messages.map((message, index) => (
-    <div key={index}>
-     <span className="timestamp">{message.timestamp}</span>
-      {message}
-    </div>
-  ))}
-</div>
+        {messages.map((message, index) => (
+          <div key={index}>
+            <span className="timestamp">{message.timestamp}</span>
+            {message}
+          </div>
+        ))}
+      </div>
       <form onSubmit={handleSend}>
         <input type="text" value={message} onChange={handleInputChange} />
         <button type="submit">Send</button>
