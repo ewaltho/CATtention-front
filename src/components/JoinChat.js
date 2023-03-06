@@ -22,10 +22,10 @@ function JoinChat() {
       // Save the room details to the server
       const response = await axios.post("http://localhost:3001/api/rooms", { room_name: roomName, code: roomCode });
       const roomId = response.data.id;
-      // Redirect the user to the chat room with the assigned ID
-      navigate(`/chat/${roomId}`);
+      // Redirect the user to the chat room with the assigned ID and room code
+      navigate(`/chat/${roomId}?code=${roomCode}`);
     }
-  }; 
+  };
 
   const handleJoinExistingRoom = async (event) => {
     event.preventDefault();
@@ -33,7 +33,7 @@ function JoinChat() {
       try {
         const response = await axios.get(`http://localhost:3001/api/rooms/${roomCode}`);
         const roomId = response.data.id;
-         navigate(`/chat/${roomId}`);
+        navigate(`/chat/${roomId}?code=${roomId}`);
       } catch (error) {
         alert("Room not found");
       }
