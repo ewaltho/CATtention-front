@@ -4,18 +4,18 @@ import axios from "axios";
 
 const socket = io("http://localhost:3001");
 
-function ChatFeature({ roomId }) {
+function ChatFeature({ roomData }) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [room, setRoom] = useState({});
 
   useEffect(() => {
     async function fetchRoom() {
-      const response = await axios.get(`http://localhost:3001/api/rooms/${roomId}`);
+      const response = await axios.get(`http://localhost:3001/api/rooms/${roomData.code}`);
       setRoom(response.data);
     }
     fetchRoom();
-  }, [roomId]);
+  }, [roomData]);
 
   const handleInputChange = (event) => {
     setMessage(event.target.value);

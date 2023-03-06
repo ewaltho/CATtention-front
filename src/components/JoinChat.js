@@ -5,7 +5,7 @@ import axios from "axios";
 
 // const socket = io('http://localhost:3001');
 
-function JoinChat() {
+function JoinChat(props) {
   const [roomCode, setRoomCode] = useState("");
   const [roomName, setRoomName] = useState("");
   const navigate = useNavigate(); 
@@ -21,6 +21,7 @@ function JoinChat() {
       const roomCode = Math.random().toString(36).substring(2, 8);
       // Save the room details to the server
       const response = await axios.post("http://localhost:3001/api/rooms", { room_name: roomName, code: roomCode });
+      props.setRoomData(response.data);
       const roomId = response.data.id;
       // Redirect the user to the chat room with the assigned ID and room code
       navigate(`/chat/${roomId}?code=${roomCode}`);
@@ -32,6 +33,8 @@ function JoinChat() {
     if (roomCode.trim() !== "") {
       try {
         const response = await axios.get(`http://localhost:3001/api/rooms/${roomCode}`);
+        props.setRoomData(response.data);
+        console.log(props.roomData)
         const roomId = response.data.id;
         navigate(`/chat/${roomId}?code=${roomId}`);
       } catch (error) {
