@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import API from "../utils/API";
 
 export default function Login({
@@ -7,15 +7,35 @@ export default function Login({
   clearLoginForm,
   setUserToken,
 }) {
+  const [isUserPassCorrect, setIsUserPassCorrect] = useState(true);
+
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
     const response = await API.loginUser(loginFormData);
     console.log(response);
+    if (!response.ok) {
+      clearLoginForm();
+
+      setIsUserPassCorrect(false);
+      setTimeout(() => {
+        if (isUserPassCorrect === true) {
+          setIsUserPassCorrect(false);
+        } else {
+          setIsUserPassCorrect(true);
+        }
+      }, 1000);
+      console.log("incorrect username or password");
+    }
   };
 
   return (
     <>
       <h1>Login</h1>
+      {isUserPassCorrect === false ? (
+        <p>Username or password incorrect.</p>
+      ) : (
+        <></>
+      )}
       <form onSubmit={handleLoginFormSubmit}>
         <label htmlFor="username">Username:</label>
         <input
