@@ -2,7 +2,7 @@ import "./assets/css/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import API from "./utils/API";
-import ChatFeature from "./components/Chat";
+import Chat from "./components/Chat";
 import HomePage from "./components/Home";
 import JoinChat from "./components/JoinChat";
 import SignUp from "./components/SignUp";
@@ -62,8 +62,8 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/chat" element={<JoinChat />} />
-        <Route path="/chat/:roomId" element={<ChatFeature />} />
+        <Route path="/chat" element={<JoinChat roomData={roomData} setRoomData={setRoomData} />} />
+        <Route path="/chat/:roomId" element={<Chat roomData={roomData} />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
       </Routes>
     </BrowserRouter>

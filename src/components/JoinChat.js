@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
-const socket = io('http://localhost:3001');
+// const socket = io('http://localhost:3001');
 
-function JoinChat() {
-  const [roomId, setRoomId] = useState("");
+function JoinChat(props) {
+  const [roomCode, setRoomCode] = useState("");
   const [roomName, setRoomName] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const handleRoomNameChange = (event) => {
     setRoomName(event.target.value);
@@ -21,24 +21,25 @@ function JoinChat() {
       const roomCode = Math.random().toString(36).substring(2, 8);
       // Save the room details to the server
       const response = await axios.post("http://localhost:3001/api/rooms", { room_name: roomName, code: roomCode });
+      props.setRoomData(response.data);
       const roomId = response.data.id;
-      // Redirect the user to the chat room with the assigned ID
-      navigate(`/chat/${roomId}`);
+      // Redirect the user to the chat room with the assigned ID and room code
+      navigate(`/chat/${roomId}?code=${roomCode}`);
     }
-  }; 
+  };
 
-  const handleJoinExistingRoom = (event) => {
+  const handleJoinExistingRoom = async (event) => {
     event.preventDefault();
-    if (roomId.trim() !== "") {
-      // Check if the room exists on the server
-      socket.emit("joinRoom", { roomId }, (response) => {
-        if (response.success) {
-     
-        } else {
-          // Display an error message if the room does not exist
-          alert(response.message);
-        }
-      });
+    if (roomCode.trim() !== "") {
+      try {
+        const response = await axios.get(`http://localhost:3001/api/rooms/${roomCode}`);
+        props.setRoomData(response.data);
+        console.log(props.roomData)
+        const roomId = response.data.id;
+        navigate(`/chat/${roomId}?code=${roomId}`);
+      } catch (error) {
+        alert("Room not found");
+      }
     }
   };
 
@@ -53,7 +54,7 @@ function JoinChat() {
       <hr />
       <form onSubmit={handleJoinExistingRoom}>
         <label htmlFor="room-id">Room Code:</label>
-        <input type="text" id="room-id" value={roomId} onChange={(e) => setRoomId(e.target.value)} />
+        <input type="text" id="room-code" value={roomCode} onChange={(e) => setRoomCode(e.target.value)} />
         <button type="submit">Join Room</button>
       </form>
     </div>
