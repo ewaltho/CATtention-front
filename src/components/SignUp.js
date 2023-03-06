@@ -6,6 +6,7 @@ export default function SignUp({
   handleSignUpFormChange,
   signUpFormData,
   clearSignupForm,
+  setUserToken,
 }) {
   // Instantiate navigate so we can move the user to /chat.
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ export default function SignUp({
     console.log(response);
     if (response.status === 200) {
       clearSignupForm();
+      setUserToken(response.data.token);
+      localStorage.setItem("token", response.data.token);
       // This will redirect. the redirect method in react router dom is deprecated, this is what we use now.
       return navigate("/chat");
     } else {
