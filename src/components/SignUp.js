@@ -13,7 +13,7 @@ export default function SignUp({
     e.preventDefault();
     const response = await API.signUpUser(signUpFormData);
     console.log(response);
-    if (response.ok) {
+    if (response.status === 200) {
       clearSignupForm();
       return navigate("/chat");
     } else {
