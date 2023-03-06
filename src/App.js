@@ -6,6 +6,7 @@ import ChatFeature from "./components/Chat";
 import HomePage from "./components/Home";
 import JoinChat from "./components/JoinChat";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 function App() {
   const [signUpFormData, setSignUpFormData] = useState({});
@@ -39,6 +40,7 @@ function App() {
             />
           }
         />
+        <Route path="/login" element={<Login />} />
         <Route path="/chat" element={<JoinChat />} />
         <Route path="/chat/:roomId" element={<ChatFeature />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
