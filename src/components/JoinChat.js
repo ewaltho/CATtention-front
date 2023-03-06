@@ -24,7 +24,7 @@ function JoinChat(props) {
       props.setRoomData(response.data);
       const roomId = response.data.id;
       // Redirect the user to the chat room with the assigned ID and room code
-      navigate(`/chat/${roomId}?code=${roomCode}`);
+      navigate(`/chat/${roomId}`);
     }
   };
 
@@ -36,7 +36,7 @@ function JoinChat(props) {
         props.setRoomData(response.data);
         console.log(props.roomData)
         const roomId = response.data.id;
-        navigate(`/chat/${roomId}?code=${roomId}`);
+        navigate(`/chat/${roomId}`);
       } catch (error) {
         alert("Room not found");
       }
