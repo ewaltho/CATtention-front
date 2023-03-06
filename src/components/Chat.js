@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import io from "socket.io-client";
 
-const socket = io('http://localhost:3001');
+const socket = io("http://localhost:3001");
 
 function ChatFeature() {
   const [message, setMessage] = useState("");
@@ -19,15 +19,16 @@ function ChatFeature() {
     }
   };
 
-  socket.on('connect', () => {
-    console.log('connected to server');
+  socket.on("connect", () => {
+    console.log("connected to server");
   });
 
-  socket.on('disconnect', () => {
-    console.log('disconnected from server');
+  socket.on("disconnect", () => {
+    console.log("disconnected from server");
   });
 
-  socket.on("chat message", (msg) => { // Listen for incoming messages from the server
+  socket.on("chat message", (msg) => {
+    // Listen for incoming messages from the server
     setMessages([...messages, msg]);
   });
 
