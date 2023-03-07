@@ -95,10 +95,10 @@ function App() {
           }
         />
         <Route
-          path="/chat"
+          path="/JoinChat"
           element={<JoinChat roomData={roomData} setRoomData={setRoomData} />}
         />
-        <Route path="/chat/:roomId" element={<Chat roomData={roomData} />} />
+        <Route path="/chat" element={<Chat roomData={roomData} />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
       </Routes>
     </BrowserRouter>

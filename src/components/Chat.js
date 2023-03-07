@@ -15,10 +15,9 @@ function ChatFeature({ roomData }) {
     socket.on("chat message", (msg) => {
       console.log("Received message:", msg);
   
-      if (msg.roomCode === roomData.code) {
-        setMessages((prevMessages) => [...prevMessages, { message: msg.message, timestamp: msg.timestamp }]);
+  
+        setMessages((prevMessages) => [...prevMessages, { message: msg.message, timestamp: msg.timestamp, roomCode: msg.roomCode }]);
 
-      }
     });
   
     // Join the room when the component mounts
@@ -37,13 +36,10 @@ function ChatFeature({ roomData }) {
   const handleSend = (event) => {
     event.preventDefault();
     if (message) {
-      const currentTime = new Date();
-      const timestamp = currentTime.toLocaleTimeString();
-      const fullMessage = `[${timestamp}] ${message}`; // Add timestamp to message
-
+   
       // Emit the message to the server
-      console.log("Sending message:", fullMessage);
-      socket.emit("chat message", { roomCode: room.code, message: fullMessage });
+      console.log("Sending message:", message);
+      socket.emit("chat message", { roomCode: room.code, message: message });
       setMessage("");
     }
   };
@@ -62,6 +58,7 @@ function ChatFeature({ roomData }) {
           {messages.map(({ message, timestamp }, index) => (
             <div key={index}>
               <span className="timestamp">{timestamp}</span>
+              <br />
               <span className="message">{message}</span>
             </div>
           ))}
