@@ -9,19 +9,21 @@ function ChatFeature({ roomData }) {
   const [room, setRoom] = useState({});
 
   useEffect(() => {
-    // Set up the room data and listen for incoming messages
     setRoom(roomData);
     console.log("Listening for incoming messages...");
-
+  
     socket.on("chat message", (msg) => {
-      // Listen for incoming messages from the server
       console.log("Received message:", msg);
-
+  
       if (msg.roomCode === roomData.code) {
-        setMessages(prevMessages => [...prevMessages, msg]);
+        setMessages((prevMessages) => [...prevMessages, { message: msg.message, timestamp: msg.timestamp }]);
+
       }
     });
-
+  
+    // Join the room when the component mounts
+    socket.emit("join room", roomData.code);
+  
     return () => {
       socket.off("chat message");
       console.log("Stopped listening for incoming messages...");
@@ -46,6 +48,8 @@ function ChatFeature({ roomData }) {
     }
   };
 
+
+
   return (
     <div className="chat-box">
       <h1>CATtention Chat</h1>
@@ -54,13 +58,13 @@ function ChatFeature({ roomData }) {
         <p>Room Code: {room.code}</p>
       </div>
       <div className="messages">
-      {messages.map((message, index) => (
+      {messages.map(({ message, timestamp }, index) => (
   <div key={index}>
-    <span className="timestamp">{message.timestamp}</span>
-    {message.message}
+    <span className="timestamp">{timestamp}</span>
+    <span className="message">{message}</span>
+
   </div>
 ))}
-
       </div>
       <form onSubmit={handleSend}>
         <input type="text" value={message} onChange={handleInputChange} />
@@ -69,5 +73,7 @@ function ChatFeature({ roomData }) {
     </div>
   );
 }
+
+
 
 export default ChatFeature;
