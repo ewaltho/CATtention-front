@@ -31,6 +31,12 @@ const API = {
     console.log(checkToken);
     return checkToken;
   },
+  getOneRoom: async (roomCode) => {
+    const foundRoom = await axios.get(`${URL_PREFIX}/api/rooms/${roomCode}`);
+
+    console.log(foundRoom);
+    return foundRoom;
+  },
 };
 
 export default API;
