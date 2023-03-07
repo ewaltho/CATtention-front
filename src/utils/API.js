@@ -43,6 +43,12 @@ const API = {
     console.log(createdRoom);
     return createdRoom;
   },
+  deleteRoom: async (roomCode) => {
+    const response = await axios.delete(`${URL_PREFIX}/api/rooms${roomCode}`);
+
+    console.log(response);
+    return response;
+  },
 };
 
 export default API;
