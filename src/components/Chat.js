@@ -50,28 +50,28 @@ function ChatFeature({ roomData }) {
 
 
 
-  return (
-    <div className="chat-box">
-      <h1>CATtention Chat</h1>
-      <div className="room-details">
-        <p>Room Name: {room.room_name}</p>
-        <p>Room Code: {room.code}</p>
+  
+    return (
+      <div className="chat-box">
+        <h1>CATtention Chat</h1>
+        <div className="room-details">
+          <p>Room Name: {room.room_name}</p>
+          <p>Room Code: {room.code}</p>
+        </div>
+        <div className="messages">
+          {messages.map(({ message, timestamp }, index) => (
+            <div key={index}>
+              <span className="timestamp">{timestamp}</span>
+              <span className="message">{message}</span>
+            </div>
+          ))}
+        </div>
+        <form onSubmit={handleSend}>
+          <input type="text" value={message} onChange={handleInputChange} />
+          <button type="submit">Send</button>
+        </form>
       </div>
-      <div className="messages">
-      {messages.map(({ message, timestamp }, index) => (
-  <div key={index}>
-    <span className="timestamp">{timestamp}</span>
-    <span className="message">{message}</span>
-
-  </div>
-))}
-      </div>
-      <form onSubmit={handleSend}>
-        <input type="text" value={message} onChange={handleInputChange} />
-        <button type="submit">Send</button>
-      </form>
-    </div>
-  );
+    );
 }
 
 
