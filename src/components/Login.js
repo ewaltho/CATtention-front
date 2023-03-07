@@ -29,7 +29,7 @@ export default function Login({
   };
 
   return (
-    <>
+    <div className="form">
       <h1>Login</h1>
       {isUserPassCorrect === false ? (
         <p>Username or password incorrect.</p>
@@ -54,6 +54,6 @@ export default function Login({
         ></input>
         <button type="submit">Submit</button>
       </form>
-    </>
+    </div>
   );
 }
