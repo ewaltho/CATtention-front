@@ -95,7 +95,7 @@ function App() {
           }
         />
         <Route
-          path="/JoinChat"
+          path="/joinchat"
           element={<JoinChat roomData={roomData} setRoomData={setRoomData} />}
         />
         <Route path="/chat" element={<Chat roomData={roomData} />} />
