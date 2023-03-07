@@ -27,7 +27,7 @@ export default function SignUp({
   };
 
   return (
-    <>
+    <div className="form">
       <h1>Sign Up</h1>
       <form onSubmit={handleSignUpFormSubmit}>
         <label htmlFor="username">Username:</label>
@@ -47,6 +47,6 @@ export default function SignUp({
         ></input>
         <button type="submit">Submit</button>
       </form>
-    </>
+    </div>
   );
 }

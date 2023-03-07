@@ -2,7 +2,8 @@ import "./assets/css/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import API from "./utils/API";
-import Chat from "./components/Chat";
+// import Chat from "./components/Chat";
+import Room from "./components/Room";
 import HomePage from "./components/Home";
 import JoinChat from "./components/JoinChat";
 import SignUp from "./components/SignUp";
@@ -95,10 +96,10 @@ function App() {
           }
         />
         <Route
-          path="/JoinChat"
+          path="/joinchat"
           element={<JoinChat roomData={roomData} setRoomData={setRoomData} />}
         />
-        <Route path="/chat" element={<Chat roomData={roomData} />} />
+        <Route path="/chat" element={<Room roomData={roomData} />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
       </Routes>
     </BrowserRouter>

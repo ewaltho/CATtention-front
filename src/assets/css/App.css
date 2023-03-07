@@ -28,7 +28,7 @@ body {
   width: 400px;
 }
 
-.login-btn {
+.btn {
   text-decoration: none;
   color: black;
 }
@@ -64,4 +64,9 @@ body {
   background-color: #333639;
   text-decoration: none;
   color: white;
+}
+
+.form {
+  text-align: center;
+  margin: auto;
 }
