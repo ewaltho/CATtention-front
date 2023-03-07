@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
-import axios from "axios";
 
 const socket = io("http://localhost:3001");
 
@@ -10,12 +9,23 @@ function ChatFeature({ roomData }) {
   const [room, setRoom] = useState({});
 
   useEffect(() => {
-    async function fetchRoom() {
-      if (!roomData) return; // Exit early if roomData is not available
-      const response = await axios.get(`http://localhost:3001/api/rooms/${roomData.code}`);
-      setRoom(response.data);
-    }
-    fetchRoom();
+    // Set up the room data and listen for incoming messages
+    setRoom(roomData);
+    console.log("Listening for incoming messages...");
+
+    socket.on("chat message", (msg) => {
+      // Listen for incoming messages from the server
+      console.log("Received message:", msg);
+
+      if (msg.roomCode === roomData.code) {
+        setMessages(prevMessages => [...prevMessages, msg]);
+      }
+    });
+
+    return () => {
+      socket.off("chat message");
+      console.log("Stopped listening for incoming messages...");
+    };
   }, [roomData]);
 
   const handleInputChange = (event) => {
@@ -28,23 +38,13 @@ function ChatFeature({ roomData }) {
       const currentTime = new Date();
       const timestamp = currentTime.toLocaleTimeString();
       const fullMessage = `[${timestamp}] ${message}`; // Add timestamp to message
-      socket.emit("chat message", fullMessage); // Emit the message to the server
+
+      // Emit the message to the server
+      console.log("Sending message:", fullMessage);
+      socket.emit("chat message", { roomCode: room.code, message: fullMessage });
       setMessage("");
     }
   };
-
-  socket.on("connect", () => {
-    console.log("connected to server");
-  });
-
-  socket.on("disconnect", () => {
-    console.log("disconnected from server");
-  });
-
-  socket.on("chat message", (msg) => {
-    // Listen for incoming messages from the server
-    setMessages([...messages, msg]);
-  });
 
   return (
     <div className="chat-box">
@@ -54,12 +54,13 @@ function ChatFeature({ roomData }) {
         <p>Room Code: {room.code}</p>
       </div>
       <div className="messages">
-        {messages.map((message, index) => (
-          <div key={index}>
-            <span className="timestamp">{message.timestamp}</span>
-            {message}
-          </div>
-        ))}
+      {messages.map((message, index) => (
+  <div key={index}>
+    <span className="timestamp">{message.timestamp}</span>
+    {message.message}
+  </div>
+))}
+
       </div>
       <form onSubmit={handleSend}>
         <input type="text" value={message} onChange={handleInputChange} />
