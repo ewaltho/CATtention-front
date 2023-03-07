@@ -21,7 +21,7 @@ function JoinChat(props) {
       // 6 random characters FOR ROOM CODE
       const roomCode = Math.random().toString(36).substring(2, 8);
       // Save the room details to the server
-      const response = await axios.post("http://localhost:3001/api/rooms", {
+      const response = await API.createNewRoom({
         room_name: roomName,
         code: roomCode,
       });

@@ -37,6 +37,12 @@ const API = {
     console.log(foundRoom);
     return foundRoom;
   },
+  createNewRoom: async (roomObj) => {
+    const createdRoom = await axios.post(`${URL_PREFIX}/api/rooms`, roomObj);
+
+    console.log(createdRoom);
+    return createdRoom;
+  },
 };
 
 export default API;
