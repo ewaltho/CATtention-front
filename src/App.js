@@ -68,42 +68,40 @@ function App() {
   };
 
   return (
-    <>
-      <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/signup"
-            element={
-              <SignUp
-                handleSignUpFormChange={handleSignUpFormChange}
-                signUpFormData={signUpFormData}
-                clearSignupForm={clearSignupForm}
-                setUserToken={setUserToken}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <Login
-                handleLoginFormChange={handleLoginFormChange}
-                loginFormData={loginFormData}
-                clearLoginForm={clearLoginForm}
-                setUserToken={setUserToken}
-              />
-            }
-          />
-          <Route
-            path="/joinchat"
-            element={<JoinChat roomData={roomData} setRoomData={setRoomData} />}
-          />
-          <Route path="/chat/:roomId" element={<Chat roomData={roomData} />} />
-          <Route path="*" element={<h1>404 page not found'</h1>} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/signup"
+          element={
+            <SignUp
+              handleSignUpFormChange={handleSignUpFormChange}
+              signUpFormData={signUpFormData}
+              clearSignupForm={clearSignupForm}
+              setUserToken={setUserToken}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Login
+              handleLoginFormChange={handleLoginFormChange}
+              loginFormData={loginFormData}
+              clearLoginForm={clearLoginForm}
+              setUserToken={setUserToken}
+            />
+          }
+        />
+        <Route
+          path="/joinchat"
+          element={<JoinChat roomData={roomData} setRoomData={setRoomData} />}
+        />
+        <Route path="/chat" element={<Chat roomData={roomData} />} />
+        <Route path="*" element={<h1>404 page not found'</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

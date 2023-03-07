@@ -12,19 +12,19 @@ export default function Login({
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
     const response = await API.loginUser(loginFormData);
-    console.log(response);
-    if (!response.ok) {
+    console.log(response.data);
+    if (!response.data) {
       clearLoginForm();
 
       setIsUserPassCorrect(false);
       setTimeout(() => {
-        if (isUserPassCorrect === true) {
-          setIsUserPassCorrect(false);
-        } else {
-          setIsUserPassCorrect(true);
-        }
+        setIsUserPassCorrect(true);
       }, 1000);
-      console.log("incorrect username or password");
+    } else if (response.status === 200) {
+      clearLoginForm();
+      setUserToken(response.data.token);
+      localStorage.setItem("token", response.data.token);
+      console.log(response.data.token);
     }
   };
 
