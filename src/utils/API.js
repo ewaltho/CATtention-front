@@ -11,6 +11,14 @@ const API = {
       return err;
     }
   },
+  loginUser: async (userObj) => {
+    try {
+      const login = await axios.post(`${URL_PREFIX}/api/users/login`, userObj);
+      return login;
+    } catch (err) {
+      return err;
+    }
+  },
   isValidToken: async (token) => {
     const checkToken = await axios.get(
       `${URL_PREFIX}/api/users/token/isValidToken`,

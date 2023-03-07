@@ -7,12 +7,17 @@ import HomePage from "./components/Home";
 import JoinChat from "./components/JoinChat";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
+import Navigation from "./components/Navigation";
 
 function App() {
   const [userToken, setUserToken] = useState("");
   const [userObject, setUserObject] = useState({});
   const [roomData, setRoomData] = useState("");
   const [signUpFormData, setSignUpFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const [loginFormData, setLoginFormData] = useState({
     username: "",
     password: "",
   });
@@ -40,6 +45,14 @@ function App() {
     });
   };
 
+  const handleLoginFormChange = (e) => {
+    e.preventDefault();
+    setLoginFormData({
+      ...loginFormData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const clearSignupForm = () => {
     setSignUpFormData({
       username: "",
@@ -47,8 +60,16 @@ function App() {
     });
   };
 
+  const clearLoginForm = () => {
+    setLoginFormData({
+      username: "",
+      password: "",
+    });
+  };
+
   return (
     <BrowserRouter>
+      <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
@@ -62,7 +83,17 @@ function App() {
             />
           }
         />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <Login
+              handleLoginFormChange={handleLoginFormChange}
+              loginFormData={loginFormData}
+              clearLoginForm={clearLoginForm}
+              setUserToken={setUserToken}
+            />
+          }
+        />
         <Route
           path="/chat"
           element={<JoinChat roomData={roomData} setRoomData={setRoomData} />}
