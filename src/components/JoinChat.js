@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../utils/API";
-import axios from "axios";
 // import io from "socket.io-client";
 
 // const socket = io('http://localhost:3001');
