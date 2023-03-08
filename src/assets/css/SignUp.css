@@ -1,0 +1,53 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+form {
+    display: table;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+.input {
+    display: table-row;
+    margin: 20px;
+    font-size: 40px;
+}
+
+.input label {
+    margin: 10px;
+    display: table-cell;
+}
+
+input {
+    display: table-cell;
+    width: 50vw;
+    height: 25px;
+    border: none;
+    padding: 5px;
+    margin: 20px;
+}
+
+button {
+    margin: 30px;
+    border: none;
+    padding: 20px;
+    background: #9E81BC;
+    font-size: 25px;
+    color: white;
+    width: 350px;
+    transition: ease-in-out 0.7s;
+}
+
+button:hover {
+    background: #48406F;
+}
+
+
+
