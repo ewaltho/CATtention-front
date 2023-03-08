@@ -13,6 +13,10 @@ body {
 
 .home {
   font-size: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* .Nav {
@@ -30,7 +34,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding: 15px;
+    padding: 20px;
 }
 
 .nav-btn {
@@ -46,6 +50,11 @@ body {
   font-size: 20px;
   text-decoration: none;
   color: black;
+  transition: ease-in-out 0.6s;
+}
+
+.btn:hover {
+  text-shadow: 2px -2px white;
 }
 
 .bio {
@@ -54,34 +63,60 @@ body {
   padding-top: 30px;
   text-align: center;
   margin-bottom: 50px;
+  margin-top: 40px;
 }
 
 .register-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 4vw;
-  margin: auto;
-  margin-bottom: 450px;
-  background-color: #9e81bc;
-  color: white;
+  text-align: center;
   text-decoration: none;
+  margin: 30px;
+  border: none;
+  padding: 25px;
+  background: #9E81BC;
+  font-size: 25px;
+  color: white;
+  width: 350px;
+  transition: ease-in-out 0.7s;
 }
 
-.tips {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 3vw;
-  margin: auto;
+.register-btn:hover {
+  background: #48406F;
+}
+
+.tipsBtn {
+  padding: 18px;
   background-color: #333639;
   text-decoration: none;
   color: white;
+  transition: ease-in-out 0.7s;
+}
+
+.tipsBtn:hover {
+  background: #7B7F8A;
 }
 
 .form {
   text-align: center;
   margin: auto;
+}
+
+.cat {
+  width: 250px;
+  height: auto;
+}
+
+.bottom-box {
+  position: absolute;
+  bottom: 0;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+@media screen and (min-width: 670) {
+  .cat {
+    height: 200px;
+  }
 }

@@ -14,7 +14,7 @@ h1 {
     font-size: 60px;
 }
 
-.input {
+.table {
     display: table-row;
     margin: 20px;
     font-size: 40px;
@@ -32,6 +32,10 @@ input {
     border: none;
     padding: 5px;
     margin: 20px;
+}
+
+.button {
+    display: table-cell;
 }
 
 button {
