@@ -38,24 +38,26 @@ export default function Login({
         <></>
       )}
       <form onSubmit={handleLoginFormSubmit}>
-        <div className="input">
-          <label htmlFor="username">Username:</label>
-          <input
-            onChange={handleLoginFormChange}
-            value={loginFormData.username}
-            name="username"
-            placeholder="username"
-          ></input>
-        </div>
-        <div className="input">
-          <label htmlFor="password">Password:</label>
-          <input
-            onChange={handleLoginFormChange}
-            value={loginFormData.password}
-            name="password"
-            placeholder="password"
-            type="password"
-          ></input>
+        <div className="table">
+          <div className="input">
+            <label htmlFor="username">Username:</label>
+            <input
+              onChange={handleLoginFormChange}
+              value={loginFormData.username}
+              name="username"
+              placeholder="username"
+              ></input>
+          </div>
+          <div className="input">
+            <label htmlFor="password">Password:</label>
+            <input
+              onChange={handleLoginFormChange}
+              value={loginFormData.password}
+              name="password"
+              placeholder="password"
+              type="password"
+              ></input>
+          </div>
         </div>
         <button type="submit">Login</button>
       </form>

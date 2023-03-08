@@ -12,9 +12,13 @@ function HomePage() {
         <Link to="/signup" className="register-btn">
           Register
         </Link>
-        <Link to="/" className="tipsBtn">
-          From the community
-        </Link>
+        <div className="bottom-box">
+          <img src="wave-cat-black.png" alt="drawing of cat waving" className="cat-left cat"/>
+          <Link to="/" className="tipsBtn">
+            From the community
+          </Link>
+          <img src="stretch-cat-black.png" alt="drawing of cat stretching" className="cat-right cat"/>
+        </div>
     </div>
   );
 }
