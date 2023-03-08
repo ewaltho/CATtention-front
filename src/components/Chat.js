@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../assets/css/Room.css"
 import io from "socket.io-client";
 
 const socket = io("http://localhost:3001");
@@ -58,13 +59,11 @@ function ChatFeature({ roomData, userObject}) {
 
 
 
-  
+  // TODO: remove room name label and just render state value
     return (
       <div className="chat-box">
-        <h1>CATtention Chat</h1>
         <div className="room-details">
-          <p>Room Name: {room.room_name}</p>
-          <p>Room Code: {room.code}</p>
+          <p className="room-title">{room.room_name}</p>
         </div>
         <div className="users">
         <h2>Users in Room:</h2>
@@ -85,7 +84,7 @@ function ChatFeature({ roomData, userObject}) {
       ))}
     </div>
         <form onSubmit={handleSend}>
-          <input type="text" value={message} onChange={handleInputChange} />
+          <input className="text-input" type="text" value={message} onChange={handleInputChange} />
           <button type="submit">Send</button>
         </form>
       </div>
