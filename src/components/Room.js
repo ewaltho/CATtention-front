@@ -9,7 +9,7 @@ export default function Room(props) {
         <div>
           <p>Placeholder text for timer/minigame</p>
         </div>
-        <Chat roomData={props.roomData} />
+        <Chat roomData={props.roomData} userObject={props.userObject} />
       </div>
     </>
   );
