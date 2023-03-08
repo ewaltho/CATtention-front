@@ -3,20 +3,22 @@ import io from "socket.io-client";
 
 const socket = io("http://localhost:3001");
 
-function ChatFeature({ roomData }) {
+function ChatFeature({ roomData, userObject}) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [room, setRoom] = useState({});
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     setRoom(roomData);
+    setUser(userObject); 
     console.log("Listening for incoming messages...");
   
     socket.on("chat message", (msg) => {
       console.log("Received message:", msg);
   
   
-        setMessages((prevMessages) => [...prevMessages, { message: msg.message, timestamp: msg.timestamp, roomCode: msg.roomCode }]);
+        setMessages((prevMessages) => [...prevMessages, { message: msg.message, timestamp: msg.timestamp, roomCode: msg.roomCode, userObject: userObject }]);
 
     });
   
@@ -27,7 +29,7 @@ function ChatFeature({ roomData }) {
       socket.off("chat message");
       console.log("Stopped listening for incoming messages...");
     };
-  }, [roomData]);
+  }, [roomData, userObject, user]);
 
   const handleInputChange = (event) => {
     setMessage(event.target.value);
@@ -39,7 +41,7 @@ function ChatFeature({ roomData }) {
    
       // Emit the message to the server
       console.log("Sending message:", message);
-      socket.emit("chat message", { roomCode: room.code, message: message });
+      socket.emit("chat message", { roomCode: room.code, message: message, userObject: user});
       setMessage("");
     }
   };
@@ -55,13 +57,14 @@ function ChatFeature({ roomData }) {
           <p>Room Code: {room.code}</p>
         </div>
         <div className="messages">
-          {messages.map(({ message, timestamp }, index) => (
-            <div key={index}>
-              <span className="timestamp">{timestamp}</span>
-              <br />
-              <span className="message">{message}</span>
-            </div>
-          ))}
+        {messages.map(({ message, timestamp, userObject }, index) => (
+          <div key={index}>
+            <span className="timestamp">{timestamp}</span>
+            <span className="username">{userObject.username}</span>
+            <br />
+            <span className="message">{message}</span>
+          </div>
+        ))}
         </div>
         <form onSubmit={handleSend}>
           <input type="text" value={message} onChange={handleInputChange} />

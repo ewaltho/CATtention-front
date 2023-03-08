@@ -99,7 +99,7 @@ function App() {
           path="/joinchat"
           element={<JoinChat roomData={roomData} setRoomData={setRoomData} />}
         />
-        <Route path="/chat" element={<Room roomData={roomData} />} />
+        <Route path="/chat" element={<Room roomData={roomData} userObject={userObject} />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
       </Routes>
     </BrowserRouter>
