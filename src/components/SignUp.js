@@ -58,8 +58,9 @@ export default function SignUp({
             type="password"
           ></input>
         </div>
-        <button type="submit" className="submit-btn">Create Account</button>
+        <button type="submit">Create Account</button>
       </form>
+        
     </div>
   );
 }
