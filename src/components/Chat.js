@@ -11,15 +11,18 @@ function ChatFeature({ roomData, userObject}) {
 
   useEffect(() => {
     setRoom(roomData);
-    setUser(userObject); 
+   
     console.log("Listening for incoming messages...");
   
     socket.on("chat message", (msg) => {
       console.log("Received message:", msg);
   
   
-        setMessages((prevMessages) => [...prevMessages, { message: msg.message, timestamp: msg.timestamp, roomCode: msg.roomCode, userObject: userObject }]);
-
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { message: msg.message, timestamp: msg.timestamp, roomCode: msg.roomCode, userObject: msg.userObject },
+      ]);
+            setUser (msg.userObject);
     });
   
     // Join the room when the component mounts
@@ -41,7 +44,7 @@ function ChatFeature({ roomData, userObject}) {
    
       // Emit the message to the server
       console.log("Sending message:", message);
-      socket.emit("chat message", { roomCode: room.code, message: message, userObject: user});
+      socket.emit("chat message", { roomCode: room.code, message: message, userObject: userObject});
       setMessage("");
     }
   };
@@ -59,12 +62,13 @@ function ChatFeature({ roomData, userObject}) {
         <div className="messages">
         {messages.map(({ message, timestamp, userObject }, index) => (
           <div key={index}>
-            <span className="timestamp">{timestamp}</span>
-            <span className="username">{userObject.username}</span>
+            <span className="timestamp">{timestamp}: </span>
+            <span className="username">{userObject && userObject.username}</span>
             <br />
             <span className="message">{message}</span>
           </div>
         ))}
+
         </div>
         <form onSubmit={handleSend}>
           <input type="text" value={message} onChange={handleInputChange} />
