@@ -9,16 +9,12 @@ function HomePage() {
         with a friend. You can level up with mini-games and earn cat badges to
         customize your profile! Now go! Be productive!
       </p>
-      <div className="register-btn">
         <Link to="/signup" className="register-btn">
           Register
         </Link>
-      </div>
-      <div className="tips">
-        <Link to="/" className="tips">
+        <Link to="/" className="tipsBtn">
           From the community
         </Link>
-      </div>
     </div>
   );
 }
