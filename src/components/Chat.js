@@ -77,7 +77,7 @@ function ChatFeature({ roomData, userObject}) {
         <div className="messages">
         {messages.map(({ message, timestamp, userObject }, index) => (
           <div key={index}>
-            <span className="timestamp">{timestamp}: </span>
+            <span className="timestamp">{timestamp} - </span>
             <span className="username">{userObject && userObject.username}</span>
             <br />
             <span className="message">{message}</span>
