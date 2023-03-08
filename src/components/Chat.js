@@ -74,17 +74,16 @@ function ChatFeature({ roomData, userObject}) {
           ))}
         </ul>
       </div>
-        <div className="messages">
+      <div className="messages">
         {messages.map(({ message, timestamp, userObject }, index) => (
           <div key={index}>
-            <span className="timestamp">{timestamp} - </span>
+            <span className="timestamp">{userObject ? `${timestamp} - ` : ''}</span>
             <span className="username">{userObject && userObject.username}</span>
             <br />
             <span className="message">{message}</span>
           </div>
-        ))}
-
-        </div>
+      ))}
+    </div>
         <form onSubmit={handleSend}>
           <input type="text" value={message} onChange={handleInputChange} />
           <button type="submit">Send</button>
