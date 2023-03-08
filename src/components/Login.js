@@ -57,8 +57,9 @@ export default function Login({
             type="password"
           ></input>
         </div>
-      </form>
         <button type="submit">Login</button>
+      </form>
+       
     </div>
   );
 }
