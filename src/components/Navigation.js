@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
-// TODO: Change class names to format individual navbars or change main CSS to accomodate different styles
 export default function Navigation() {
     const currentlocation = useLocation();
     if (currentlocation.pathname === "/") {
