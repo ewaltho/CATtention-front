@@ -6,7 +6,7 @@ function HomePage() {
     <div className="home">
       <p className="bio">
         Welcome to CATtention! The ADHD friendly productivity app. Work alone or
-        with a friend. You can level up with minigames and earn cat badges to
+        with a friend. You can level up with mini-games and earn cat badges to
         customize your profile! Now go! Be productive!
       </p>
       <div className="register-btn">

@@ -8,6 +8,7 @@ function ChatFeature({ roomData, userObject}) {
   const [messages, setMessages] = useState([]);
   const [room, setRoom] = useState({});
   const [user, setUser] = useState({});
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     setRoom(roomData);
@@ -26,7 +27,13 @@ function ChatFeature({ roomData, userObject}) {
     });
   
     // Join the room when the component mounts
-    socket.emit("join room", roomData.code);
+    socket.emit("join room", roomData.code, { userObject });
+
+    socket.on("users in room", (userList) => {
+      console.log("Received user list:", userList);
+      setUsers(userList);
+    });
+
   
     return () => {
       socket.off("chat message");
@@ -59,6 +66,14 @@ function ChatFeature({ roomData, userObject}) {
           <p>Room Name: {room.room_name}</p>
           <p>Room Code: {room.code}</p>
         </div>
+        <div className="users">
+        <h2>Users in Room:</h2>
+        <ul>
+          {users.map((user, index) => (
+            <li key={index}>{user.username}</li>
+          ))}
+        </ul>
+      </div>
         <div className="messages">
         {messages.map(({ message, timestamp, userObject }, index) => (
           <div key={index}>
