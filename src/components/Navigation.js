@@ -7,7 +7,9 @@ export default function Navigation() {
     if (currentlocation.pathname === "/") {
       return (
         <div className="Nav">
+         <Link to="/">
           <img src="CATtention-logo.png" alt="logo" className="logo" />
+        </Link>
           <div className="nav-btn">
             <Link to="/login" className="btn">
               Log In
@@ -19,7 +21,9 @@ export default function Navigation() {
     else if (currentlocation.pathname === "/login") {
         return (
             <div className="Nav">
-              <img src="CATtention-logo.png" alt="logo" className="logo" />
+              <Link to="/">
+                <img src="CATtention-logo.png" alt="logo" className="logo" />
+              </Link>
               <div className="nav-btn">
                 <Link to="/signup" className="btn">
                   Register
@@ -31,7 +35,9 @@ export default function Navigation() {
     else if (currentlocation.pathname === "/signup") {
       return (
         <div className="Nav">
+          <Link to="/">
           <img src="CATtention-logo.png" alt="logo" className="logo" />
+        </Link>
           <div className="nav-btn">
             <Link to="/login" className="btn">
               Log In
@@ -43,7 +49,9 @@ export default function Navigation() {
     else if (currentlocation.pathname === "/joinchat") {
       return (
         <div className="Nav">
+          <Link to="/">
           <img src="CATtention-logo.png" alt="logo" className="logo" />
+        </Link>
           <div className="nav-btn">
             <Link to="/profile" className="btn">
               Profile
@@ -58,13 +66,32 @@ export default function Navigation() {
     else if (currentlocation.pathname === "/chat") {
       return (
         <div className="Nav">
+          <Link to="/">
           <img src="CATtention-logo.png" alt="logo" className="logo" />
+        </Link>
           <div className="nav-btn">
             <Link to="/profile" className="btn">
               Profile
             </Link>
             <Link to="/logout" className="btn">
               Log Out
+            </Link>
+          </div>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className="Nav">
+          <Link to="/">
+          <img src="CATtention-logo.png" alt="logo" className="logo" />
+        </Link>
+          <div className="nav-btn">
+            <Link to="/signup" className="btn">
+              Register
+            </Link>
+            <Link to="/login" className="btn">
+              Log In
             </Link>
           </div>
         </div>
