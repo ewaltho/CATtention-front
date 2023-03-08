@@ -35,7 +35,7 @@ export default function SignUp({
           <label htmlFor="email">Email:</label>
           <input           
             onChange={handleSignUpFormChange}
-            value={signUpFormData.username}
+            value={signUpFormData.email}
             name="email"
             placeholder="email"></input>
         </div>
