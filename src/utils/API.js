@@ -58,6 +58,11 @@ const API = {
     console.log(response);
     return response;
   },
+  deleteUser: async (userId) => {
+    const response = axios.delete(`${URL_PREFIX}/api/users/${userId}`);
+
+    return response;
+  },
   allCats: async () => {
     const allCats = await axios.get(`${URL_PREFIX}/api/cats`);
 
@@ -67,6 +72,22 @@ const API = {
     const oneCat = await axios.get(`${URL_PREFIX}/api/cats/${catId}`);
 
     return oneCat;
+  },
+  updateCat: async (catObj, catId) => {
+    const updatedCat = await axios.put(
+      `${URL_PREFIX}/api/cats/${catId}`,
+      catObj
+    );
+
+    return updatedCat;
+  },
+  // Destructuring an object here with the keys of userId and catId, this way there's no confusion on order to pass in.
+  addCatToUser: async ({ userId, catId }) => {
+    const response = await axios.put(
+      `${URL_PREFIX}/api/users/${userId}/cats/${catId}`
+    );
+
+    return response;
   },
 };
 
