@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../utils/API";
+import "../assets/css/SignUp.css"
 
 export default function SignUp({
   handleSignUpFormChange,
@@ -28,25 +29,37 @@ export default function SignUp({
 
   return (
     <div className="form">
-      <h1>Sign Up</h1>
+      <h1>Create an Account</h1>
       <form onSubmit={handleSignUpFormSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-          onChange={handleSignUpFormChange}
-          value={signUpFormData.username}
-          name="username"
-          placeholder="username"
-        ></input>
-        <label htmlFor="password">Password:</label>
-        <input
-          onChange={handleSignUpFormChange}
-          value={signUpFormData.password}
-          name="password"
-          placeholder="password"
-          type="password"
-        ></input>
-        <button type="submit">Submit</button>
+        <div className="input">
+          <label htmlFor="email">Email:</label>
+          <input           
+            onChange={handleSignUpFormChange}
+            value={signUpFormData.username}
+            name="email"
+            placeholder="email"></input>
+        </div>
+        <div className="input">
+          <label htmlFor="username">Username:</label>
+          <input
+            onChange={handleSignUpFormChange}
+            value={signUpFormData.username}
+            name="username"
+            placeholder="username"
+          ></input>
+        </div>
+        <div className="input">
+          <label htmlFor="password">Password:</label>
+          <input
+            onChange={handleSignUpFormChange}
+            value={signUpFormData.password}
+            name="password"
+            placeholder="password"
+            type="password"
+          ></input>
+        </div>
       </form>
+        <button type="submit">Create Account</button>
     </div>
   );
 }
