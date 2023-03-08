@@ -15,15 +15,6 @@ body {
   font-size: 26px;
 }
 
-/* .Nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 20px;
-  justify-content: space-between;
-  font-size: 20px;
-} */
-
 .Nav {
     display: flex;
     flex-direction: row;
@@ -42,8 +33,8 @@ body {
 }
 
 .btn {
-  padding: 10px;
-  font-size: 20px;
+  padding: 50px;
+  font-size: 24px;
   text-decoration: none;
   color: black;
 }

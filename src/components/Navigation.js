@@ -55,4 +55,19 @@ export default function Navigation() {
         </div>
       );
     }
+    else if (currentlocation.pathname === "/chat") {
+      return (
+        <div className="Nav">
+          <img src="CATtention-logo.png" alt="logo" className="logo" />
+          <div className="nav-btn">
+            <Link to="/profile" className="btn">
+              Profile
+            </Link>
+            <Link to="/logout" className="btn">
+              Log Out
+            </Link>
+          </div>
+        </div>
+      );
+    }
 }
