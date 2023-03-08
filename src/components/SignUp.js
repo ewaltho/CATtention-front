@@ -31,14 +31,14 @@ export default function SignUp({
     <div className="form">
       <h1>Create an Account</h1>
       <form onSubmit={handleSignUpFormSubmit}>
-        <div className="input">
+        {/* <div className="input">
           <label htmlFor="email">Email:</label>
           <input           
             onChange={handleSignUpFormChange}
-            value={signUpFormData.username}
+            value={signUpFormData.email}
             name="email"
             placeholder="email"></input>
-        </div>
+        </div> */}
         <div className="input">
           <label htmlFor="username">Username:</label>
           <input
@@ -58,8 +58,8 @@ export default function SignUp({
             type="password"
           ></input>
         </div>
+        <button type="submit" className="submit-btn">Create Account</button>
       </form>
-        <button type="submit">Create Account</button>
     </div>
   );
 }
