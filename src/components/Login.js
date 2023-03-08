@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../utils/API";
+import "../assets/css/SignUp.css"
 
 export default function Login({
   handleLoginFormChange,
@@ -37,23 +38,27 @@ export default function Login({
         <></>
       )}
       <form onSubmit={handleLoginFormSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-          onChange={handleLoginFormChange}
-          value={loginFormData.username}
-          name="username"
-          placeholder="username"
-        ></input>
-        <label htmlFor="password">Password:</label>
-        <input
-          onChange={handleLoginFormChange}
-          value={loginFormData.password}
-          name="password"
-          placeholder="password"
-          type="password"
-        ></input>
-        <button type="submit">Submit</button>
+        <div className="input">
+          <label htmlFor="username">Username:</label>
+          <input
+            onChange={handleLoginFormChange}
+            value={loginFormData.username}
+            name="username"
+            placeholder="username"
+          ></input>
+        </div>
+        <div className="input">
+          <label htmlFor="password">Password:</label>
+          <input
+            onChange={handleLoginFormChange}
+            value={loginFormData.password}
+            name="password"
+            placeholder="password"
+            type="password"
+          ></input>
+        </div>
       </form>
+        <button type="submit">Login</button>
     </div>
   );
 }
