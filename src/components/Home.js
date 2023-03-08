@@ -9,16 +9,16 @@ function HomePage() {
         with a friend. You can level up with mini-games and earn cat badges to
         customize your profile! Now go! Be productive!
       </p>
-      <div className="register-btn">
         <Link to="/signup" className="register-btn">
           Register
         </Link>
-      </div>
-      <div className="tips">
-        <Link to="/" className="tips">
-          From the community
-        </Link>
-      </div>
+        <div className="bottom-box">
+          <img src="wave-cat-black.png" alt="drawing of cat waving" className="cat-left cat"/>
+          <Link to="/" className="tipsBtn">
+            From the community
+          </Link>
+          <img src="stretch-cat-black.png" alt="drawing of cat stretching" className="cat-right cat"/>
+        </div>
     </div>
   );
 }
