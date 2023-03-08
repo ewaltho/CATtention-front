@@ -1,59 +1,58 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 // TODO: Change class names to format individual navbars or change main CSS to accomodate different styles
 export default function Navigation() {
-    const currentlocation = useLocation();
-    if (currentlocation.pathname === "/") {
-      return (
-        <div className="Nav">
-          <img src="CATtention-logo.png" alt="logo" className="logo" />
-          <div className="nav-btn">
-            <Link to="/login" className="btn">
-              Log In
-            </Link>
-          </div>
+  const currentlocation = useLocation();
+  if (currentlocation.pathname === "/") {
+    return (
+      <div className="Nav">
+        <img src="CATtention-logo.png" alt="logo" className="logo" />
+        <div className="nav-btn">
+          <Link to="/login" className="btn">
+            Log In
+          </Link>
         </div>
-      );
-    }
-    else if (currentlocation.pathname === "/login") {
-        return (
-            <div className="Nav">
-              <img src="CATtention-logo.png" alt="logo" className="logo" />
-              <div className="nav-btn">
-                <Link to="/signup" className="btn">
-                  Register
-                </Link>
-              </div>
-            </div>
-          );
-    }
-    else if (currentlocation.pathname === "/signup") {
-      return (
-        <div className="Nav">
+      </div>
+    );
+  } else if (currentlocation.pathname === "/login") {
+    return (
+      <div className="Nav">
+        <Link to="/">
           <img src="CATtention-logo.png" alt="logo" className="logo" />
-          <div className="nav-btn">
-            <Link to="/login" className="btn">
-              Log In
-            </Link>
-          </div>
+        </Link>
+        <div className="nav-btn">
+          <Link to="/signup" className="btn">
+            Register
+          </Link>
         </div>
-      );
-    }
-    else if (currentlocation.pathname === "/joinchat") {
-      return (
-        <div className="Nav">
-          <img src="CATtention-logo.png" alt="logo" className="logo" />
-          <div className="nav-btn">
-            <Link to="/profile" className="btn">
-              Profile
-            </Link>
-            <Link to="/logout" className="btn">
-              Log Out
-            </Link>
-          </div>
+      </div>
+    );
+  } else if (currentlocation.pathname === "/signup") {
+    return (
+      <div className="Nav">
+        <img src="CATtention-logo.png" alt="logo" className="logo" />
+        <div className="nav-btn">
+          <Link to="/login" className="btn">
+            Log In
+          </Link>
         </div>
-      );
-    }
+      </div>
+    );
+  } else if (currentlocation.pathname === "/joinchat") {
+    return (
+      <div className="Nav">
+        <img src="CATtention-logo.png" alt="logo" className="logo" />
+        <div className="nav-btn">
+          <Link to="/profile" className="btn">
+            Profile
+          </Link>
+          <Link to="/logout" className="btn">
+            Log Out
+          </Link>
+        </div>
+      </div>
+    );
+  }
 }
