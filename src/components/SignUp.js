@@ -31,34 +31,38 @@ export default function SignUp({
     <div className="form">
       <h1>Create an Account</h1>
       <form onSubmit={handleSignUpFormSubmit}>
+        <div className="table">
         {/* <div className="input">
           <label htmlFor="email">Email:</label>
           <input           
             onChange={handleSignUpFormChange}
-            value={signUpFormData.username}
+            value={signUpFormData.email}
             name="email"
             placeholder="email"></input>
         </div> */}
-        <div className="input">
-          <label htmlFor="username">Username:</label>
-          <input
-            onChange={handleSignUpFormChange}
-            value={signUpFormData.username}
-            name="username"
-            placeholder="username"
-          ></input>
+          <div className="input">
+            <label htmlFor="username">Username:</label>
+            <input
+              onChange={handleSignUpFormChange}
+              value={signUpFormData.username}
+              name="username"
+              placeholder="username"
+              ></input>
+          </div>
+          <div className="input">
+            <label htmlFor="password">Password:</label>
+            <input
+              onChange={handleSignUpFormChange}
+              value={signUpFormData.password}
+              name="password"
+              placeholder="password"
+              type="password"
+              ></input>
+          </div>
         </div>
-        <div className="input">
-          <label htmlFor="password">Password:</label>
-          <input
-            onChange={handleSignUpFormChange}
-            value={signUpFormData.password}
-            name="password"
-            placeholder="password"
-            type="password"
-          ></input>
+        <div className="button">
+          <button type="submit">Create Account</button>
         </div>
-        <button type="submit">Create Account</button>
       </form>
         
     </div>
