@@ -30,16 +30,25 @@ body {
     background-color: #C1CFDA;
 }
 
+.messages {
+    padding: 10px;
+}
+
 /* Alternating message CSS, can be adjusted, just did basic color for now */
 .messages>div:nth-child(even){
     background-color:#9e81bc;
     text-align: left;
     padding: 5px;
-    border: 2px solid black;
+    margin-bottom: 10px;
+    width: 50%;
 }
 
 .messages>div:nth-child(odd){
     background-color: #C1CFDA;
     text-align: right;
     padding: 5px;
+    margin-left: auto; 
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 50%;
 }
