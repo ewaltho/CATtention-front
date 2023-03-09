@@ -72,7 +72,7 @@ body {
         }
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 768px) {
     .room {
         flex-direction: column;
         justify-content: center;
