@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../assets/css/Room.css"
+import "../assets/css/Room.css";
 import io from "socket.io-client";
 
 const socket = io("http://localhost:3001");
@@ -14,20 +14,24 @@ function ChatFeature({ roomData, userObject, currentUser}) {
   console.log(currentUser)
   useEffect(() => {
     setRoom(roomData);
-   
+
     console.log("Listening for incoming messages...");
-  
+
     socket.on("chat message", (msg) => {
       console.log("Received message:", msg);
-  
-  
+
       setMessages((prevMessages) => [
         ...prevMessages,
-        { message: msg.message, timestamp: msg.timestamp, roomCode: msg.roomCode, userObject: msg.userObject },
+        {
+          message: msg.message,
+          timestamp: msg.timestamp,
+          roomCode: msg.roomCode,
+          userObject: msg.userObject,
+        },
       ]);
-            setUser (msg.userObject);
+      setUser(msg.userObject);
     });
-  
+
     // Join the room when the component mounts
     socket.emit("join room", roomData.code, { userObject });
 
@@ -36,7 +40,11 @@ function ChatFeature({ roomData, userObject, currentUser}) {
       setUsers(userList);
     });
 
-  
+    socket.on("disconnect", () => {
+      console.log("Disconnected from server");
+      setUsers([]); // Reset the user list when the socket disconnects
+    });
+
     return () => {
       socket.off("chat message");
       console.log("Stopped listening for incoming messages...");
@@ -50,27 +58,28 @@ function ChatFeature({ roomData, userObject, currentUser}) {
   const handleSend = (event) => {
     event.preventDefault();
     if (message) {
-   
       // Emit the message to the server
       console.log("Sending message:", message);
-      socket.emit("chat message", { roomCode: room.code, message: message, userObject: userObject});
+      socket.emit("chat message", {
+        roomCode: room.code,
+        message: message,
+        userObject: userObject,
+      });
       setTimeout(() => {
-        messageContainer.current.scrollTop = messageContainer.current.scrollHeight;
-      }, 10
-      );
+        messageContainer.current.scrollTop =
+          messageContainer.current.scrollHeight;
+      }, 10);
       setMessage("");
     }
   };
 
-
-
   // TODO: remove room name label and just render state value
-    return (
-      <div className="chat-box">
-        <div className="room-details">
-          <p className="room-title">{room.room_name}</p>
-        </div>
-        <div className="users">
+  return (
+    <div className="chat-box">
+      <div className="room-details">
+        <p className="room-title">{room.room_name}</p>
+      </div>
+      <div className="users">
         <h2>Users in Room:</h2>
         <ul>
           {users.map((user, index) => (
@@ -100,7 +109,5 @@ function ChatFeature({ roomData, userObject, currentUser}) {
       </div>
     );
 }
-
-
 
 export default ChatFeature;
