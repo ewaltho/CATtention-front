@@ -11,6 +11,7 @@ export default function CreateRoom({ roomPreferences, setRoomPreferences }) {
     if (savedRoomPrefObj) {
       setRoomPreferences(savedRoomPrefObj);
     }
+    // eslint-disable-next-line
   }, []);
 
   const handleRoomPrefsInputChange = (e) => {
