@@ -64,18 +64,30 @@ export default function CreateRoom({
     if (roomPreferences.roomName.trim() !== "") {
       // 6 random characters FOR ROOM CODE
       const roomCode = Math.random().toString(36).substring(2, 8);
-      // Save the room details to the server
-      const response = await API.createNewRoom({
-        room_name: roomPreferences.roomName,
-        code: roomCode,
+  
+      setRoomPreferences({
+        ...roomPreferences,
+        roomCode: roomCode,
       });
-      setRoomData(response.data);
-
-      // Redirect the user to the chat room with the assigned ID and room code
-      navigate(`/chat`);
+  
+      try {
+        // Save the room details to the server
+        const response = await API.createNewRoom({
+          room_name: roomPreferences.roomName,
+          code: roomCode,
+        });
+  
+        setRoomData(response.data);
+        localStorage.setItem("roomPrefs", JSON.stringify(roomPreferences));
+        console.log(roomPreferences)
+        // Redirect the user to the chat room with the assigned ID and room code
+        navigate(`/chat`);
+      } catch (error) {
+        console.error("Error creating new room: ", error);
+      }
     }
-    localStorage.setItem("roomPrefs", JSON.stringify(roomPreferences));
   };
+  
 
   return (
     <>

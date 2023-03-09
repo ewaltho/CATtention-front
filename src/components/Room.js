@@ -13,7 +13,7 @@ export default function Room(props) {
             <p>Placeholder for timer/minigame</p>
           </div>
         <div className="chatbox">
-          <Chat roomData={props.roomData} userObject={props.userObject} />
+          <Chat roomData={props.roomData} userObject={props.userObject} roomPreferences={props.roomPreferences} />
         </div>
       </div>
     </>

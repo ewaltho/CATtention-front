@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import "../assets/css/Room.css"
 import io from "socket.io-client";
 
@@ -10,6 +11,27 @@ function ChatFeature({ roomData, userObject}) {
   const [room, setRoom] = useState({});
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    const storedRoom = JSON.parse(localStorage.getItem("roomPrefs"));
+    if (storedRoom) {
+      console.log(storedRoom);
+      if (!storedRoom.roomCode) {
+        console.log(storedRoom.roomCode)
+        navigate ("/joinchat")
+      }
+      else {
+        socket.emit("join room", storedRoom.code, { userObject });
+      }
+    } else {
+      console.log("No stored room found in localStorage.");
+      navigate ("/joinchat");
+    }
+  }, [])
+  
+
+
 
   useEffect(() => {
     setRoom(roomData);
@@ -36,6 +58,11 @@ function ChatFeature({ roomData, userObject}) {
       setUsers(userList);
     });
 
+    socket.on("disconnect", () => {
+      console.log("Disconnected from server");
+      setUsers([]); // Reset the user list when the socket disconnects
+    });
+
   
     return () => {
       socket.off("chat message");
@@ -57,6 +84,8 @@ function ChatFeature({ roomData, userObject}) {
       setMessage("");
     }
   };
+
+
 
 
 

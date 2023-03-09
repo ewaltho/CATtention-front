@@ -120,7 +120,7 @@ function App() {
         />
         <Route
           path="/chat"
-          element={<Room roomData={roomData} userObject={userObject} />}
+          element={<Room roomData={roomData} userObject={userObject} roomPreferences={roomPreferences} />}
         />
         <Route path="/profile" element={<Profile userObject={userObject} />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
