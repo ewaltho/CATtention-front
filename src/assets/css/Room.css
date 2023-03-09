@@ -65,3 +65,29 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (max-width: 1280px) {
+    .chatbox {
+            height: 100%
+        }
+}
+
+@media screen and (max-width: 768px) {
+    .room {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chatbox {
+        width: 100%;
+        height: 100%
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .send-box {
+        height: 50vh;
+    }
+
+}

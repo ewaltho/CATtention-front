@@ -106,8 +106,22 @@ body {
   width: 100vw;
 }
 
-@media screen and (min-width: 670) {
+@media screen and (min-width: 670px) {
   .cat {
     height: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Nav {
+    flex-direction: column;
+  }
+
+  .btn {
+    padding: 10px;
+  }
+
+  .logo {
+    width: 250px;
   }
 }
