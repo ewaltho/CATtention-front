@@ -81,6 +81,7 @@ export default function CreateRoom({ roomPreferences, setRoomPreferences }) {
           onChange={handleRoomPrefsInputChange}
           value={roomPreferences.roomName}
         ></input>
+        <label htmlFor="minigameToggle">Minigame Toggle:</label>
         <label className="switch">
           <input
             type="checkbox"
