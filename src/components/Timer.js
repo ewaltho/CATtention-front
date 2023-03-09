@@ -11,15 +11,8 @@ export default function Timer({ roomPreferences }) {
     setWorkState(true);
 
     const countDown = () => {
-      let minutes;
-      let seconds;
-      if (workTimeSeconds % 60 === 0) {
-        minutes = Math.floor(workTimeSeconds / 60) - 1;
-        seconds = 59;
-      } else {
-        minutes = Math.floor(workTimeSeconds / 60);
-        seconds = workTimeSeconds % 60;
-      }
+      let minutes = Math.floor(workTimeSeconds / 60);
+      let seconds = workTimeSeconds % 60;
       switch (seconds) {
         case 1: {
           seconds = "01";
@@ -66,7 +59,7 @@ export default function Timer({ roomPreferences }) {
         }
       }
       workTimeSeconds -= 1;
-      if (seconds <= 0) {
+      if (workTimeSeconds <= 0) {
         clearInterval(workInterval);
         setBreakState(true);
       }
