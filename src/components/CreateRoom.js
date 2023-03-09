@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "../assets/css/CreateRoom.css";
 
-export default function CreateRoom(props) {
-  const [roomPreferences, setRoomPreferences] = useState({
-    minigameToggle: false,
-  });
+export default function CreateRoom({ roomPreferences, setRoomPreferences }) {
   //   room prefs need the following keys: minigames bool, workTime, breakTime, room name needs to create a room with socket.
 
   // ! On page load, if there are previous prefs, this will automatically fill them into our state.
