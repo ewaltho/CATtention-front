@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export default function Timer({ roomPreferences }) {
   const [timerText, setTimerText] = useState("");
-  const [breakState, setBreakState] = useState(false);
+  const [started, setStarted] = useState(false);
   const [workState, setWorkState] = useState(false);
   let workTimeSeconds = roomPreferences.workTime * 60;
   let breakTimeSeconds = roomPreferences.breakTime * 60;
@@ -62,7 +62,7 @@ export default function Timer({ roomPreferences }) {
       if (workTimeSeconds <= 0) {
         clearInterval(workInterval);
         setWorkState(false);
-
+        setStarted(true);
         breakTimer();
       }
       setTimerText(`${minutes}:${seconds}`);
@@ -124,6 +124,7 @@ export default function Timer({ roomPreferences }) {
       if (breakTimeSeconds <= 0) {
         clearInterval(breakInterval);
         setWorkState(true);
+        setTimerText(`Time's Up!`);
       }
       setTimerText(`${minutes}:${seconds}`);
     };
@@ -134,8 +135,10 @@ export default function Timer({ roomPreferences }) {
     <div>
       {workState ? <h1>Work Time!</h1> : <h1>Break Time</h1>}
       <h2>{timerText}</h2>
-      {workState === false && (
+      {workState === false ? (
         <button onClick={startWorkTimer}>Get to work!</button>
+      ) : (
+        <button>Wait!</button>
       )}
     </div>
   );
