@@ -57,17 +57,10 @@ export default function CreateRoom({
         [e.target.name]: e.target.value,
       });
     } else {
-      let checkInput = /^[0-9\b]+$/;
-      if (checkInput.test(e.target.value)) {
-        setRoomPreferences({
-          ...roomPreferences,
-          [e.target.name]: e.target.value,
-        });
-      } else {
-        setRoomPreferences({
-          ...roomPreferences,
-        });
-      }
+      setRoomPreferences({
+        ...roomPreferences,
+        [e.target.name]: e.target.value,
+      });
     }
   };
 
@@ -109,6 +102,7 @@ export default function CreateRoom({
         <label htmlFor="workTime">Work Timer:</label>
         <input
           name="workTime"
+          type="number"
           placeholder="Minutes to work"
           onChange={handleRoomPrefsInputChange}
           value={roomPreferences.workTime}
@@ -116,6 +110,7 @@ export default function CreateRoom({
         <label htmlFor="workTime">Break Timer:</label>
         <input
           name="breakTime"
+          type="number"
           placeholder="Minutes to break"
           onChange={handleRoomPrefsInputChange}
           value={roomPreferences.breakTime}
