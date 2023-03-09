@@ -21,7 +21,7 @@ function ChatFeature({ roomData, userObject }) {
         console.log(storedRoom.roomCode);
         navigate("/joinchat");
       } else {
-        socket.emit("join room", storedRoom.code, { userObject });
+        socket.emit("join room", storedRoom.roomCode, { userObject });
       }
     } else {
       console.log("No stored room found in localStorage.");
