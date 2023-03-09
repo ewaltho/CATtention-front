@@ -51,11 +51,23 @@ export default function CreateRoom({
         ...roomPreferences,
         minigameToggle: false,
       });
-    } else {
+    } else if (e.target.name === "roomName") {
       setRoomPreferences({
         ...roomPreferences,
         [e.target.name]: e.target.value,
       });
+    } else {
+      let checkInput = /^[0-9\b]+$/;
+      if (checkInput.test(e.target.value)) {
+        setRoomPreferences({
+          ...roomPreferences,
+          [e.target.name]: e.target.value,
+        });
+      } else {
+        setRoomPreferences({
+          ...roomPreferences,
+        });
+      }
     }
   };
 
