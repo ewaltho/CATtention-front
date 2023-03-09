@@ -3,15 +3,23 @@ import React, { useState } from "react";
 export default function Timer({ roomPreferences }) {
   const [timerText, setTimerText] = useState("");
   const [breakState, setBreakState] = useState(false);
+  const [workState, setWorkState] = useState(false);
   let workTimeSeconds = roomPreferences.workTime * 60;
   let breakTimeSeconds = roomPreferences.breakTime * 60;
-  const startWorkTimer = (workTime) => {
-    setInterval(countDown, 1000);
 
-    function countDown() {
-      console.log(workTimeSeconds, breakTimeSeconds);
-      const minutes = Math.floor(workTimeSeconds / 60);
-      let seconds = workTimeSeconds % 60;
+  const startWorkTimer = () => {
+    setWorkState(true);
+
+    const countDown = () => {
+      let minutes;
+      let seconds;
+      if (workTimeSeconds % 60 === 0) {
+        minutes = Math.floor(workTimeSeconds / 60) - 1;
+        seconds = 59;
+      } else {
+        minutes = Math.floor(workTimeSeconds / 60);
+        seconds = workTimeSeconds % 60;
+      }
       switch (seconds) {
         case 1: {
           seconds = "01";
@@ -59,10 +67,18 @@ export default function Timer({ roomPreferences }) {
       }
       workTimeSeconds -= 1;
       if (seconds <= 0) {
-        clearInterval(startWorkTimer);
+        clearInterval(workInterval);
         setBreakState(true);
       }
       setTimerText(`${minutes}:${seconds}`);
+    };
+
+    const workInterval = setInterval(countDown, 1000);
+  };
+  const breakTimer = () => {
+    if (breakState === false) {
+      return;
+    } else {
     }
   };
   return (
