@@ -28,6 +28,9 @@ function App() {
   // State for room preferences needs to live here to be accessed in profile and other locations.
 
   const [roomPreferences, setRoomPreferences] = useState({
+    roomName: "",
+    breakTime: "",
+    workTime: "",
     minigameToggle: false,
   });
 
@@ -120,7 +123,13 @@ function App() {
         />
         <Route
           path="/chat"
-          element={<Room roomData={roomData} userObject={userObject} />}
+          element={
+            <Room
+              roomData={roomData}
+              userObject={userObject}
+              roomPreferences={roomPreferences}
+            />
+          }
         />
         <Route path="/profile" element={<Profile userObject={userObject} />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
