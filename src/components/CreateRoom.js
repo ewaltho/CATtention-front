@@ -21,6 +21,17 @@ export default function CreateRoom({
     // eslint-disable-next-line
   }, []);
 
+  // 6 random characters FOR ROOM CODE
+  // ! generates a room code on page load, this way, we can persist this data in local storage.
+  useEffect(() => {
+    const roomCode = Math.random().toString(36).substring(2, 8);
+    setRoomPreferences({
+      ...roomPreferences,
+      roomCode: roomCode,
+    });
+    // eslint-disable-next-line
+  }, []);
+
   const navigate = useNavigate();
   const handleRoomPrefsInputChange = (e) => {
     // e.preventDefault();
@@ -62,24 +73,16 @@ export default function CreateRoom({
   const handleFormSubmission = async (e) => {
     e.preventDefault();
     if (roomPreferences.roomName.trim() !== "") {
-      // 6 random characters FOR ROOM CODE
-      const roomCode = Math.random().toString(36).substring(2, 8);
-  
-      setRoomPreferences({
-        ...roomPreferences,
-        roomCode: roomCode,
-      });
-  
       try {
         // Save the room details to the server
         const response = await API.createNewRoom({
           room_name: roomPreferences.roomName,
-          code: roomCode,
+          code: roomPreferences.roomCode,
         });
-  
+
         setRoomData(response.data);
         localStorage.setItem("roomPrefs", JSON.stringify(roomPreferences));
-        console.log(roomPreferences)
+        console.log(roomPreferences);
         // Redirect the user to the chat room with the assigned ID and room code
         navigate(`/chat`);
       } catch (error) {
@@ -87,7 +90,6 @@ export default function CreateRoom({
       }
     }
   };
-  
 
   return (
     <>
