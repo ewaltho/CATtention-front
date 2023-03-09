@@ -12,14 +12,15 @@ export default function Profile(props){
             <div className="info">
                 <div className="badges">
                     <p>Your Badges</p>
+                    <div className="badge-container"></div>
                 </div>
                 <div className="settings">
                     <p>Settings</p>
                     <div className="theme">
                         <p>Theme:</p>
-                        <label class="switch">
+                        <label className="switch">
                         <input type="checkbox" />
-                        <span class="slider"></span>
+                        <span className="slider"></span>
                         </label>
                     </div>
                     <div className="language">
