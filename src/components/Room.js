@@ -16,7 +16,7 @@ export default function Room(props) {
         <div className="chatbox">
           <Chat
             roomData={props.roomData}
-            userObject={props.userObject}
+            userObject={props.userObject} currentUser={props.currentUser}
             roomPreferences={props.roomPreferences}
           />
         </div>
