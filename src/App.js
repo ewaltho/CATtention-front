@@ -24,6 +24,12 @@ function App() {
     password: "",
   });
 
+  // State for room preferences needs to live here to be accessed in profile and other locations.
+
+  const [roomPreferences, setRoomPreferences] = useState({
+    minigameToggle: false,
+  });
+
   // triggers on page load so userObject is set to the data within token data. This includes user ID, and username.
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -100,7 +106,15 @@ function App() {
           path="/joinchat"
           element={<JoinChat roomData={roomData} setRoomData={setRoomData} />}
         />
-        <Route path="/createroom" element={<CreateRoom />} />
+        <Route
+          path="/createroom"
+          element={
+            <CreateRoom
+              roomPreferences={roomPreferences}
+              setRoomPreferences={setRoomPreferences}
+            />
+          }
+        />
         <Route
           path="/chat"
           element={<Room roomData={roomData} userObject={userObject} />}
