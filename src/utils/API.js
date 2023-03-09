@@ -89,6 +89,18 @@ const API = {
 
     return response;
   },
+  addScoreToUser: async (userId, numScore) => {
+    const response = await axios.put(
+      `${URL_PREFIX}/api/users/${userId}/score/${numScore}`
+    );
+    return response;
+  },
+  addTimeToUser: async (userId, numMins) => {
+    const response = await axios.put(
+      `${URL_PREFIX}/api/users/${userId}/time/${numMins}`
+    );
+    return response;
+  },
 };
 
 export default API;
