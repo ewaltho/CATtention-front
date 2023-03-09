@@ -14,6 +14,7 @@ function ChatFeature({ roomData, userObject}) {
   useEffect(() => {
     setRoom(roomData);
    
+    
     console.log("Listening for incoming messages...");
   
     socket.on("chat message", (msg) => {
