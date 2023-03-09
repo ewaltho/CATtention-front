@@ -80,6 +80,23 @@ export default function Navigation() {
         </div>
       );
     }
+    else if (currentlocation.pathname === "/profile"){
+      return (
+        <div className="Nav">
+          <Link to="/">
+          <img src="CATtention-logo.png" alt="logo" className="logo" />
+        </Link>
+          <div className="nav-btn">
+            <Link to="/chat" className="btn">
+              Room
+            </Link>
+            <Link to="/logout" className="btn">
+              Log Out
+            </Link>
+          </div>
+        </div>
+      );
+    }
     else {
       return (
         <div className="Nav">

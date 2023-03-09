@@ -9,6 +9,7 @@ import JoinChat from "./components/JoinChat";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Navigation from "./components/Navigation";
+import Profile from "./components/Profile";
 
 function App() {
   const [userToken, setUserToken] = useState("");
@@ -103,6 +104,10 @@ function App() {
         <Route
           path="/chat"
           element={<Room roomData={roomData} userObject={userObject} />}
+        />
+        <Route
+          path="/profile"
+          element={<Profile userObject={userObject} />}
         />
         <Route path="*" element={<h1>404 page not found'</h1>} />
       </Routes>
