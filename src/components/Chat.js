@@ -4,14 +4,14 @@ import io from "socket.io-client";
 
 const socket = io("http://localhost:3001");
 
-function ChatFeature({ roomData, userObject}) {
+function ChatFeature({ roomData, userObject, currentUser}) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [room, setRoom] = useState({});
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
   const messageContainer = useRef(null);
-
+  console.log(currentUser)
   useEffect(() => {
     setRoom(roomData);
    
@@ -79,14 +79,19 @@ function ChatFeature({ roomData, userObject}) {
         </ul>
       </div>
       <div className="messages" ref={messageContainer}>
-        {messages.map(({ message, timestamp, userObject }, index) => (
-          <div key={index}>
-            <span className="timestamp">{userObject ? `${timestamp} - ` : ''}</span>
-            <span className="username">{userObject && userObject.username}</span>
-            <br />
-            <span className="message">{message}</span>
-          </div>
-      ))}
+      {messages.map(({ message, timestamp, userObject }, index) => {
+      const isSentMessage = userObject && userObject.username === currentUser;
+      const messageClass = isSentMessage ? 'sent-message' : 'received-message';
+      
+      return (
+        <div key={index} className={`message ${messageClass}`}>
+          <span className="timestamp">{userObject ? `${timestamp} - ` : ''}</span>
+          <span className="username">{userObject && userObject.username}</span>
+          <br />
+          <span className="message">{message}</span>
+        </div>
+      );
+    })}
     </div>
         <form className="send-box" onSubmit={handleSend}>
           <input className="text-input" type="text" value={message} onChange={handleInputChange} />

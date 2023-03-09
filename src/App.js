@@ -25,6 +25,8 @@ function App() {
     password: "",
   });
 
+  const [currentUser, setCurrentUser] = useState("");
+
   // State for room preferences needs to live here to be accessed in profile and other locations.
 
   const [roomPreferences, setRoomPreferences] = useState({
@@ -39,6 +41,8 @@ function App() {
         if (tokenData) {
           console.log(tokenData.data.user);
           setUserObject(tokenData.data.user);
+          setCurrentUser(tokenData.data.user.username);
+          console.log (currentUser);
         }
       });
     } else {
@@ -120,7 +124,7 @@ function App() {
         />
         <Route
           path="/chat"
-          element={<Room roomData={roomData} userObject={userObject} />}
+          element={<Room roomData={roomData} userObject={userObject} currentUser={currentUser} />}
         />
         <Route path="/profile" element={<Profile userObject={userObject} />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />

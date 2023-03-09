@@ -42,7 +42,7 @@ body {
     display: none;
 }
 /* Alternating message CSS, can be adjusted, just did basic color for now */
-.messages>div:nth-child(even){
+.messages>div.received-message{
     background-color:#9e81bc;
     text-align: left;
     padding: 5px;
@@ -50,7 +50,7 @@ body {
     width: 45%;
 }
 
-.messages>div:nth-child(odd){
+.messages>div.sent-message{
     background-color: #C1CFDA;
     text-align: right;
     padding: 5px;
