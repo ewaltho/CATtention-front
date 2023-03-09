@@ -49,7 +49,7 @@ function JoinChat(props) {
   return (
     <div className="join-chat form">
       <h1>Join a Chat Room</h1>
-      <form onSubmit={handleCreateRoom}>
+      {/* <form onSubmit={handleCreateRoom}>
         <label htmlFor="room-name">Room Name:</label>
         <input
           type="text"
@@ -58,7 +58,7 @@ function JoinChat(props) {
           onChange={handleRoomNameChange}
         />
         <button type="submit">Create Room</button>
-      </form>
+      </form> */}
       <hr />
       <form onSubmit={handleJoinExistingRoom}>
         <label htmlFor="room-id">Room Code:</label>

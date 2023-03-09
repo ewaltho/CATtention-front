@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../utils/API";
-import "../assets/css/SignUp.css"
+import "../assets/css/SignUp.css";
 
 export default function Login({
   handleLoginFormChange,
@@ -9,7 +10,7 @@ export default function Login({
   setUserToken,
 }) {
   const [isUserPassCorrect, setIsUserPassCorrect] = useState(true);
-
+  const navigate = useNavigate();
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
     const response = await API.loginUser(loginFormData);
@@ -26,6 +27,7 @@ export default function Login({
       setUserToken(response.data.token);
       localStorage.setItem("token", response.data.token);
       console.log(response.data.token);
+      return navigate("/");
     }
   };
 
@@ -46,7 +48,7 @@ export default function Login({
               value={loginFormData.username}
               name="username"
               placeholder="username"
-              ></input>
+            ></input>
           </div>
           <div className="input">
             <label htmlFor="password">Password:</label>
@@ -56,7 +58,7 @@ export default function Login({
               name="password"
               placeholder="password"
               type="password"
-              ></input>
+            ></input>
           </div>
         </div>
         <button type="submit">Login</button>

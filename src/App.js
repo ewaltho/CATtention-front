@@ -12,6 +12,7 @@ import Navigation from "./components/Navigation";
 import Profile from "./components/Profile";
 
 function App() {
+  // eslint-disable-next-line
   const [userToken, setUserToken] = useState("");
   const [userObject, setUserObject] = useState({});
   const [roomData, setRoomData] = useState("");
