@@ -1,7 +1,14 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../assets/css/CreateRoom.css";
+import API from "../utils/API";
 
-export default function CreateRoom({ roomPreferences, setRoomPreferences }) {
+export default function CreateRoom({
+  roomPreferences,
+  setRoomPreferences,
+  roomData,
+  setRoomData,
+}) {
   //   room prefs need the following keys: minigames bool, workTime, breakTime, room name needs to create a room with socket.
 
   // ! On page load, if there are previous prefs, this will automatically fill them into our state.
@@ -14,6 +21,7 @@ export default function CreateRoom({ roomPreferences, setRoomPreferences }) {
     // eslint-disable-next-line
   }, []);
 
+  const navigate = useNavigate();
   const handleRoomPrefsInputChange = (e) => {
     // e.preventDefault();
     if (
@@ -51,8 +59,21 @@ export default function CreateRoom({ roomPreferences, setRoomPreferences }) {
     });
   };
 
-  const handleFormSubmission = (e) => {
+  const handleFormSubmission = async (e) => {
     e.preventDefault();
+    if (roomPreferences.roomName.trim() !== "") {
+      // 6 random characters FOR ROOM CODE
+      const roomCode = Math.random().toString(36).substring(2, 8);
+      // Save the room details to the server
+      const response = await API.createNewRoom({
+        room_name: roomPreferences.roomName,
+        code: roomCode,
+      });
+      setRoomData(response.data);
+
+      // Redirect the user to the chat room with the assigned ID and room code
+      navigate(`/chat`);
+    }
     localStorage.setItem("roomPrefs", JSON.stringify(roomPreferences));
   };
 
