@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import "../assets/css/Room.css";
 import io from "socket.io-client";
 
@@ -11,23 +10,7 @@ function ChatFeature({ roomData, userObject }) {
   const [room, setRoom] = useState({});
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
-
-  const navigate = useNavigate();
-  useEffect(() => {
-    const storedRoom = JSON.parse(localStorage.getItem("roomPrefs"));
-    if (storedRoom) {
-      console.log(storedRoom);
-      if (!storedRoom.roomCode) {
-        console.log(storedRoom.roomCode);
-        navigate("/joinchat");
-      } else {
-        socket.emit("join room", storedRoom.roomCode, { userObject });
-      }
-    } else {
-      console.log("No stored room found in localStorage.");
-      navigate("/joinchat");
-    }
-  }, []);
+  const messageContainer = useRef(null);
 
   useEffect(() => {
     setRoom(roomData);
@@ -82,6 +65,10 @@ function ChatFeature({ roomData, userObject }) {
         message: message,
         userObject: userObject,
       });
+      setTimeout(() => {
+        messageContainer.current.scrollTop =
+          messageContainer.current.scrollHeight;
+      }, 10);
       setMessage("");
     }
   };
@@ -100,7 +87,7 @@ function ChatFeature({ roomData, userObject }) {
           ))}
         </ul>
       </div>
-      <div className="messages">
+      <div className="messages" ref={messageContainer}>
         {messages.map(({ message, timestamp, userObject }, index) => (
           <div key={index}>
             <span className="timestamp">
@@ -114,7 +101,7 @@ function ChatFeature({ roomData, userObject }) {
           </div>
         ))}
       </div>
-      <form onSubmit={handleSend}>
+      <form className="send-box" onSubmit={handleSend}>
         <input
           className="text-input"
           type="text"
