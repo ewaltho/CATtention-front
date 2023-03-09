@@ -46,6 +46,9 @@ export default function CreateRoom(props) {
     e.preventDefault();
     localStorage.removeItem("roomPrefs");
     setRoomPreferences({
+      roomName: "",
+      breakTime: "",
+      workTime: "",
       minigameToggle: false,
     });
   };
