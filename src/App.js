@@ -113,6 +113,8 @@ function App() {
             <CreateRoom
               roomPreferences={roomPreferences}
               setRoomPreferences={setRoomPreferences}
+              roomData={roomData}
+              setRoomData={setRoomData}
             />
           }
         />
@@ -120,10 +122,7 @@ function App() {
           path="/chat"
           element={<Room roomData={roomData} userObject={userObject} />}
         />
-        <Route
-          path="/profile"
-          element={<Profile userObject={userObject} />}
-        />
+        <Route path="/profile" element={<Profile userObject={userObject} />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
       </Routes>
     </BrowserRouter>
