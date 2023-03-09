@@ -61,23 +61,82 @@ export default function Timer({ roomPreferences }) {
       workTimeSeconds -= 1;
       if (workTimeSeconds <= 0) {
         clearInterval(workInterval);
-        setBreakState(true);
+        setWorkState(false);
+
+        breakTimer();
       }
       setTimerText(`${minutes}:${seconds}`);
     };
 
     const workInterval = setInterval(countDown, 1000);
   };
+
   const breakTimer = () => {
-    if (breakState === false) {
-      return;
-    } else {
-    }
+    const countDown = () => {
+      let minutes = Math.floor(breakTimeSeconds / 60);
+      let seconds = breakTimeSeconds % 60;
+      switch (seconds) {
+        case 1: {
+          seconds = "01";
+          break;
+        }
+        case 2: {
+          seconds = "02";
+          break;
+        }
+        case 3: {
+          seconds = "03";
+          break;
+        }
+        case 4: {
+          seconds = "04";
+          break;
+        }
+        case 5: {
+          seconds = "05";
+          break;
+        }
+        case 6: {
+          seconds = "06";
+          break;
+        }
+        case 7: {
+          seconds = "07";
+          break;
+        }
+        case 8: {
+          seconds = "08";
+          break;
+        }
+        case 9: {
+          seconds = "09";
+          break;
+        }
+        case 0: {
+          seconds = "00";
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+      breakTimeSeconds -= 1;
+      if (breakTimeSeconds <= 0) {
+        clearInterval(breakInterval);
+        setWorkState(true);
+      }
+      setTimerText(`${minutes}:${seconds}`);
+    };
+    const breakInterval = setInterval(countDown, 1000);
   };
+
   return (
     <div>
-      <h1>{timerText}</h1>
-      <button onClick={startWorkTimer}>Get to work!</button>
+      {workState ? <h1>Work Time!</h1> : <h1>Break Time</h1>}
+      <h2>{timerText}</h2>
+      {workState === false && (
+        <button onClick={startWorkTimer}>Get to work!</button>
+      )}
     </div>
   );
 }
