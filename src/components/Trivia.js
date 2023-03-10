@@ -32,10 +32,10 @@ export default function Trivia({ userObject }) {
 
   return (
     <div>
-      <h2>A wild trivia question spawned!</h2>
-      <h3>{question}</h3>
+      <h2 className="triviaTitle">A wild trivia question spawned!</h2>
+      <h3 className="questionTitle">{question}</h3>
       {!questionAnswered ? (
-        <ul>
+        <ul className="questionCard">
           {answersArr.map((ans, index) => (
             <button key={index} onClick={checkAnswer}>
               {ans}
@@ -43,8 +43,10 @@ export default function Trivia({ userObject }) {
           ))}
         </ul>
       ) : (
-        <p>
-          The correct answer is {correctAns}, and your score has been updated.
+        <p style={{
+          fontSize: '20px'
+        }}>
+          The correct answer is {correctAns}. Your score has been updated.
         </p>
       )}
     </div>
