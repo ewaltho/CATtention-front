@@ -112,7 +112,13 @@ function App() {
         />
         <Route
           path="/joinchat"
-          element={<JoinChat roomData={roomData} setRoomData={setRoomData} />}
+          element={
+            <JoinChat
+              userToken={userToken}
+              roomData={roomData}
+              setRoomData={setRoomData}
+            />
+          }
         />
         <Route
           path="/createroom"
