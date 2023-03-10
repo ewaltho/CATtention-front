@@ -75,8 +75,31 @@ export default function CreateRoom({
     });
   };
 
+  let roomFilterResult;
+  const checkIfRoomExists = async (roomName) => {
+    const rooms = await API.getAllRooms();
+    const roomArr = rooms.data;
+    if (
+      roomArr.filter((room) => {
+        if (room.room_name === roomName) {
+          return true;
+        } else {
+          return false;
+        }
+      }).length >= 1
+    ) {
+      return (roomFilterResult = true);
+    } else {
+      return (roomFilterResult = false);
+    }
+  };
+
   const handleFormSubmission = async (e) => {
     e.preventDefault();
+    await checkIfRoomExists(roomPreferences.roomName);
+    if (roomFilterResult) {
+      return console.log("room exists");
+    }
     if (roomPreferences.roomName.trim() !== "") {
       try {
         // Save the room details to the server
@@ -87,7 +110,7 @@ export default function CreateRoom({
 
         setRoomData(response.data);
         localStorage.setItem("roomPrefs", JSON.stringify(roomPreferences));
-        console.log(roomPreferences);
+        // console.log(roomPreferences);
         // Redirect the user to the chat room with the assigned ID and room code
         navigate(`/chat`);
       } catch (error) {

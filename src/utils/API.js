@@ -31,6 +31,11 @@ const API = {
     console.log(checkToken);
     return checkToken;
   },
+  getAllRooms: async () => {
+    const allRooms = await axios.get(`${URL_PREFIX}/api/rooms`);
+
+    return allRooms;
+  },
   getOneRoom: async (roomCode) => {
     const foundRoom = await axios.get(`${URL_PREFIX}/api/rooms/${roomCode}`);
 
