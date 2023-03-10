@@ -26,7 +26,7 @@ export default function Login({
       clearLoginForm();
       setUserToken(response.data.token);
       localStorage.setItem("token", response.data.token);
- 
+
       console.log(response.data.token);
       return navigate("/");
     }
