@@ -23,9 +23,7 @@ export default function Trivia({ userObject }) {
     e.preventDefault();
     const returnedQuestion = await API.getTriviaByID(questionID);
     if (returnedQuestion.data.correct_answer === e.target.textContent) {
-      const score = await API.addScoreToUser(userObject.id, 1);
-
-      return (userScore = score.data.newScore);
+      await API.addScoreToUser(userObject.id, 1);
     }
     setQuestionAnswered(true);
   };
@@ -43,9 +41,11 @@ export default function Trivia({ userObject }) {
           ))}
         </ul>
       ) : (
-        <p style={{
-          fontSize: '20px'
-        }}>
+        <p
+          style={{
+            fontSize: "20px",
+          }}
+        >
           The correct answer is {correctAns}. Your score has been updated.
         </p>
       )}

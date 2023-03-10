@@ -96,7 +96,6 @@ export default function CreateRoom({
 
   const clearAllPreferences = (e) => {
     e.preventDefault();
-    localStorage.removeItem("roomPrefs");
     setRoomPreferences({
       roomName: "",
       breakTime: "",
@@ -139,7 +138,6 @@ export default function CreateRoom({
         });
 
         setRoomData(response.data);
-        localStorage.setItem("roomPrefs", JSON.stringify(roomPreferences));
         // console.log(roomPreferences);
         // Redirect the user to the chat room with the assigned ID and room code
         navigate(`/chat`);
