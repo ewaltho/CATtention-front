@@ -28,14 +28,6 @@ body {
     height: 75px;
 }
 
-.text-input {
-    width: 20vw;
-    height: 100%;
-    border: none;
-    padding: 1  0px;
-    font-size: 20px;
-    background-color: #C1CFDA;
-}
 
 .messages {
     padding: 10px;
@@ -71,10 +63,17 @@ body {
     align-items: center;
 }
 
+.text-input {
+    width: 20vw;
+    border: none;
+    font-size: 20px;
+    background-color: #C1CFDA;
+}
+
 @media screen and (max-width: 1280px) {
     .chatbox {
-            height: 100%
-        }
+        height: 100%
+    }
 }
 
 @media screen and (max-width: 768px) {

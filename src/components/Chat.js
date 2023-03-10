@@ -103,7 +103,7 @@ function ChatFeature({ roomData, userObject, currentUser}) {
     })}
     </div>
         <form className="send-box" onSubmit={handleSend}>
-          <input className="text-input" type="text" value={message} onChange={handleInputChange} />
+          <input className="text-input" type="text" value={message} onChange={handleInputChange} placeholder="Type your message here..."/>
           <button type="submit">Send</button>
         </form>
       </div>
