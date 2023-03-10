@@ -29,6 +29,11 @@ body {
 }
 
 .text-input {
+    width: 20vw;
+    height: 100%;
+    border: none;
+    padding: 1  0px;
+    font-size: 20px;
     background-color: #C1CFDA;
 }
 
