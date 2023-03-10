@@ -75,6 +75,19 @@ export default function Navigation() {
         </div>
       </div>
     );
+  } else if (currentlocation.pathname ==="/community") {
+    return (
+      <div className="Nav">
+        <Link to="/">
+          <img src="CATtention-logo.png" alt="logo" className="logo" />
+        </Link>
+        <div className="nav-btn">
+          <Link to="/" className="btn">
+            Home
+          </Link>
+        </div>
+      </div>
+    );
   } else {
     return (
       <div className="Nav">
