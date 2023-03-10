@@ -23,19 +23,17 @@ export default function Trivia({ userObject }) {
     e.preventDefault();
     const returnedQuestion = await API.getTriviaByID(questionID);
     if (returnedQuestion.data.correct_answer === e.target.textContent) {
-      const score = await API.addScoreToUser(userObject.id, 1);
-
-      return (userScore = score.data.newScore);
+      await API.addScoreToUser(userObject.id, 1);
     }
     setQuestionAnswered(true);
   };
 
   return (
     <div>
-      <h2>A wild trivia question spawned!</h2>
-      <h3>{question}</h3>
+      <h2 className="triviaTitle">A wild trivia question spawned!</h2>
+      <h3 className="questionTitle">{question}</h3>
       {!questionAnswered ? (
-        <ul>
+        <ul className="questionCard">
           {answersArr.map((ans, index) => (
             <button key={index} onClick={checkAnswer}>
               {ans}
@@ -43,8 +41,12 @@ export default function Trivia({ userObject }) {
           ))}
         </ul>
       ) : (
-        <p>
-          The correct answer is {correctAns}, and your score has been updated.
+        <p
+          style={{
+            fontSize: "20px",
+          }}
+        >
+          The correct answer is {correctAns}. Your score has been updated.
         </p>
       )}
     </div>

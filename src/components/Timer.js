@@ -148,9 +148,9 @@ export default function Timer({ roomPreferences, userObject }) {
   };
 
   return (
-    <div>
-      {!breakState ? <h1>Work Time!</h1> : <h1>Break Time</h1>}
-      <h2>{timerText}</h2>
+    <div className="timerCard">
+      {!breakState ? <h2>Work Time!</h2> : <h2>Break Time</h2>}
+      <h1 className="counter">{timerText}</h1>
       {workState === false ? (
         <button onClick={startWorkTimer}>Get to work!</button>
       ) : (
