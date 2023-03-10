@@ -26,7 +26,7 @@ function HomePage() {
           alt="drawing of cat waving"
           className="cat-left cat"
         />
-        <Link to="/" className="tipsBtn">
+        <Link to="/community" className="tipsBtn">
           From the community
         </Link>
         <img

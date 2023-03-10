@@ -5,7 +5,7 @@ export default function Community() {
     return (
         <div>
             <p className="title">ADHD tips and hacks from the community</p>
-            <img src="ideas.jpg" className="idea-cat"/>
+            <img src="ideas.jpg" alt="idea cat" className="idea-cat"/>
             <div className="tips">
                 <div className="tip">
                     Take advantage of tools! Keep a planner or scheduling app to track due dates, appointments, and to-do's. Reminders, reminders, reminders!
