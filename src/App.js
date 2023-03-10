@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Navigation from "./components/Navigation";
 import Profile from "./components/Profile";
+import Community from "./components/Community";
 
 function App() {
   // eslint-disable-next-line
@@ -145,6 +146,7 @@ function App() {
           }
         />
         <Route path="/profile" element={<Profile userObject={userObject} />} />
+        <Route path="/community" element={<Community/>} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
       </Routes>
     </BrowserRouter>
