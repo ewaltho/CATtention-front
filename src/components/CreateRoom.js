@@ -138,7 +138,6 @@ export default function CreateRoom({
           onChange={handleRoomPrefsInputChange}
           value={roomPreferences.breakTime}
         ></input>
-        {/* ! This needs to be made to create a room. I will speak with alex about how to do this later this evening. */}
         <label htmlFor="workTime">Room Name:</label>
         <input
           name="roomName"
