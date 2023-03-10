@@ -12,7 +12,13 @@ export default function Profile(props){
             <div className="info">
                 <div className="badges">
                     <p>Your Badges</p>
-                    <div className="badge-container"></div>
+                    <div className="badge-container">
+                        <img src="rested.jpg" className="achievement"/>
+                        <img src="game master.jpg" className="achievement"/>
+                        <img src="cat collab.jpg" className="achievement"/>
+                        <img src="high score.jpg" className="achievement"/>
+                        <img src="scholarly.jpg" className="achievement"/>
+                    </div>
                 </div>
                 <div className="settings">
                     <p>Settings</p>

@@ -27,6 +27,19 @@ body {
     text-align: center;
 }
 
+.badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px;
+}
+
+.achievement {
+  width: 100px;
+  border-radius: 100%
+}
+
 .theme, .language {
     display: flex;
     padding: 10px;
