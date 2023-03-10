@@ -60,13 +60,14 @@ function JoinChat(props) {
         <button type="submit">Create Room</button>
       </form> */}
       <hr />
-      <form onSubmit={handleJoinExistingRoom}>
+      <form onSubmit={handleJoinExistingRoom} className="row room-form">
         <label htmlFor="room-id">Room Code:</label>
         <input
           type="text"
           id="room-code"
           value={roomCode}
           onChange={(e) => setRoomCode(e.target.value)}
+          className="textbar"
         />
         <button type="submit">Join Room</button>
       </form>

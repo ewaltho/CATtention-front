@@ -97,7 +97,7 @@ body {
 }
 
 .bottom-box {
-  position: absolute;
+  position: relative;
   bottom: 0;
   display: inline-flex;
   flex-direction: row;
@@ -106,7 +106,14 @@ body {
   width: 100vw;
 }
 
-@media screen and (min-width: 670px) {
+.bottom-btn {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media screen and (max-width: 670px) {
   .cat {
     height: 200px;
   }
@@ -122,6 +129,10 @@ body {
   }
 
   .logo {
-    width: 250px;
+    width: 350px;
+  }
+
+  .bio {
+    width: 80vw;
   }
 }

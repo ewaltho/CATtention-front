@@ -49,6 +49,7 @@ export default function Login({
               value={loginFormData.username}
               name="username"
               placeholder="username"
+              className="textbar"
             ></input>
           </div>
           <div className="input">
@@ -59,6 +60,7 @@ export default function Login({
               name="password"
               placeholder="password"
               type="password"
+              className="textbar"
             ></input>
           </div>
         </div>
