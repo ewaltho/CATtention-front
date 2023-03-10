@@ -121,45 +121,63 @@ export default function CreateRoom({
 
   return (
     <>
-      <form onSubmit={handleFormSubmission}>
-        <label htmlFor="workTime">Work Timer:</label>
-        <input
-          name="workTime"
-          type="number"
-          placeholder="Minutes to work"
-          onChange={handleRoomPrefsInputChange}
-          value={roomPreferences.workTime}
-        ></input>
-        <label htmlFor="workTime">Break Timer:</label>
-        <input
-          name="breakTime"
-          type="number"
-          placeholder="Minutes to break"
-          onChange={handleRoomPrefsInputChange}
-          value={roomPreferences.breakTime}
-        ></input>
-        <label htmlFor="workTime">Room Name:</label>
-        <input
-          name="roomName"
-          placeholder="Room Name"
-          onChange={handleRoomPrefsInputChange}
-          value={roomPreferences.roomName}
-        ></input>
-        <label htmlFor="minigameToggle">Minigame Toggle:</label>
-        <label className="switch">
-          <input
-            type="checkbox"
-            name="minigameToggle"
-            onChange={handleRoomPrefsInputChange}
-          ></input>
-          <span className="slider"></span>
-        </label>
-        <button type="submit">Create Room</button>
+      <form onSubmit={handleFormSubmission} className="room-form">
+        <div className="column">
+          <div className="row">
+            <label htmlFor="workTime">Work Timer:</label>
+            <input
+              name="workTime"
+              type="number"
+              placeholder="Minutes to work"
+              onChange={handleRoomPrefsInputChange}
+              value={roomPreferences.workTime}
+            ></input>
+          </div>
+          <div className="row">
+            <label htmlFor="workTime">Room Name:</label>
+            <input
+              name="roomName"
+              placeholder="Room Name"
+              onChange={handleRoomPrefsInputChange}
+              value={roomPreferences.roomName}
+            ></input>
+          </div>
+        </div>
+        {/* ! This needs to be made to create a room. I will speak with alex about how to do this later this evening. */}
+        <div className="column">
+          <div className="row">
+            <label htmlFor="workTime">Break Timer:</label>
+            <input
+              name="breakTime"
+              type="number"
+              placeholder="Minutes to break"
+              onChange={handleRoomPrefsInputChange}
+              value={roomPreferences.breakTime}
+            ></input>
+          </div>
+          <div className="row">
+            <label htmlFor="minigameToggle">Minigame Toggle:</label>
+            <label className="switch">
+              <input
+                type="checkbox"
+                name="minigameToggle"
+                onChange={handleRoomPrefsInputChange}
+              ></input>
+              <span className="slider"></span>
+            </label>
+          </div>
+        </div>
+        <div className="btnColumn">
+          <div className="btnRow">
+            <button type="submit">Create Room</button>
+          </div>
+          <div className="btnRow">
+            <button type="button" onClick={clearAllPreferences}>
+              Clear Preferences
+            </button>
+          </div>
+        </div>
       </form>
-
-      <button type="button" onClick={clearAllPreferences}>
-        Clear Preferences
-      </button>
     </>
   );
 }

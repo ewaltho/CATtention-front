@@ -12,12 +12,14 @@ function HomePage() {
       <Link to="/signup" className="register-btn">
         Register
       </Link>
-      <Link to="/createroom" className="register-btn">
-        Create A Room
-      </Link>
-      <Link to="/joinchat" className="register-btn">
-        Join A Room
-      </Link>
+      <div className="bottom-btn">
+        <Link to="/createroom" className="register-btn">
+          Create a Room
+        </Link>
+        <Link to="/joinchat" className="register-btn">
+          Join a Room
+        </Link>
+      </div>
       <div className="bottom-box">
         <img
           src="wave-cat-black.png"
