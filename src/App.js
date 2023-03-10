@@ -144,7 +144,12 @@ function App() {
             />
           }
         />
-        <Route path="/profile" element={<Profile userObject={userObject} />} />
+        <Route
+          path="/profile"
+          element={
+            <Profile userObject={userObject} setUserObject={setUserObject} />
+          }
+        />
         <Route path="*" element={<h1>404 page not found'</h1>} />
       </Routes>
     </BrowserRouter>

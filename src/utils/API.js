@@ -19,6 +19,10 @@ const API = {
       return err;
     }
   },
+  getOneUser: async (userId) => {
+    const findUser = await axios.get(`${URL_PREFIX}/api/users/${userId}`);
+    return findUser;
+  },
   isValidToken: async (token) => {
     const checkToken = await axios.get(
       `${URL_PREFIX}/api/users/token/isValidToken`,
@@ -86,8 +90,8 @@ const API = {
 
     return updatedCat;
   },
-  // Destructuring an object here with the keys of userId and catId, this way there's no confusion on order to pass in.
-  addCatToUser: async ({ userId, catId }) => {
+
+  addCatToUser: async (userId, catId) => {
     const response = await axios.put(
       `${URL_PREFIX}/api/users/${userId}/cats/${catId}`
     );
