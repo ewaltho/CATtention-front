@@ -15,7 +15,7 @@ export default function SignUp({
   const handleSignUpFormSubmit = async (e) => {
     e.preventDefault();
     const response = await API.signUpUser(signUpFormData);
-    console.log(response);
+  
     if (response.status === 200) {
       clearSignupForm();
       setUserToken(response.data.token);
