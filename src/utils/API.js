@@ -115,6 +115,11 @@ const API = {
 
     return randomQuestionResponse;
   },
+  getTriviaByID: async (id) => {
+    const foundQuestion = await axios.get(`${URL_PREFIX}/api/trivia/${id}`);
+
+    return foundQuestion;
+  },
 };
 
 export default API;
