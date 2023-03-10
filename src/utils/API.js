@@ -31,6 +31,11 @@ const API = {
     console.log(checkToken);
     return checkToken;
   },
+  getAllRooms: async () => {
+    const allRooms = await axios.get(`${URL_PREFIX}/api/rooms`);
+
+    return allRooms;
+  },
   getOneRoom: async (roomCode) => {
     const foundRoom = await axios.get(`${URL_PREFIX}/api/rooms/${roomCode}`);
 
@@ -88,6 +93,32 @@ const API = {
     );
 
     return response;
+  },
+  addScoreToUser: async (userId, numScore) => {
+    const response = await axios.put(
+      `${URL_PREFIX}/api/users/${userId}/score/${numScore}`
+    );
+    return response;
+  },
+  addTimeToUser: async (userId, numMins) => {
+    const response = await axios.put(
+      `${URL_PREFIX}/api/users/${userId}/time/${numMins}`
+    );
+    console.log("Response adding time to user...");
+    console.log(response);
+    return response;
+  },
+  randomTriviaQuestion: async () => {
+    const randomQuestionResponse = await axios.get(
+      `${URL_PREFIX}/api/trivia/question/random`
+    );
+
+    return randomQuestionResponse;
+  },
+  getTriviaByID: async (id) => {
+    const foundQuestion = await axios.get(`${URL_PREFIX}/api/trivia/${id}`);
+
+    return foundQuestion;
   },
 };
 

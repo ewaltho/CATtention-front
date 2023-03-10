@@ -11,12 +11,16 @@ export default function Room(props) {
       <div className="room">
         <div className="timer">
           <h1 className="room-code">Room Code: {props.roomData.code}</h1>
-          <Timer roomPreferences={props.roomPreferences} />
+          <Timer
+            roomPreferences={props.roomPreferences}
+            userObject={props.userObject}
+          />
         </div>
         <div className="chatbox">
           <Chat
             roomData={props.roomData}
-            userObject={props.userObject} currentUser={props.currentUser}
+            userObject={props.userObject}
+            currentUser={props.currentUser}
             roomPreferences={props.roomPreferences}
           />
         </div>
