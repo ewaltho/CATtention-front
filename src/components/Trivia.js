@@ -20,7 +20,7 @@ export default function Trivia({ userObject }) {
       <h3>{question}</h3>
       <ul>
         {answersArr.map((ans, index) => (
-          <li key={index}>{ans}</li>
+          <button key={index}>{ans}</button>
         ))}
       </ul>
     </div>
