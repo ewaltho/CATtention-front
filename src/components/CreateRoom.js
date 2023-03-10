@@ -8,22 +8,17 @@ export default function CreateRoom({
   setRoomPreferences,
   roomData,
   setRoomData,
+  userObject,
+  userToken,
 }) {
+  const navigate = useNavigate();
   //   room prefs need the following keys: minigames bool, workTime, breakTime, room name needs to create a room with socket.
 
-  // ! On page load, if there are previous prefs, this will automatically fill them into our state.
-  useEffect(() => {
-    const savedRoomPrefObj = JSON.parse(localStorage.getItem("roomPrefs"));
-    console.log(savedRoomPrefObj);
-    if (savedRoomPrefObj) {
-      setRoomPreferences(savedRoomPrefObj);
-    }
-    // eslint-disable-next-line
-  }, []);
-
+  // ! Removed saved room object. This was causing bugs with joining a room.
   // 6 random characters FOR ROOM CODE
   // ! generates a room code on page load, this way, we can persist this data in local storage.
   useEffect(() => {
+    redirectIfTokenOrNotRegistered(userToken);
     const roomCode = Math.random().toString(36).substring(2, 8);
     setRoomPreferences({
       ...roomPreferences,
@@ -32,7 +27,42 @@ export default function CreateRoom({
     // eslint-disable-next-line
   }, []);
 
-  const navigate = useNavigate();
+  const redirectIfTokenOrNotRegistered = async (token) => {
+    if (localStorage.getItem("token")) {
+      try {
+        const verifyToken = await API.isValidToken(
+          localStorage.getItem("token")
+        );
+
+        if (verifyToken) {
+          console.log("valid token");
+          return;
+        }
+      } catch (err) {
+        if (err.response.data.isValid === false) {
+          navigate("/login");
+        } else {
+          navigate("/signup");
+        }
+      }
+    } else {
+      try {
+        const verifyToken = await API.isValidToken(token);
+
+        if (verifyToken) {
+          console.log("valid token");
+          return;
+        }
+      } catch (err) {
+        if (err.response.data.isValid === false) {
+          navigate("/login");
+        } else {
+          navigate("/signup");
+        }
+      }
+    }
+  };
+
   const handleRoomPrefsInputChange = (e) => {
     // e.preventDefault();
     if (
