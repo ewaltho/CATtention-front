@@ -1,5 +1,5 @@
 import "./assets/css/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import API from "./utils/API";
 import CreateRoom from "./components/CreateRoom";
@@ -45,7 +45,7 @@ function App() {
           console.log(tokenData.data.user);
           setUserObject(tokenData.data.user);
           setCurrentUser(tokenData.data.user.username);
-          console.log (currentUser);
+          console.log(currentUser);
         }
       });
     } else {
@@ -118,6 +118,8 @@ function App() {
           path="/createroom"
           element={
             <CreateRoom
+              userObject={userObject}
+              userToken={userToken}
               roomPreferences={roomPreferences}
               setRoomPreferences={setRoomPreferences}
               roomData={roomData}
@@ -130,7 +132,8 @@ function App() {
           element={
             <Room
               roomData={roomData}
-              userObject={userObject} currentUser={currentUser}
+              userObject={userObject}
+              currentUser={currentUser}
               roomPreferences={roomPreferences}
             />
           }
