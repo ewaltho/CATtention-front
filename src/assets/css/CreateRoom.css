@@ -97,3 +97,50 @@ input:checked + .slider:before {
   align-items: center;
   justify-content: center;
 }
+
+.timerCard {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40vw; */
+  margin: 30px;
+}
+
+.timerCard h2 {
+  font-size: 30px;
+  color: #48406F;
+}
+
+.counter {
+  margin: 20px;
+  font-size: 80px;
+  color: white;
+  background: #9E81BC;
+  text-align: center;
+}
+
+.questionTitle {
+  font-size: 50px;
+}
+
+.questionCard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.questionCard button {
+  width: 18vw;
+}
+
+@media screen and (max-width: 768px) {
+  .questionCard button {
+    width: 80vw;
+  }
+
+  .questionTitle {
+    font-size: 40px;
+  }
+}
