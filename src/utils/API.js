@@ -104,7 +104,16 @@ const API = {
     const response = await axios.put(
       `${URL_PREFIX}/api/users/${userId}/time/${numMins}`
     );
+    console.log("Response adding time to user...");
+    console.log(response);
     return response;
+  },
+  randomTriviaQuestion: async () => {
+    const randomQuestionResponse = await axios.get(
+      `${URL_PREFIX}/api/trivia/question/random`
+    );
+
+    return randomQuestionResponse;
   },
 };
 
