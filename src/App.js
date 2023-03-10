@@ -88,7 +88,7 @@ function App() {
     <BrowserRouter>
       <Navigation />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage setCurrentUser={setCurrentUser}/>}  />
         <Route
           path="/signup"
           element={

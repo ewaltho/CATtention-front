@@ -1,24 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../assets/css/Room.css";
-import io from "socket.io-client";
 
-const socket = io("http://localhost:3001");
 
-function ChatFeature({ roomData, userObject, currentUser}) {
+function ChatFeature({ roomData, userObject, currentUser, socket}) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [room, setRoom] = useState({});
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
   const messageContainer = useRef(null);
-  console.log(currentUser)
+
   useEffect(() => {
     setRoom(roomData);
 
     console.log("Listening for incoming messages...");
 
     socket.on("chat message", (msg) => {
-      console.log("Received message:", msg);
+   
 
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -30,26 +28,30 @@ function ChatFeature({ roomData, userObject, currentUser}) {
         },
       ]);
       setUser(msg.userObject);
+
+
     });
 
+ 
+
     // Join the room when the component mounts
-    socket.emit("join room", roomData.code, { userObject });
+    console.log( { ...userObject, socketId: socket.id })
+    socket.emit("join room", roomData.code, {userObject:{ ...userObject, socketId: socket.id }});
 
     socket.on("users in room", (userList) => {
-      console.log("Received user list:", userList);
+  
       setUsers(userList);
     });
 
-    socket.on("disconnect", () => {
-      console.log("Disconnected from server");
-      setUsers([]); // Reset the user list when the socket disconnects
-    });
 
     return () => {
       socket.off("chat message");
       console.log("Stopped listening for incoming messages...");
+
     };
   }, [roomData, userObject, user]);
+
+
 
   const handleInputChange = (event) => {
     setMessage(event.target.value);

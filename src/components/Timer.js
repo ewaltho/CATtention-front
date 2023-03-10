@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Trivia from "./Trivia";
 import API from "../utils/API";
 
-export default function Timer({ roomPreferences, userObject }) {
+export default function Timer({ roomPreferences, userObject, socket }) {
   const [timerText, setTimerText] = useState("");
   // ! started will be used later on
   const [started, setStarted] = useState(false);
@@ -20,7 +20,7 @@ export default function Timer({ roomPreferences, userObject }) {
     setBreakState(false);
 
     const countDown = async () => {
-      console.log("workint");
+    
       let minutes = Math.floor(workTimeSeconds / 60);
       let seconds = workTimeSeconds % 60;
       switch (seconds) {
@@ -87,7 +87,7 @@ export default function Timer({ roomPreferences, userObject }) {
   const breakTimer = () => {
     setBreakState(true);
     const countDown = () => {
-      console.log("breakint");
+      
       let minutes = Math.floor(breakTimeSeconds / 60);
       let seconds = breakTimeSeconds % 60;
       switch (seconds) {

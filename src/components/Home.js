@@ -1,7 +1,23 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
+import API from "../utils/API";
 
-function HomePage() {
+function HomePage(props) {
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      API.isValidToken(storedToken).then((tokenData) => {
+        if (tokenData) {
+          console.log(tokenData.data.user);
+  
+          props.setCurrentUser(tokenData.data.user.username);
+       
+        }
+      });
+    } else {
+      console.log("no token");
+    }
+  }, []);
   return (
     <div className="home">
       <p className="bio">
