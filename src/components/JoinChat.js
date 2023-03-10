@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../utils/API";
 // import io from "socket.io-client";
@@ -9,6 +9,49 @@ function JoinChat(props) {
   const [roomCode, setRoomCode] = useState("");
   const [roomName, setRoomName] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    redirectIfTokenOrNotRegistered(props.userToken);
+    const roomCode = Math.random().toString(36).substring(2, 8);
+
+    // eslint-disable-next-line
+  }, []);
+
+  const redirectIfTokenOrNotRegistered = async (token) => {
+    if (localStorage.getItem("token")) {
+      try {
+        const verifyToken = await API.isValidToken(
+          localStorage.getItem("token")
+        );
+
+        if (verifyToken) {
+          console.log("valid token");
+          return;
+        }
+      } catch (err) {
+        if (err.response.data.isValid === false) {
+          navigate("/login");
+        } else {
+          navigate("/signup");
+        }
+      }
+    } else {
+      try {
+        const verifyToken = await API.isValidToken(token);
+
+        if (verifyToken) {
+          console.log("valid token");
+          return;
+        }
+      } catch (err) {
+        if (err.response.data.isValid === false) {
+          navigate("/login");
+        } else {
+          navigate("/signup");
+        }
+      }
+    }
+  };
 
   const handleRoomNameChange = (event) => {
     setRoomName(event.target.value);
