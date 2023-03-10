@@ -47,6 +47,7 @@ export default function SignUp({
               value={signUpFormData.username}
               name="username"
               placeholder="username"
+              className="textbar"
             ></input>
           </div>
           <div className="input">
@@ -57,6 +58,7 @@ export default function SignUp({
               name="password"
               placeholder="password"
               type="password"
+              className="textbar"
             ></input>
           </div>
         </div>
