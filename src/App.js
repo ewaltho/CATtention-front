@@ -151,6 +151,7 @@ function App() {
             <Profile userObject={userObject} setUserObject={setUserObject} />
           }
         />
+        <Route path="/community" element={<Community />} />
         <Route path="*" element={<h1>404 page not found'</h1>} />
       </Routes>
     </BrowserRouter>
