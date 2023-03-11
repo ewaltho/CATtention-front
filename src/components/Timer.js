@@ -26,13 +26,14 @@ export default function Timer({
       console.log("first one");
       API.addTimeToUser(userObject.id, minutesWorked)
         .then((res) => {
-          console.log(res);
           setWorkState(false);
           setBreakState(true);
+          startBreakTimer();
         })
         .catch((err) => console.log(err));
     } else if (timerText === "Time's up!" && workState === false) {
       setWorkState(true);
+      setBreakState(false);
     }
   }, [timerText]);
   // Starts work timer, this will count down on the page.
@@ -48,7 +49,30 @@ export default function Timer({
     });
 
     socket.on("timer", ({ text, minutesWorked }) => {
-      setMinutesWorked(minutesWorked);
+      if (workState) {
+        setMinutesWorked(minutesWorked);
+      } else if (!workState) {
+        setMinutesWorked(0);
+      }
+      setTimerText(text);
+    });
+  };
+
+  const startBreakTimer = () => {
+    socket.emit("timer", {
+      roomCode: roomData.code,
+      time: roomPreferences.breakTime,
+    });
+
+    socket.on("timer", ({ text, minutesWorked }) => {
+      if (workState) {
+        setMinutesWorked(minutesWorked);
+      } else if (!workState) {
+        setMinutesWorked(0);
+      }
+      if (text === "Time's Up!") {
+        setWorkState(true);
+      }
       setTimerText(text);
     });
   };
@@ -57,7 +81,7 @@ export default function Timer({
     <div className="timerCard">
       {workState ? <h2>Work Time!</h2> : <h2>Break Time</h2>}
       <h1 className="counter">{timerText}</h1>
-      {workState === false ? (
+      {workState === true ? (
         <button onClick={startWorkTimer}>Get to work!/Join Timer</button>
       ) : (
         <></>
