@@ -1,10 +1,12 @@
-import React from 'react';
-import Timer from './Timer';
-import Chat from './Chat';
-import '../assets/css/Room.css';
-import io from 'socket.io-client';
-
-const socket = io("http://localhost:3001");
+import React from "react";
+import Timer from "./Timer";
+import Chat from "./Chat";
+import "../assets/css/Room.css";
+import io from "socket.io-client";
+// Dev URL
+// const socket = io("http://localhost:3001");
+// Production Build
+const socket = io("https://cattention-api.herokuapp.com");
 
 export default function Room(props) {
   return (
