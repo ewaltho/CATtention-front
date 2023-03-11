@@ -1,163 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Trivia from "./Trivia";
 import API from "../utils/API";
 
-export default function Timer({ roomPreferences, userObject, socket }) {
+export default function Timer({
+  roomPreferences,
+  userObject,
+  socket,
+  roomData,
+}) {
   const [timerText, setTimerText] = useState("");
-  // ! started will be used later on
   const [started, setStarted] = useState(false);
-  const [workState, setWorkState] = useState(false);
+  const [workState, setWorkState] = useState(true);
+  // Work time state... Cannot use room prefs for connected users.
+  const [minutesWorked, setMinutesWorked] = useState("");
   const [breakState, setBreakState] = useState(false);
 
-  // Grab our work and break seconds from roomprefs on previous page
-  // todo: There is a bug with a user entering something that will not be "cleanly" divisible. We need to control these inputs on the previous page.
-  let workTimeSeconds = roomPreferences.workTime * 60;
-  let breakTimeSeconds = roomPreferences.breakTime * 60;
-
+  // Will trigger api to add time to user only if it is from work time but not from break time :)
+  useEffect(() => {
+    if (timerText === "Time's up!" && workState === true) {
+      console.log("first one");
+      API.addTimeToUser(userObject.id, minutesWorked)
+        .then((res) => {
+          setWorkState(false);
+          // setBreakState(true);
+        })
+        .catch((err) => console.log(err));
+    } else if (timerText === "Time's up!" && workState === false) {
+      setWorkState(true);
+      setBreakState(false);
+    }
+    // eslint-disable-next-line
+  }, [timerText]);
   // Starts work timer, this will count down on the page.
   const startWorkTimer = () => {
-    setWorkState(true);
+    if (timerText !== "Time's up!" && started === true) {
+      return;
+    }
     setBreakState(false);
-
-    const countDown = async () => {
-    
-      let minutes = Math.floor(workTimeSeconds / 60);
-      let seconds = workTimeSeconds % 60;
-      switch (seconds) {
-        case 1: {
-          seconds = "01";
-          break;
-        }
-        case 2: {
-          seconds = "02";
-          break;
-        }
-        case 3: {
-          seconds = "03";
-          break;
-        }
-        case 4: {
-          seconds = "04";
-          break;
-        }
-        case 5: {
-          seconds = "05";
-          break;
-        }
-        case 6: {
-          seconds = "06";
-          break;
-        }
-        case 7: {
-          seconds = "07";
-          break;
-        }
-        case 8: {
-          seconds = "08";
-          break;
-        }
-        case 9: {
-          seconds = "09";
-          break;
-        }
-        case 0: {
-          seconds = "00";
-          break;
-        }
-        default: {
-          break;
-        }
-      }
-      workTimeSeconds -= 1;
-      if (workTimeSeconds <= 0) {
-        clearInterval(workInterval);
-        setTimerText(`Time for a break!`);
-        await API.addTimeToUser(userObject.id, roomPreferences.workTime);
-        setStarted(true);
-        breakTimer();
-      } else {
-        setTimerText(`${minutes}:${seconds}`);
-      }
-    };
-
-    const workInterval = setInterval(countDown, 1000);
+    if (started === false) {
+      setStarted(true);
+    }
+    console.log(roomData);
+    setWorkState(true);
+    socket.emit("timer", {
+      roomCode: roomData.code,
+      time: roomPreferences.workTime,
+    });
   };
+  // socket listens for timer text to be sent back from server and will add minutes worked from server so connected users get credit
+  socket.on("timer", ({ text, minutesWorked }) => {
+    if (workState) {
+      setMinutesWorked(minutesWorked);
+    } else if (!workState) {
+      setMinutesWorked(0);
+    }
+    setTimerText(text);
+  });
 
-  // Break timer, same as above, just using breakTimeSeconds instead.
-  const breakTimer = () => {
-    setBreakState(true);
-    const countDown = () => {
-      
-      let minutes = Math.floor(breakTimeSeconds / 60);
-      let seconds = breakTimeSeconds % 60;
-      switch (seconds) {
-        case 1: {
-          seconds = "01";
-          break;
-        }
-        case 2: {
-          seconds = "02";
-          break;
-        }
-        case 3: {
-          seconds = "03";
-          break;
-        }
-        case 4: {
-          seconds = "04";
-          break;
-        }
-        case 5: {
-          seconds = "05";
-          break;
-        }
-        case 6: {
-          seconds = "06";
-          break;
-        }
-        case 7: {
-          seconds = "07";
-          break;
-        }
-        case 8: {
-          seconds = "08";
-          break;
-        }
-        case 9: {
-          seconds = "09";
-          break;
-        }
-        case 0: {
-          seconds = "00";
-          break;
-        }
-        default: {
-          break;
-        }
-      }
-      breakTimeSeconds -= 1;
-      if (breakTimeSeconds <= 0) {
-        clearInterval(breakInterval);
-        setWorkState(false);
-        setTimerText(`Time's Up!`);
-      } else {
-        setTimerText(`${minutes}:${seconds}`);
-      }
-    };
-    const breakInterval = setInterval(countDown, 1000);
+  const startBreakTimer = () => {
+    if (timerText !== "Time's up!") {
+      return;
+    }
+    !breakState && setBreakState(true);
+    socket.emit("timer", {
+      roomCode: roomData.code,
+      time: roomPreferences.breakTime,
+    });
   };
 
   return (
     <div className="timerCard">
-      {!breakState ? <h2>Work Time!</h2> : <h2>Break Time</h2>}
+      {workState ? <h2>Work Time!</h2> : <h2>Break Time</h2>}
       <h1 className="counter">{timerText}</h1>
-      {workState === false ? (
-        <button onClick={startWorkTimer}>Get to work!</button>
+      {workState === true ? (
+        <button onClick={startWorkTimer}>Get to work!/Join Timer</button>
+      ) : (
+        <button onClick={startBreakTimer}>Start Break</button>
+      )}
+      {/* Trivia will only show during the timer while it is a break time */}
+      {workState === false && started === true && timerText !== "Time's up!" ? (
+        <Trivia userObject={userObject} />
       ) : (
         <></>
       )}
-
-      {breakState === true ? <Trivia userObject={userObject} /> : <></>}
     </div>
   );
 }
