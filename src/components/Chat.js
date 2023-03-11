@@ -29,6 +29,10 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
       ]);
       setUser(msg.userObject);
 
+      setTimeout(() => {
+        messageContainer.current.scrollTop = messageContainer.current.scrollHeight;
+      }, 10);
+
 
     });
 
