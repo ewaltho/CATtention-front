@@ -11,6 +11,9 @@ function JoinChat(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    props.socket.on("disconnect", () => {
+      props.socket.connect();
+    });
     redirectIfTokenOrNotRegistered(props.userToken);
     const roomCode = Math.random().toString(36).substring(2, 8);
 
