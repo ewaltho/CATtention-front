@@ -9,18 +9,13 @@ export default function Timer({
   roomData,
 }) {
   const [timerText, setTimerText] = useState("");
-  // ! started will be used later on
   const [started, setStarted] = useState(false);
   const [workState, setWorkState] = useState(true);
   // Work time state... Cannot use room prefs for connected users.
   const [minutesWorked, setMinutesWorked] = useState("");
   const [breakState, setBreakState] = useState(false);
 
-  socket.on("ye", (data) => console.log(data));
-  // Grab our work and break seconds from roomprefs on previous page
-  let workTimeSeconds = roomPreferences.workTime * 60;
-  let breakTimeSeconds = roomPreferences.breakTime * 60;
-
+  // Will trigger api to add time to user only if it is from work time but not from break time :)
   useEffect(() => {
     if (timerText === "Time's up!" && workState === true) {
       console.log("first one");
@@ -34,6 +29,7 @@ export default function Timer({
       setWorkState(true);
       setBreakState(false);
     }
+    // eslint-disable-next-line
   }, [timerText]);
   // Starts work timer, this will count down on the page.
   const startWorkTimer = () => {
@@ -51,7 +47,7 @@ export default function Timer({
       time: roomPreferences.workTime,
     });
   };
-
+  // socket listens for timer text to be sent back from server and will add minutes worked from server so connected users get credit
   socket.on("timer", ({ text, minutesWorked }) => {
     if (workState) {
       setMinutesWorked(minutesWorked);
@@ -81,7 +77,7 @@ export default function Timer({
       ) : (
         <button onClick={startBreakTimer}>Start Break</button>
       )}
-
+      {/* Trivia will only show during the timer while it is a break time */}
       {workState === false && started === true && timerText !== "Time's up!" ? (
         <Trivia userObject={userObject} />
       ) : (
