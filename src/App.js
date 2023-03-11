@@ -83,6 +83,12 @@ function App() {
       password: "",
     });
   };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUserToken("");
+    setUserObject({});
+  }
   // paths and navigation for all pages
   return (
     <BrowserRouter>
