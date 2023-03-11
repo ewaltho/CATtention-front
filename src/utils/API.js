@@ -1,6 +1,8 @@
 import axios from "axios";
-
-const URL_PREFIX = "http://localhost:3001";
+// Development URL
+// const URL_PREFIX = "http://localhost:3001";
+// Production build
+const URL_PREFIX = "https://cattention-api.herokuapp.com";
 
 const API = {
   signUpUser: async (userObj) => {
