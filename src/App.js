@@ -83,7 +83,7 @@ function App() {
       password: "",
     });
   };
-
+  // paths and navigation for all pages
   return (
     <BrowserRouter>
       <Navigation />

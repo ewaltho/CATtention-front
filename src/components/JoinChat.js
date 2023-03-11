@@ -73,7 +73,7 @@ function JoinChat(props) {
       navigate(`/chat`);
     }
   };
-
+  // validate room code and reroute if exists
   const handleJoinExistingRoom = async (event) => {
     event.preventDefault();
     if (roomCode.trim() !== "") {

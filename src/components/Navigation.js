@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
+// if statement checks current path with useLocation and generates navbar accordingly
 export default function Navigation() {
   const currentlocation = useLocation();
   if (currentlocation.pathname === "/") {
