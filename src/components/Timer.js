@@ -33,7 +33,7 @@ export default function Timer({
   }, [timerText]);
   // Starts work timer, this will count down on the page.
   const startWorkTimer = () => {
-    if (timerText !== "Time's up!") {
+    if (timerText !== "Time's up!" && started === true) {
       return;
     }
     setBreakState(false);
