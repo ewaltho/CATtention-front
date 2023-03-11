@@ -1,163 +1,73 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Trivia from "./Trivia";
 import API from "../utils/API";
 
-export default function Timer({ roomPreferences, userObject, socket }) {
+export default function Timer({
+  roomPreferences,
+  userObject,
+  socket,
+  roomData,
+}) {
   const [timerText, setTimerText] = useState("");
   // ! started will be used later on
   const [started, setStarted] = useState(false);
   const [workState, setWorkState] = useState(false);
+  // Work time state... Cannot use room prefs for connected users.
+  const [minutesWorked, setMinutesWorked] = useState("");
   const [breakState, setBreakState] = useState(false);
 
+  socket.on("ye", (data) => console.log(data));
   // Grab our work and break seconds from roomprefs on previous page
-  // todo: There is a bug with a user entering something that will not be "cleanly" divisible. We need to control these inputs on the previous page.
   let workTimeSeconds = roomPreferences.workTime * 60;
   let breakTimeSeconds = roomPreferences.breakTime * 60;
 
+  useEffect(() => {
+    if (timerText === "Time's up!" && workState === true) {
+      console.log("first one");
+      API.addTimeToUser(userObject.id, minutesWorked)
+        .then((res) => {
+          console.log(res);
+          setWorkState(false);
+          setBreakState(true);
+        })
+        .catch((err) => console.log(err));
+    } else if (timerText === "Time's up!" && workState === false) {
+      setWorkState(true);
+    }
+  }, [timerText]);
   // Starts work timer, this will count down on the page.
   const startWorkTimer = () => {
+    if (started === false) {
+      setStarted(true);
+    }
+    console.log(roomData);
     setWorkState(true);
-    setBreakState(false);
+    socket.emit("timer", {
+      roomCode: roomData.code,
+      time: roomPreferences.workTime,
+    });
 
-    const countDown = async () => {
-    
-      let minutes = Math.floor(workTimeSeconds / 60);
-      let seconds = workTimeSeconds % 60;
-      switch (seconds) {
-        case 1: {
-          seconds = "01";
-          break;
-        }
-        case 2: {
-          seconds = "02";
-          break;
-        }
-        case 3: {
-          seconds = "03";
-          break;
-        }
-        case 4: {
-          seconds = "04";
-          break;
-        }
-        case 5: {
-          seconds = "05";
-          break;
-        }
-        case 6: {
-          seconds = "06";
-          break;
-        }
-        case 7: {
-          seconds = "07";
-          break;
-        }
-        case 8: {
-          seconds = "08";
-          break;
-        }
-        case 9: {
-          seconds = "09";
-          break;
-        }
-        case 0: {
-          seconds = "00";
-          break;
-        }
-        default: {
-          break;
-        }
-      }
-      workTimeSeconds -= 1;
-      if (workTimeSeconds <= 0) {
-        clearInterval(workInterval);
-        setTimerText(`Time for a break!`);
-        await API.addTimeToUser(userObject.id, roomPreferences.workTime);
-        setStarted(true);
-        breakTimer();
-      } else {
-        setTimerText(`${minutes}:${seconds}`);
-      }
-    };
-
-    const workInterval = setInterval(countDown, 1000);
-  };
-
-  // Break timer, same as above, just using breakTimeSeconds instead.
-  const breakTimer = () => {
-    setBreakState(true);
-    const countDown = () => {
-      
-      let minutes = Math.floor(breakTimeSeconds / 60);
-      let seconds = breakTimeSeconds % 60;
-      switch (seconds) {
-        case 1: {
-          seconds = "01";
-          break;
-        }
-        case 2: {
-          seconds = "02";
-          break;
-        }
-        case 3: {
-          seconds = "03";
-          break;
-        }
-        case 4: {
-          seconds = "04";
-          break;
-        }
-        case 5: {
-          seconds = "05";
-          break;
-        }
-        case 6: {
-          seconds = "06";
-          break;
-        }
-        case 7: {
-          seconds = "07";
-          break;
-        }
-        case 8: {
-          seconds = "08";
-          break;
-        }
-        case 9: {
-          seconds = "09";
-          break;
-        }
-        case 0: {
-          seconds = "00";
-          break;
-        }
-        default: {
-          break;
-        }
-      }
-      breakTimeSeconds -= 1;
-      if (breakTimeSeconds <= 0) {
-        clearInterval(breakInterval);
-        setWorkState(false);
-        setTimerText(`Time's Up!`);
-      } else {
-        setTimerText(`${minutes}:${seconds}`);
-      }
-    };
-    const breakInterval = setInterval(countDown, 1000);
+    socket.on("timer", ({ text, minutesWorked }) => {
+      setMinutesWorked(minutesWorked);
+      setTimerText(text);
+    });
   };
 
   return (
     <div className="timerCard">
-      {!breakState ? <h2>Work Time!</h2> : <h2>Break Time</h2>}
+      {workState ? <h2>Work Time!</h2> : <h2>Break Time</h2>}
       <h1 className="counter">{timerText}</h1>
       {workState === false ? (
-        <button onClick={startWorkTimer}>Get to work!</button>
+        <button onClick={startWorkTimer}>Get to work!/Join Timer</button>
       ) : (
         <></>
       )}
 
-      {breakState === true ? <Trivia userObject={userObject} /> : <></>}
+      {workState === false && started === true ? (
+        <Trivia userObject={userObject} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
