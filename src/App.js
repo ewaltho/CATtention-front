@@ -11,6 +11,12 @@ import Login from "./components/Login";
 import Navigation from "./components/Navigation";
 import Profile from "./components/Profile";
 import Community from "./components/Community";
+import { io } from "socket.io-client";
+
+// Dev URL
+const socket = io("http://localhost:3001");
+// Production Build
+// const socket = io("https://cattention-api.herokuapp.com");
 
 function App() {
   // eslint-disable-next-line
@@ -52,7 +58,7 @@ function App() {
     } else {
       console.log("no token");
     }
-  }, []);
+  }, [userToken]);
 
   const handleSignUpFormChange = (e) => {
     e.preventDefault();
@@ -86,9 +92,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navigation />
+      <Navigation socket={socket} />
       <Routes>
-        <Route path="/" element={<HomePage setCurrentUser={setCurrentUser}/>}  />
+        <Route
+          path="/"
+          element={<HomePage setCurrentUser={setCurrentUser} />}
+        />
         <Route
           path="/signup"
           element={
@@ -115,6 +124,7 @@ function App() {
           path="/joinchat"
           element={
             <JoinChat
+              socket={socket}
               userToken={userToken}
               roomData={roomData}
               setRoomData={setRoomData}
@@ -125,6 +135,7 @@ function App() {
           path="/createroom"
           element={
             <CreateRoom
+              socket={socket}
               userObject={userObject}
               userToken={userToken}
               roomPreferences={roomPreferences}
@@ -138,6 +149,7 @@ function App() {
           path="/chat"
           element={
             <Room
+              socket={socket}
               roomData={roomData}
               userObject={userObject}
               currentUser={currentUser}
