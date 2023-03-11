@@ -64,14 +64,14 @@ export default function Profile(props) {
               <span className="slider"></span>
             </label>
           </div>
-          <div className="language">
+          {/* <div className="language">
             <p>Language:</p>
             <select className="lang-select">
               <option value="english">English</option>
               <option value="spanish">Spanish</option>
               <option value="french">French</option>
             </select>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
