@@ -15,7 +15,7 @@ body {
     width: 45vw;
     background-color: white;
     text-align: center;
-    height: 80vh;
+    height: 65vh;
 }
 
 .room-title {
@@ -35,7 +35,7 @@ body {
 .messages {
     padding: 10px;
     overflow-y: scroll;
-    max-height: 55vh;
+    max-height: 35vh;
 }
 
 .messages::-webkit-scrollbar {
