@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import API from "../utils/API";
-import "../assets/css/SignUp.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import API from '../utils/API';
+import '../assets/css/SignUp.css';
 
 export default function Login({
   handleLoginFormChange,

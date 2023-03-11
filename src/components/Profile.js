@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import "../assets/css/Profile.css";
-import API from "../utils/API";
+import React, { useEffect, useState } from 'react';
+import '../assets/css/Profile.css';
+import API from '../utils/API';
 
 export default function Profile(props) {
   const [usersAvailCats, setUsersAvailCats] = useState([]);

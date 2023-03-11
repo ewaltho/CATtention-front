@@ -1,8 +1,8 @@
-import React from "react";
-import Timer from "./Timer";
-import Chat from "./Chat";
-import "../assets/css/Room.css";
-import io from "socket.io-client";
+import React from 'react';
+import Timer from './Timer';
+import Chat from './Chat';
+import '../assets/css/Room.css';
+import io from 'socket.io-client';
 
 const socket = io("http://localhost:3001");
 

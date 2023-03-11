@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function Navigation() {
   const currentlocation = useLocation();
@@ -53,7 +53,7 @@ export default function Navigation() {
           <Link to="/profile" className="btn">
             Profile
           </Link>
-          <Link to="/logout" className="btn">
+          <Link to="/" className="btn">
             Log Out
           </Link>
         </div>
@@ -69,7 +69,7 @@ export default function Navigation() {
           <Link to="/profile" className="btn">
             Profile
           </Link>
-          <Link to="/logout" className="btn">
+          <Link to="/" className="btn">
             Log Out
           </Link>
         </div>
