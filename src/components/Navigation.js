@@ -1,9 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-// if statement checks current path with useLocation and generates navbar accordingly
-export default function Navigation() {
+export default function Navigation({ socket }) {
+  const disconnectSocket = () => {
+    socket.disconnect();
+  };
+
   const currentlocation = useLocation();
   if (currentlocation.pathname === "/") {
     return (
@@ -64,7 +67,12 @@ export default function Navigation() {
     return (
       <div className="Nav">
         <Link to="/">
-          <img src="CATtention-logo.png" alt="logo" className="logo" />
+          <img
+            src="CATtention-logo.png"
+            alt="logo"
+            className="logo"
+            onClick={disconnectSocket}
+          />
         </Link>
         <div className="nav-btn">
           <Link to="/profile" className="btn">
@@ -76,7 +84,7 @@ export default function Navigation() {
         </div>
       </div>
     );
-  } else if (currentlocation.pathname ==="/community") {
+  } else if (currentlocation.pathname === "/community") {
     return (
       <div className="Nav">
         <Link to="/">
