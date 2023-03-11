@@ -1,0 +1,110 @@
+body {
+    height: 100%;
+}
+
+.room {
+    display: flex;
+    padding: 15px;
+}
+
+.timer {
+    flex: 50%;
+    text-align: center;
+}
+.chatbox {
+    width: 45vw;
+    background-color: white;
+    text-align: center;
+    height: 80vh;
+}
+
+.room-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #48406F;
+    color: white;
+    font-size: 40px;
+    height: 75px;
+}
+
+.users ul li{
+    list-style-type: none;
+}
+
+.messages {
+    padding: 10px;
+    overflow-y: scroll;
+    max-height: 55vh;
+}
+
+.messages::-webkit-scrollbar {
+    display: none;
+}
+/* Alternating message CSS, can be adjusted, just did basic color for now */
+.messages>div.received-message{
+    background-color:#9e81bc;
+    text-align: left;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 45%;
+}
+
+.messages>div.sent-message{
+    background-color: #C1CFDA;
+    text-align: right;
+    padding: 5px;
+    margin-left: auto; 
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 45%;
+}
+
+.send-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-input {
+    width: 20vw;
+    border: none;
+    font-size: 20px;
+    line-height: 3em;
+    padding: 2px;
+    background-color: #C1CFDA;
+}
+
+@media screen and (max-width: 1280px) {
+    .chatbox {
+        height: 100%;
+        width: 100%
+    }
+
+    .text-input {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .room {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chatbox {
+        height: 100%;
+    }
+
+    .text-input {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .send-box {
+        height: 50vh;
+    }
+
+}

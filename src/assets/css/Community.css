@@ -1,0 +1,55 @@
+body {
+    padding: 5px;
+    height: 100%;
+}
+
+.title {
+    font-size: 36px;
+    text-align: center;
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+.idea-cat {
+    display: block;
+    margin: auto;
+    width: 200px;
+    border-radius: 100%;
+    margin-bottom: 10px;
+}
+
+.tips {
+    padding: 10px;
+    padding-right: 30px;
+    margin: auto;
+    width: 60vw;
+    background: white;
+}
+
+.tip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+    height: 20vh;
+    width: 85%;
+    font-size: 26px;
+    transition: ease-in-out 0.7s;
+    background-color: #9e81bc;
+
+}
+
+.tip:hover {
+    background: #48406F;
+}
+
+.tips>div:nth-child(even){
+    background-color:#C1CFDA;
+    margin-left: auto; 
+    margin-right: 0;
+}
+
+.tips>div:nth-child(even):hover{
+    background: #48406F;
+}
