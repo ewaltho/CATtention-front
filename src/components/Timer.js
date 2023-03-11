@@ -11,7 +11,7 @@ export default function Timer({
   const [timerText, setTimerText] = useState("");
   // ! started will be used later on
   const [started, setStarted] = useState(false);
-  const [workState, setWorkState] = useState(false);
+  const [workState, setWorkState] = useState(true);
   // Work time state... Cannot use room prefs for connected users.
   const [minutesWorked, setMinutesWorked] = useState("");
   const [breakState, setBreakState] = useState(false);
@@ -27,8 +27,7 @@ export default function Timer({
       API.addTimeToUser(userObject.id, minutesWorked)
         .then((res) => {
           setWorkState(false);
-          setBreakState(true);
-          startBreakTimer();
+          // setBreakState(true);
         })
         .catch((err) => console.log(err));
     } else if (timerText === "Time's up!" && workState === false) {
@@ -38,6 +37,10 @@ export default function Timer({
   }, [timerText]);
   // Starts work timer, this will count down on the page.
   const startWorkTimer = () => {
+    if (timerText !== "Time's up!") {
+      return;
+    }
+    setBreakState(false);
     if (started === false) {
       setStarted(true);
     }
@@ -47,33 +50,25 @@ export default function Timer({
       roomCode: roomData.code,
       time: roomPreferences.workTime,
     });
-
-    socket.on("timer", ({ text, minutesWorked }) => {
-      if (workState) {
-        setMinutesWorked(minutesWorked);
-      } else if (!workState) {
-        setMinutesWorked(0);
-      }
-      setTimerText(text);
-    });
   };
 
+  socket.on("timer", ({ text, minutesWorked }) => {
+    if (workState) {
+      setMinutesWorked(minutesWorked);
+    } else if (!workState) {
+      setMinutesWorked(0);
+    }
+    setTimerText(text);
+  });
+
   const startBreakTimer = () => {
+    if (timerText !== "Time's up!") {
+      return;
+    }
+    !breakState && setBreakState(true);
     socket.emit("timer", {
       roomCode: roomData.code,
       time: roomPreferences.breakTime,
-    });
-
-    socket.on("timer", ({ text, minutesWorked }) => {
-      if (workState) {
-        setMinutesWorked(minutesWorked);
-      } else if (!workState) {
-        setMinutesWorked(0);
-      }
-      if (text === "Time's Up!") {
-        setWorkState(true);
-      }
-      setTimerText(text);
     });
   };
 
@@ -84,10 +79,10 @@ export default function Timer({
       {workState === true ? (
         <button onClick={startWorkTimer}>Get to work!/Join Timer</button>
       ) : (
-        <></>
+        <button onClick={startBreakTimer}>Start Break</button>
       )}
 
-      {workState === false && started === true ? (
+      {workState === false && started === true && timerText !== "Time's up!" ? (
         <Trivia userObject={userObject} />
       ) : (
         <></>
