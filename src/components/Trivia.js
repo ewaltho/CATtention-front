@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import API from "../utils/API";
+import React, { useEffect, useState } from  'react';
+import API from '../utils/API';
 
 export default function Trivia({ userObject }) {
   const [answersArr, setAnswersArr] = useState([]);

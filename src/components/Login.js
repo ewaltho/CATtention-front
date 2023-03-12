@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import API from "../utils/API";
-import "../assets/css/SignUp.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import API from '../utils/API';
+import '../assets/css/SignUp.css';
 
 export default function Login({
   handleLoginFormChange,
@@ -30,7 +30,7 @@ export default function Login({
       localStorage.setItem("token", response.data.token);
 
       console.log(response.data.token);
-      return navigate("/");
+      return navigate("/home");
     }
   };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import '../assets/css/Community.css'
 
 export default function Community() {
@@ -30,6 +30,12 @@ export default function Community() {
                 </div>
                 <div className="tip">
                     Your brain can focus and learn better after exercise. Cardio is best, but even a short walk can help!
+                </div>
+                <div className="tip">
+                    Keep a list of "Things Done", too! Remind yourself that even if you still have things on your to-do list, you did make accomplishments today.
+                </div>
+                <div className="tip">
+                    Create a reward system for yourself. A snack, a break, or some time on your favorite app. Celebrate what you've achieved!
                 </div>
             </div>
         </div>

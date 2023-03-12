@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "../assets/css/CreateRoom.css";
-import API from "../utils/API";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../assets/css/CreateRoom.css';
+import API from '../utils/API';
 
 export default function CreateRoom({
   socket,
