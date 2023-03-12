@@ -6,9 +6,25 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 150px;
+    height: 20%;
     font-size: 40px;
     background-color: white;
+}
+
+.username {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.username p,
+.username img {
+  margin: 20px;
+}
+
+.userStats {
+  margin: 20px;
 }
 
 .user-cat {
@@ -105,3 +121,13 @@ body {
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
+
+@media screen and (max-width: 580px) {
+  .user {
+    flex-direction: column;
+  }
+
+  .achievement {
+    width: 70px;
+  }
+}
