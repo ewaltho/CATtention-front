@@ -136,3 +136,10 @@ body {
     width: 80vw;
   }
 }
+
+
+.fourfour {
+  display: block;
+  margin: auto;
+  max-width: 50%;
+}
