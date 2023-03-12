@@ -31,6 +31,14 @@ export default function Navigation({ socket, setCurrentUser, setUserObject, setU
           <Link to="/profile" className="btn">
             Profile
           </Link>
+          <Link to="/login" className="btn" onClick={() => {
+            localStorage.removeItem("token")
+            setCurrentUser("");
+            setUserObject({});
+            setUserToken("")
+          }}>
+            Log Out
+          </Link>
         </div>
       </div>
     );

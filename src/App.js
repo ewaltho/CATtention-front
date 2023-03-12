@@ -100,6 +100,10 @@ function App() {
           element={<HomePage setCurrentUser={setCurrentUser} />}
         />
         <Route
+          path="/home"
+          element={<HomePage setCurrentUser={setCurrentUser} />}
+        />
+        <Route
           path="/signup"
           element={
             <SignUp
