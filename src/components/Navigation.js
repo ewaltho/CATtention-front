@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-export default function Navigation({ socket }) {
+export default function Navigation({ socket, setCurrentUser, setUserObject, setUserToken }) {
   const disconnectSocket = () => {
     socket.disconnect();
   };
@@ -21,6 +21,27 @@ export default function Navigation({ socket }) {
         </div>
       </div>
     );
+  } else if (currentlocation.pathname === "/home") {
+    return (
+      <div className="Nav">
+        <Link to="/home">
+          <img src="CATtention-logo.png" alt="logo" className="logo" />
+        </Link>
+        <div className="nav-btn">
+          <Link to="/profile" className="btn">
+            Profile
+          </Link>
+          <Link to="/login" className="btn" onClick={() => {
+            localStorage.removeItem("token")
+            setCurrentUser("");
+            setUserObject({});
+            setUserToken("")
+          }}>
+            Log Out
+          </Link>
+        </div>
+      </div>
+    );
   } else if (currentlocation.pathname === "/login") {
     return (
       <div className="Nav">
@@ -28,6 +49,9 @@ export default function Navigation({ socket }) {
           <img src="CATtention-logo.png" alt="logo" className="logo" />
         </Link>
         <div className="nav-btn">
+          <Link to="/" className="btn">
+            Home
+          </Link>
           <Link to="/signup" className="btn">
             Register
           </Link>
@@ -40,6 +64,9 @@ export default function Navigation({ socket }) {
         <Link to="/">
           <img src="CATtention-logo.png" alt="logo" className="logo" />
         </Link>
+          <Link to="/" className="btn">
+            Home
+          </Link>
         <div className="nav-btn">
           <Link to="/login" className="btn">
             Log In
@@ -50,14 +77,19 @@ export default function Navigation({ socket }) {
   } else if (currentlocation.pathname === "/joinchat") {
     return (
       <div className="Nav">
-        <Link to="/">
+        <Link to="/home">
           <img src="CATtention-logo.png" alt="logo" className="logo" />
         </Link>
         <div className="nav-btn">
           <Link to="/profile" className="btn">
             Profile
           </Link>
-          <Link to="/logout" className="btn">
+          <Link to="/login" className="btn" onClick={() => {
+            localStorage.removeItem("token")
+            setCurrentUser("");
+            setUserObject({});
+            setUserToken("")
+          }}>
             Log Out
           </Link>
         </div>
@@ -66,7 +98,7 @@ export default function Navigation({ socket }) {
   } else if (currentlocation.pathname === "/chat") {
     return (
       <div className="Nav">
-        <Link to="/">
+        <Link to="/home">
           <img
             src="CATtention-logo.png"
             alt="logo"
@@ -78,7 +110,12 @@ export default function Navigation({ socket }) {
           <Link to="/profile" className="btn">
             Profile
           </Link>
-          <Link to="/logout" className="btn">
+          <Link to="/login" className="btn" onClick={() => {
+            localStorage.removeItem("token")
+            setCurrentUser("");
+            setUserObject({});
+            setUserToken("")
+          }}>
             Log Out
           </Link>
         </div>
@@ -93,6 +130,27 @@ export default function Navigation({ socket }) {
         <div className="nav-btn">
           <Link to="/" className="btn">
             Home
+          </Link>
+        </div>
+      </div>
+    );
+  } else if (currentlocation.pathname === "/profile") {
+    return (
+      <div className="Nav">
+        <Link to="/home">
+          <img src="CATtention-logo.png" alt="logo" className="logo" />
+        </Link>
+        <div className="nav-btn">
+          <Link to="/home" className="btn">
+            Home
+          </Link>
+          <Link to="/login" className="btn" onClick={() => {
+            localStorage.removeItem("token")
+            setCurrentUser("");
+            setUserObject({});
+            setUserToken("")
+          }}>
+            Log Out
           </Link>
         </div>
       </div>

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Trivia from "./Trivia";
-import API from "../utils/API";
+import React, { useState, useEffect } from 'react';
+import Trivia from './Trivia';
+import API from '../utils/API';
 
 export default function Timer({
   roomPreferences,

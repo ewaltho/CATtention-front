@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import "../assets/css/Profile.css";
-import API from "../utils/API";
+import React, { useEffect, useState } from 'react';
+import '../assets/css/Profile.css';
+import API from '../utils/API';
 
 export default function Profile(props) {
   const [usersAvailCats, setUsersAvailCats] = useState([]);
   const [userWorkTime, setUserWorkTime] = useState("");
 
+  // return and set data if valid token (logged in user) is available
   useEffect(() => {
     API.isValidToken(localStorage.getItem("token")).then((res) => {
       if (res.data.isValid) {
@@ -14,7 +15,7 @@ export default function Profile(props) {
       }
     });
   }, []);
-
+  // check for achievements
   const checkForAvailableCats = async (userId) => {
     const user = await API.getOneUser(userId);
     setUserWorkTime(user.data.work_time);
@@ -52,11 +53,6 @@ export default function Profile(props) {
                 ></img>
               );
             })}
-            {/* <img src="rested.jpg" className="achievement" />
-            <img src="game master.jpg" className="achievement" />
-            <img src="cat collab.jpg" className="achievement" />
-            <img src="high score.jpg" className="achievement" />
-            <img src="scholarly.jpg" className="achievement" /> */}
           </div>
         </div>
         <div className="settings">
@@ -68,14 +64,14 @@ export default function Profile(props) {
               <span className="slider"></span>
             </label>
           </div>
-          <div className="language">
+          {/* <div className="language">
             <p>Language:</p>
             <select className="lang-select">
               <option value="english">English</option>
               <option value="spanish">Spanish</option>
               <option value="french">French</option>
             </select>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

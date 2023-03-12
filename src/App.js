@@ -35,7 +35,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState("");
 
   // State for room preferences needs to live here to be accessed in profile and other locations.
-
   const [roomPreferences, setRoomPreferences] = useState({
     roomName: "",
     breakTime: "",
@@ -60,6 +59,7 @@ function App() {
     }
   }, [userToken]);
 
+  // grabbing form value on sign up field change
   const handleSignUpFormChange = (e) => {
     e.preventDefault();
     setSignUpFormData({
@@ -67,7 +67,7 @@ function App() {
       [e.target.name]: e.target.value,
     });
   };
-
+// grabbing form value on log in field change
   const handleLoginFormChange = (e) => {
     e.preventDefault();
     setLoginFormData({
@@ -75,14 +75,14 @@ function App() {
       [e.target.name]: e.target.value,
     });
   };
-
+  // clear sign up form (on submit)
   const clearSignupForm = () => {
     setSignUpFormData({
       username: "",
       password: "",
     });
   };
-
+  // clear log in form (on submit)
   const clearLoginForm = () => {
     setLoginFormData({
       username: "",
@@ -90,12 +90,17 @@ function App() {
     });
   };
 
+  // paths and navigation for all pages
   return (
     <BrowserRouter>
       <Navigation socket={socket} />
       <Routes>
         <Route
           path="/"
+          element={<HomePage setCurrentUser={setCurrentUser} />}
+        />
+        <Route
+          path="/home"
           element={<HomePage setCurrentUser={setCurrentUser} />}
         />
         <Route
@@ -128,6 +133,9 @@ function App() {
               userToken={userToken}
               roomData={roomData}
               setRoomData={setRoomData}
+              setCurrentUser={currentUser}
+              setUserObject={setUserObject}
+              setUserToken={setUserToken}
             />
           }
         />

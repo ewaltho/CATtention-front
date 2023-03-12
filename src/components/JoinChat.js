@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import API from "../utils/API";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import API from '../utils/API';
 // import io from "socket.io-client";
 
 // const socket = io('http://localhost:3001');
@@ -76,7 +76,7 @@ function JoinChat(props) {
       navigate(`/chat`);
     }
   };
-
+  // validate room code and reroute if exists
   const handleJoinExistingRoom = async (event) => {
     event.preventDefault();
     if (roomCode.trim() !== "") {
@@ -95,16 +95,6 @@ function JoinChat(props) {
   return (
     <div className="join-chat form">
       <h1>Join a Chat Room</h1>
-      {/* <form onSubmit={handleCreateRoom}>
-        <label htmlFor="room-name">Room Name:</label>
-        <input
-          type="text"
-          id="room-name"
-          value={roomName}
-          onChange={handleRoomNameChange}
-        />
-        <button type="submit">Create Room</button>
-      </form> */}
       <hr />
       <form onSubmit={handleJoinExistingRoom} className="row room-form">
         <label htmlFor="room-id">Room Code:</label>
