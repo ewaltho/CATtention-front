@@ -7,11 +7,6 @@ export default function Navigation({ socket, setCurrentUser, setUserObject, setU
     socket.disconnect();
   };
 
-  useEffect(() => {
-    console.log(currentUser)
-    console.log(userObject)
-  }, [currentUser, userObject])
-
   const currentlocation = useLocation();
   if (currentlocation.pathname === "/") {
     return (
