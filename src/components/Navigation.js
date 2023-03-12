@@ -95,6 +95,27 @@ export default function Navigation({ socket, setCurrentUser, setUserObject, setU
         </div>
       </div>
     );
+  } else if (currentlocation.pathname === "/createroom") {
+    return (
+      <div className="Nav">
+        <Link to="/home">
+          <img src="CATtention-logo.png" alt="logo" className="logo" />
+        </Link>
+        <div className="nav-btn">
+          <Link to="/profile" className="btn">
+            Profile
+          </Link>
+          <Link to="/login" className="btn" onClick={() => {
+            localStorage.removeItem("token")
+            setCurrentUser("");
+            setUserObject({});
+            setUserToken("")
+          }}>
+            Log Out
+          </Link>
+        </div>
+      </div>
+    );
   } else if (currentlocation.pathname === "/chat") {
     return (
       <div className="Nav">

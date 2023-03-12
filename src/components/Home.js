@@ -66,9 +66,6 @@ function HomePage(props) {
           with a friend. You can level up with mini-games and earn cat badges to
           customize your profile! Now go! Be productive!
         </p>
-        <Link to="/signup" className="register-btn">
-          Register
-        </Link>
         <div className="bottom-btn">
           <Link to="/createroom" className="register-btn">
             Create a Room
