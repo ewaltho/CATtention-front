@@ -13,6 +13,8 @@ import Profile from "./components/Profile";
 import Community from "./components/Community";
 import { io } from "socket.io-client";
 
+
+
 // Dev URL
 // const socket = io("http://localhost:3001");
 // Production Build
@@ -173,7 +175,13 @@ function App() {
           }
         />
         <Route path="/community" element={<Community />} />
-        <Route path="*" element={<h1>404 page not found'</h1>} />
+        {/* css for 404 page image is in App.css at bottom named fourfour  */}
+        <Route path="*" element={
+          <img src={process.env.PUBLIC_URL + "/404.png"} alt="404 message, page not found" className="fourfour"/>
+
+          } 
+          />
+    
       </Routes>
     </BrowserRouter>
   );
