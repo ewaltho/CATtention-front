@@ -11,6 +11,10 @@
     color: white;
 }
 
+.dark .btn:hover {
+    color: #C1CFDA;
+}
+
 .dark .nav-btn a:hover {
     text-shadow: 2px -2px #9e81bc;
 }
@@ -46,4 +50,8 @@
 
 .dark .logo {
     content: url("/public/CATtention-logo-dark.png")
+}
+
+.dark .join-link {
+    color: white;
 }

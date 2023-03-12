@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import API from '../utils/API';
 // import io from "socket.io-client";
 
@@ -107,6 +108,9 @@ function JoinChat(props) {
         />
         <button type="submit">Join Room</button>
       </form>
+      <Link to="/createroom" className="btn join-link">
+        Create A Room Instead
+      </Link>
     </div>
   );
 }

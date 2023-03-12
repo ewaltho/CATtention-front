@@ -32,6 +32,13 @@ export default function Profile(props) {
     });
     setUsersAvailCats(availableCats);
   };
+
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   return (
     <div>
       <div className="user">
@@ -60,7 +67,13 @@ export default function Profile(props) {
           <div className="theme">
             <p>Theme:</p>
             <label className="switch">
-              <input type="checkbox" />
+              <input type="checkbox" onClick={() => {
+                if (theme === 'light') {
+                  setTheme('dark')
+                } else {
+                  setTheme('light')
+                }
+              }}/>
               <span className="slider"></span>
             </label>
           </div>

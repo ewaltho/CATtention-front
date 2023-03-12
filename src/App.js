@@ -93,31 +93,31 @@ function App() {
     });
   };
 
-  const [theme, setTheme] = useState('light');
+  // const [theme, setTheme] = useState('light');
 
-  const toggleTheme = () => {
-    if (theme === 'light') {
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
-  };
+  // const toggleTheme = () => {
+  //   if (theme === 'light') {
+  //     setTheme('dark')
+  //   } else {
+  //     setTheme('light')
+  //   }
+  // };
 
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
+  // useEffect(() => {
+  //   document.body.className = theme;
+  // }, [theme]);
 
   // paths and navigation for all pages
   return (
     <BrowserRouter>
       <Navigation socket={socket} />
-      <div className="theme">
+      {/* <div className="theme">
             <p>Theme:</p>
             <label className="switch">
               <input type="checkbox" onClick={toggleTheme}/>
               <span className="slider"></span>
             </label>
-          </div>
+          </div> */}
       <Routes>
         <Route
           path="/"

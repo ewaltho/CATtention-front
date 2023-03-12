@@ -1,7 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useLocation} from "react-router-dom";
-import '../assets/css/Darkmode.css'
 
 export default function Navigation({ socket, setCurrentUser, setUserObject, setUserToken }) {
   const disconnectSocket = () => {
