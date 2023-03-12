@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "../assets/css/CreateRoom.css";
-import API from "../utils/API";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../assets/css/CreateRoom.css';
+import API from '../utils/API';
 
 export default function CreateRoom({
+  socket,
   roomPreferences,
   setRoomPreferences,
   roomData,
@@ -18,12 +19,19 @@ export default function CreateRoom({
   // 6 random characters FOR ROOM CODE
   // ! generates a room code on page load, this way, we can persist this data in local storage.
   useEffect(() => {
+    socket.on("disconnect", () => {
+      socket.connect();
+    });
     redirectIfTokenOrNotRegistered(userToken);
     const roomCode = Math.random().toString(36).substring(2, 8);
     setRoomPreferences({
-      ...roomPreferences,
+      roomName: "",
+      breakTime: "",
+      workTime: "",
+      minigameToggle: false,
       roomCode: roomCode,
     });
+
     // eslint-disable-next-line
   }, []);
 

@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import API from "../utils/API";
-import "../assets/css/SignUp.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import API from '../utils/API';
+import '../assets/css/SignUp.css';
 
 export default function Login({
   handleLoginFormChange,
   loginFormData,
   clearLoginForm,
   setUserToken,
+  userObject
 }) {
   const [isUserPassCorrect, setIsUserPassCorrect] = useState(true);
+  console.log(userObject)
   const navigate = useNavigate();
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +30,7 @@ export default function Login({
       localStorage.setItem("token", response.data.token);
 
       console.log(response.data.token);
-      return navigate("/");
+      return navigate("/home");
     }
   };
 

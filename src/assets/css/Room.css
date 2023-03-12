@@ -15,7 +15,7 @@ body {
     width: 45vw;
     background-color: white;
     text-align: center;
-    height: 80vh;
+    height: 65vh;
 }
 
 .room-title {
@@ -35,7 +35,7 @@ body {
 .messages {
     padding: 10px;
     overflow-y: scroll;
-    max-height: 55vh;
+    max-height: 35vh;
 }
 
 .messages::-webkit-scrollbar {
@@ -75,6 +75,18 @@ body {
     background-color: #C1CFDA;
 }
 
+@media screen and (max-width: 1880px) {
+    .chatbox {
+        height: 100%;
+        width: 100%
+    }
+
+    .text-input {
+        margin: 20px;
+        width: 80%;
+    }
+}
+
 @media screen and (max-width: 1280px) {
     .chatbox {
         height: 100%;
@@ -82,7 +94,8 @@ body {
     }
 
     .text-input {
-        width: 90%;
+        margin: 20px;
+        width: 80%;
     }
 }
 

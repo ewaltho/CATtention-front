@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import "../assets/css/Room.css";
+import React, { useState, useEffect, useRef } from 'react';
+import '../assets/css/Room.css';
 
 
 function ChatFeature({ roomData, userObject, currentUser, socket}) {
@@ -28,6 +28,11 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
         },
       ]);
       setUser(msg.userObject);
+      // sets the scroll position to the bottom of the chat box when a new message is received 
+      // with a delay so that the message can be rendered first without it cutting off mid auto scroll
+      setTimeout(() => {
+        messageContainer.current.scrollTop = messageContainer.current.scrollHeight;
+      }, 10);
 
 
     });
@@ -35,8 +40,7 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
  
 
     // Join the room when the component mounts
-    console.log( { ...userObject, socketId: socket.id })
-    socket.emit("join room", roomData.code, {userObject:{ ...userObject, socketId: socket.id }});
+   socket.emit("join room", roomData.code, {userObject:{ ...userObject, socketId: socket.id }});
 
     socket.on("users in room", (userList) => {
   
@@ -46,7 +50,7 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
 
     return () => {
       socket.off("chat message");
-      console.log("Stopped listening for incoming messages...");
+ 
 
     };
   }, [roomData, userObject, user]);
@@ -61,12 +65,13 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
     event.preventDefault();
     if (message) {
       // Emit the message to the server
-      console.log("Sending message:", message);
       socket.emit("chat message", {
         roomCode: room.code,
         message: message,
         userObject: userObject,
       });
+       // sets the scroll position to the bottom of the chat box when a new message is sent 
+      // with a delay so that the message can be rendered first without it cutting off mid auto scroll
       setTimeout(() => {
         messageContainer.current.scrollTop =
           messageContainer.current.scrollHeight;
