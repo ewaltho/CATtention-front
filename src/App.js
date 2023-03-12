@@ -117,6 +117,7 @@ function App() {
               loginFormData={loginFormData}
               clearLoginForm={clearLoginForm}
               setUserToken={setUserToken}
+              currentUser={currentUser}
             />
           }
         />
@@ -128,6 +129,11 @@ function App() {
               userToken={userToken}
               roomData={roomData}
               setRoomData={setRoomData}
+              setCurrentUser={setCurrentUser}
+              setUserObject={setUserObject}
+              setUserToken={setUserToken}
+              currentUser={currentUser}
+              userObject={userObject}
             />
           }
         />

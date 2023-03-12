@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 
-export default function Navigation({ socket }) {
+export default function Navigation({ socket, setCurrentUser, setUserObject, SetUserToken, currentUser, userObject}) {
   const disconnectSocket = () => {
     socket.disconnect();
   };
+
+  useEffect(() => {
+    console.log(currentUser)
+    console.log(userObject)
+  }, [currentUser, userObject])
 
   const currentlocation = useLocation();
   if (currentlocation.pathname === "/") {
@@ -57,7 +62,13 @@ export default function Navigation({ socket }) {
           <Link to="/profile" className="btn">
             Profile
           </Link>
-          <Link to="/logout" className="btn">
+          <Link to="/login" className="btn"
+          onClick={() => {
+            localStorage.removeItem("token");
+            setCurrentUser("");
+            setUserObject({});
+            SetUserToken("");
+          }}>
             Log Out
           </Link>
         </div>

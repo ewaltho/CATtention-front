@@ -8,8 +8,10 @@ export default function Login({
   loginFormData,
   clearLoginForm,
   setUserToken,
+  userObject
 }) {
   const [isUserPassCorrect, setIsUserPassCorrect] = useState(true);
+  console.log(userObject)
   const navigate = useNavigate();
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
