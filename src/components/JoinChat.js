@@ -94,7 +94,7 @@ function JoinChat(props) {
 
   return (
     <div className="join-chat form">
-      <h1>Join a Chat Room</h1>
+      <h1>Join a Room</h1>
       <hr />
       <form onSubmit={handleJoinExistingRoom} className="row room-form">
         <label htmlFor="room-id">Room Code:</label>
