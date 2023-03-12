@@ -21,7 +21,7 @@ export default function SignUp({
       setUserToken(response.data.token);
       localStorage.setItem("token", response.data.token);
       // This will redirect. the redirect method in react router dom is deprecated, this is what we use now.
-      return navigate("/");
+      return navigate("/home");
     } else {
       clearSignupForm();
     }
