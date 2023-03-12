@@ -90,11 +90,6 @@ function App() {
     });
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    setUserToken("");
-    setUserObject({});
-  }
   // paths and navigation for all pages
   return (
     <BrowserRouter>
@@ -134,6 +129,9 @@ function App() {
               userToken={userToken}
               roomData={roomData}
               setRoomData={setRoomData}
+              setCurrentUser={currentUser}
+              setUserObject={setUserObject}
+              setUserToken={setUserToken}
             />
           }
         />

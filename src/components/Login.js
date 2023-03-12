@@ -28,7 +28,7 @@ export default function Login({
       localStorage.setItem("token", response.data.token);
 
       console.log(response.data.token);
-      return navigate("/");
+      return navigate("/home");
     }
   };
 
