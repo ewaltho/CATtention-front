@@ -33,23 +33,12 @@ function HomePage(props) {
         <Link to="/signup" className="register-btn">
           Register
         </Link>
-        {/* <div className="bottom-btn">
-          <Link to="/createroom" className="register-btn">
-            Create a Room
-          </Link>
-          <Link to="/joinchat" className="register-btn">
-            Join a Room
-          </Link>
-        </div> */}
         <div className="bottom-box">
           <img
             src="wave-cat-black.png"
             alt="drawing of cat waving"
             className="cat-left cat"
           />
-          <Link to="/community" className="tipsBtn">
-            From the community
-          </Link>
           <img
             src="stretch-cat-black.png"
             alt="drawing of cat stretching"
