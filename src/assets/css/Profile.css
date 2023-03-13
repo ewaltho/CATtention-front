@@ -11,15 +11,15 @@ body {
     background-color: white;
 }
 
-.username {
+.profile-username {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.username p,
-.username img {
+.profile-username p,
+.profile-username img {
   margin: 20px;
 }
 
