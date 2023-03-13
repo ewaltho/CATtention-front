@@ -23,7 +23,7 @@ export default function Login({
       setIsUserPassCorrect(false);
       setTimeout(() => {
         setIsUserPassCorrect(true);
-      }, 1000);
+      }, 100000);
     } else if (response.status === 200) {
       clearLoginForm();
       setUserToken(response.data.token);
