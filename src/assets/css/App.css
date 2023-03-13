@@ -123,7 +123,13 @@ body {
   bottom: 0;
   padding: 10px;
   left: 50%;
-  transform: translateX(-50%); 
+  transform: translateX(-50%);
+  width: 100%; 
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .footer a {
