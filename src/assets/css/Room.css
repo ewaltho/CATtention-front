@@ -11,21 +11,19 @@ body {
     flex: 50%;
     text-align: center;
 }
+
 .chatbox {
-    width: 45vw;
+    width: 50vw;
     background-color: white;
     text-align: center;
-    height: 65vh;
+    height: 75vh;
 }
 
 .room-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 70px;
     background-color: #48406F;
     color: white;
     font-size: 40px;
-    height: 75px;
 }
 
 .users ul li{
@@ -35,7 +33,7 @@ body {
 .messages {
     padding: 10px;
     overflow-y: scroll;
-    max-height: 35vh;
+    max-height: 40vh;
 }
 
 .messages::-webkit-scrollbar {
@@ -43,22 +41,27 @@ body {
 }
 /* Alternating message CSS, can be adjusted, just did basic color for now */
 .messages>div.received-message{
-    background-color:#9e81bc;
     text-align: left;
     padding: 5px;
     margin-bottom: 10px;
     width: 45%;
+    background-color:#9e81bc;
 }
 
 .messages>div.sent-message{
-    background-color: #C1CFDA;
-    text-align: right;
     padding: 5px;
+    text-align: right;
     margin-left: auto; 
     margin-right: 0;
     margin-bottom: 10px;
     width: 45%;
+    background-color: #C1CFDA;
 }
+
+/* .message {
+    display: flex;
+    justify-content: space-evenly;
+} */
 
 .send-box {
     display: flex;
