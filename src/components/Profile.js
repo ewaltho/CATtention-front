@@ -42,9 +42,13 @@ export default function Profile(props) {
   return (
     <div>
       <div className="user">
-        <p>{props.userObject.username}</p>
-        <img src="user-cat.png" alt="a cute cat" className="user-cat" />
-        <p>Total Minutes: {userWorkTime}</p>
+        <div className='username'>
+          <p>{props.userObject.username}</p>
+          <img src="user-cat.png" alt="a cute cat" className="user-cat" />
+        </div>
+        <div className='userStats'>
+          <p>Total Minutes: {userWorkTime}</p>
+        </div>
       </div>
       <div className="info">
         <div className="badges">
