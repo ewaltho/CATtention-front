@@ -13,8 +13,6 @@ import Profile from "./components/Profile";
 import Community from "./components/Community";
 import { io } from "socket.io-client";
 
-
-
 // Dev URL
 // const socket = io("http://localhost:3001");
 // Production Build
@@ -33,6 +31,8 @@ function App() {
     username: "",
     password: "",
   });
+
+  const [joinExistingRoom, setJoinExistingRoom] = useState(false);
 
   const [currentUser, setCurrentUser] = useState("");
 
@@ -69,7 +69,7 @@ function App() {
       [e.target.name]: e.target.value,
     });
   };
-// grabbing form value on log in field change
+  // grabbing form value on log in field change
   const handleLoginFormChange = (e) => {
     e.preventDefault();
     setLoginFormData({
@@ -132,6 +132,7 @@ function App() {
           path="/joinchat"
           element={
             <JoinChat
+              setJoinExistingRoom={setJoinExistingRoom}
               socket={socket}
               userToken={userToken}
               roomData={roomData}
@@ -160,6 +161,7 @@ function App() {
           path="/chat"
           element={
             <Room
+              joinExistingRoom={joinExistingRoom}
               socket={socket}
               roomData={roomData}
               userObject={userObject}
@@ -176,12 +178,16 @@ function App() {
         />
         <Route path="/community" element={<Community />} />
         {/* css for 404 page image is in App.css at bottom named fourfour  */}
-        <Route path="*" element={
-          <img src={process.env.PUBLIC_URL + "/404.png"} alt="404 message, page not found" className="fourfour"/>
-
-          } 
-          />
-    
+        <Route
+          path="*"
+          element={
+            <img
+              src={process.env.PUBLIC_URL + "/404.png"}
+              alt="404 message, page not found"
+              className="fourfour"
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

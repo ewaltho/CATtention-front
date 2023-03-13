@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import API from '../utils/API';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import API from "../utils/API";
 // import io from "socket.io-client";
 
 // const socket = io('http://localhost:3001');
@@ -79,6 +79,7 @@ function JoinChat(props) {
   // validate room code and reroute if exists
   const handleJoinExistingRoom = async (event) => {
     event.preventDefault();
+    props.setJoinExistingRoom(true);
     if (roomCode.trim() !== "") {
       try {
         const response = await API.getOneRoom(roomCode);
