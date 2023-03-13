@@ -149,7 +149,7 @@ export default function Navigation({ socket, setCurrentUser, setUserObject, setU
           <img src="CATtention-logo.png" alt="logo" className="logo" />
         </Link>
         <div className="nav-btn">
-          <Link to="/" className="btn">
+          <Link to="/home" className="btn">
             Home
           </Link>
         </div>
