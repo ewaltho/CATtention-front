@@ -1,4 +1,5 @@
 import "./assets/css/App.css";
+import "./assets/css/Darkmode.css"
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import API from "./utils/API";
@@ -92,10 +93,31 @@ function App() {
     });
   };
 
+  // const [theme, setTheme] = useState('light');
+
+  // const toggleTheme = () => {
+  //   if (theme === 'light') {
+  //     setTheme('dark')
+  //   } else {
+  //     setTheme('light')
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   document.body.className = theme;
+  // }, [theme]);
+
   // paths and navigation for all pages
   return (
     <BrowserRouter>
       <Navigation socket={socket} />
+      {/* <div className="theme">
+            <p>Theme:</p>
+            <label className="switch">
+              <input type="checkbox" onClick={toggleTheme}/>
+              <span className="slider"></span>
+            </label>
+          </div> */}
       <Routes>
         <Route
           path="/"

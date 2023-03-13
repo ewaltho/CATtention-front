@@ -1,0 +1,57 @@
+.dark {
+    background-color: #333639;
+    color: white;  
+}
+
+.dark .tipsBtn {
+    background-color: #C1CFDA;
+}
+
+.dark .nav-btn a {
+    color: white;
+}
+
+.dark .btn:hover {
+    color: #C1CFDA;
+}
+
+.dark .nav-btn a:hover {
+    text-shadow: 2px -2px #9e81bc;
+}
+
+.dark .chatbox {
+    background-color: #7B7F8A;
+}
+
+.dark .messages>div.received-message{
+    background-color: #333639;
+}
+
+.dark .messages>div.sent-message{
+    background-color: #48406F;
+}
+
+.dark .text-input {
+    background-color: #333639;
+}
+
+.dark input {
+    background-color: #7B7F8A;
+    color: white;
+}
+
+.dark input::placeholder {
+    color: white;
+}
+
+.dark .user {
+    background-color: #7B7F8A;
+}
+
+.dark .logo {
+    content: url("/public/CATtention-logo-dark.png")
+}
+
+.dark .join-link {
+    color: white;
+}
