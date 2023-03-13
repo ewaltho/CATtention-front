@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Trivia from './Trivia';
-import API from '../utils/API';
+import React, { useState, useEffect } from "react";
+import Trivia from "./Trivia";
+import API from "../utils/API";
 
 export default function Timer({
+  joinExistingRoom,
+  setJoinExistingRoom,
   roomPreferences,
   userObject,
   socket,
@@ -45,15 +47,26 @@ export default function Timer({
     socket.emit("timer", {
       roomCode: roomData.code,
       time: roomPreferences.workTime,
+      workStateBoolean: workState,
     });
   };
   // socket listens for timer text to be sent back from server and will add minutes worked from server so connected users get credit
-  socket.on("timer", ({ text, minutesWorked }) => {
+  socket.on("timer", ({ text, minutesWorked, workStateBoolean }) => {
     if (workState) {
       setMinutesWorked(minutesWorked);
     } else if (!workState) {
       setMinutesWorked(0);
     }
+    if (joinExistingRoom) {
+      setWorkState(workStateBoolean);
+      if (workStateBoolean === false) {
+        setStarted(true);
+        setBreakState(true);
+      } else {
+        setBreakState(false);
+      }
+    }
+
     setTimerText(text);
   });
 
@@ -65,6 +78,7 @@ export default function Timer({
     socket.emit("timer", {
       roomCode: roomData.code,
       time: roomPreferences.breakTime,
+      workStateBoolean: workState,
     });
   };
 
@@ -72,10 +86,12 @@ export default function Timer({
     <div className="timerCard">
       {workState ? <h2>Work Time!</h2> : <h2>Break Time</h2>}
       <h1 className="counter">{timerText}</h1>
-      {workState === true ? (
-        <button onClick={startWorkTimer}>Get to work!/Join Timer</button>
-      ) : (
+      {workState === true && joinExistingRoom === false ? (
+        <button onClick={startWorkTimer}>Get to work!</button>
+      ) : workState === false && joinExistingRoom === false ? (
         <button onClick={startBreakTimer}>Start Break</button>
+      ) : (
+        <></>
       )}
       {/* Trivia will only show during the timer while it is a break time */}
       {workState === false && started === true && timerText !== "Time's up!" ? (

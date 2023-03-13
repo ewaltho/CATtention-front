@@ -10,6 +10,8 @@ export default function Room(props) {
         <div className="timer">
           <h1 className="room-code">Room Code: {props.roomData.code}</h1>
           <Timer
+            joinExistingRoom={props.joinExistingRoom}
+            setJoinExistingRoom={props.setJoinExistingRoom}
             roomData={props.roomData}
             roomPreferences={props.roomPreferences}
             userObject={props.userObject}

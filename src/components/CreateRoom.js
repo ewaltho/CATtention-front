@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import '../assets/css/CreateRoom.css';
 import API from '../utils/API';
 
@@ -214,6 +215,9 @@ export default function CreateRoom({
           </div>
         </div>
       </form>
+      <Link to="/joinchat" className="btn join-link">
+        Join A Room Instead
+      </Link>
     </>
   );
 }

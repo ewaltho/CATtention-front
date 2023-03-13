@@ -113,9 +113,22 @@ body {
   justify-content: center;
 }
 
+.join-link {
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 670px) {
   .cat {
-    height: 200px;
+    display: none;
+  }
+
+  .bottom-box {
+    justify-content: center;
+  }
+
+  .register-btn {
+    width: 80vw;
   }
 }
 
@@ -123,17 +136,24 @@ body {
   .Nav {
     flex-direction: column;
   }
-
+  
   .btn {
     padding: 10px;
   }
-
+  
   .logo {
     width: 350px;
   }
-
+  
   .bio {
     width: 80vw;
+    margin: 0 0 10px 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .logo {
+    width: 300px;
   }
 }
 
