@@ -42,7 +42,7 @@ export default function Profile(props) {
   return (
     <div>
       <div className="user">
-        <div className='username'>
+        <div className='profile-username'>
           <p>{props.userObject.username}</p>
           <img src="user-cat.png" alt="a cute cat" className="user-cat" />
         </div>
