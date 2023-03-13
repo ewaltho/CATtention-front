@@ -58,10 +58,9 @@ body {
     background-color: #C1CFDA;
 }
 
-/* .message {
-    display: flex;
-    justify-content: space-evenly;
-} */
+.username, .timestamp {
+    font-weight: bold;
+}
 
 .send-box {
     display: flex;
