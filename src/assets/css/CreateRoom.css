@@ -135,12 +135,37 @@ input:checked + .slider:before {
   width: 18vw;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 770px) {
   .questionCard button {
     width: 80vw;
   }
 
   .questionTitle {
     font-size: 40px;
+  }
+
+  .column,
+  .btnColumn {
+    flex-direction: column;
+  }
+
+  .row input {
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .btnColumn button {
+    width: 80vw;
+    margin: 10px;
+    margin-top: 20px;
+  }
+
+  .room-form {
+    margin-top: 10px;
+  }
+
+  .room-form button {
+    width: 80vw;
   }
 }
