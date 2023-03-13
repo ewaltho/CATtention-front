@@ -14,9 +14,9 @@ import Community from "./components/Community";
 import { io } from "socket.io-client";
 
 // Dev URL
-// const socket = io("http://localhost:3001");
+const socket = io("http://localhost:3001");
 // Production Build
-const socket = io("https://cattention-api.herokuapp.com");
+// const socket = io("https://cattention-api.herokuapp.com");
 
 function App() {
   // eslint-disable-next-line
@@ -161,6 +161,7 @@ function App() {
           path="/chat"
           element={
             <Room
+              setJoinExistingRoom={setJoinExistingRoom}
               joinExistingRoom={joinExistingRoom}
               socket={socket}
               roomData={roomData}
