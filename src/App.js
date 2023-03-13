@@ -1,5 +1,5 @@
 import "./assets/css/App.css";
-import "./assets/css/Darkmode.css"
+import "./assets/css/Darkmode.css";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import API from "./utils/API";
@@ -13,8 +13,6 @@ import Navigation from "./components/Navigation";
 import Profile from "./components/Profile";
 import Community from "./components/Community";
 import { io } from "socket.io-client";
-
-
 
 // Dev URL
 // const socket = io("http://localhost:3001");
@@ -34,6 +32,8 @@ function App() {
     username: "",
     password: "",
   });
+
+  const [joinExistingRoom, setJoinExistingRoom] = useState(false);
 
   const [currentUser, setCurrentUser] = useState("");
 
@@ -70,7 +70,7 @@ function App() {
       [e.target.name]: e.target.value,
     });
   };
-// grabbing form value on log in field change
+  // grabbing form value on log in field change
   const handleLoginFormChange = (e) => {
     e.preventDefault();
     setLoginFormData({
@@ -154,6 +154,7 @@ function App() {
           path="/joinchat"
           element={
             <JoinChat
+              setJoinExistingRoom={setJoinExistingRoom}
               socket={socket}
               userToken={userToken}
               roomData={roomData}
@@ -182,6 +183,8 @@ function App() {
           path="/chat"
           element={
             <Room
+              setJoinExistingRoom={setJoinExistingRoom}
+              joinExistingRoom={joinExistingRoom}
               socket={socket}
               roomData={roomData}
               userObject={userObject}
@@ -198,12 +201,16 @@ function App() {
         />
         <Route path="/community" element={<Community />} />
         {/* css for 404 page image is in App.css at bottom named fourfour  */}
-        <Route path="*" element={
-          <img src={process.env.PUBLIC_URL + "/404.png"} alt="404 message, page not found" className="fourfour"/>
-
-          } 
-          />
-    
+        <Route
+          path="*"
+          element={
+            <img
+              src={process.env.PUBLIC_URL + "/404.png"}
+              alt="404 message, page not found"
+              className="fourfour"
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
