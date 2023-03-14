@@ -133,7 +133,7 @@ function App() {
           }
         />
         <Route
-          path="/joinchat"
+          path="/joinroom"
           element={
             <JoinChat
               setJoinExistingRoom={setJoinExistingRoom}
