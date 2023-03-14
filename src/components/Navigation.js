@@ -74,7 +74,7 @@ export default function Navigation({ socket, setCurrentUser, setUserObject, setU
         </div>
       </div>
     );
-  } else if (currentlocation.pathname === "/joinchat") {
+  } else if (currentlocation.pathname === "/joinroom") {
     return (
       <div className="Nav">
         <Link to="/home">
