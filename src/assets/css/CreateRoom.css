@@ -131,6 +131,11 @@ input:checked + .slider:before {
   justify-content: center;
 }
 
+/* .triviaBox {
+  display: flex;
+  flex-direction: row;
+} */
+
 .questionCard button {
   width: 18vw;
 }
