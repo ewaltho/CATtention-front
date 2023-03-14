@@ -128,6 +128,10 @@ export default function Navigation({ socket, setCurrentUser, setUserObject, setU
           />
         </Link>
         <div className="nav-btn">
+          <Link to="/home" className="btn"  onClick={disconnectSocket}>
+            Leave Room
+          </Link>
+         
           <Link to="/profile" className="btn">
             Profile
           </Link>
