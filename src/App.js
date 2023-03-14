@@ -21,6 +21,8 @@ import { io } from "socket.io-client";
 const socket = io("https://cattention-api.herokuapp.com");
 
 function App() {
+  // profile badge state
+  const [profileBadge, setProfileBadge] = useState("rested.jpg");
   // eslint-disable-next-line
   const [userToken, setUserToken] = useState("");
   const [userObject, setUserObject] = useState({});
@@ -176,7 +178,12 @@ function App() {
         <Route
           path="/profile"
           element={
-            <Profile userObject={userObject} setUserObject={setUserObject} />
+            <Profile
+              profileBadge={profileBadge}
+              setProfileBadge={setProfileBadge}
+              userObject={userObject}
+              setUserObject={setUserObject}
+            />
           }
         />
         <Route path="/community" element={<Community />} />
