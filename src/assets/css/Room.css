@@ -17,7 +17,7 @@ body {
     width: 50vw;
     background-color: white;
     text-align: center;
-    height: 75vh;
+    height: 70vh;
 }
 
 .room-title {
@@ -73,8 +73,6 @@ body {
     width: 20%;
 }
 
-
-
 .username, .timestamp {
     font-weight: bold;
 }
@@ -85,8 +83,6 @@ body {
 }
 
 .send-box {
-    /* position: absolute;
-    bottom: 0; */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -115,9 +111,31 @@ body {
 }
 
 @media screen and (max-width: 1280px) {
+    .room {
+        flex-direction: column;
+    }
+
     .chatbox {
         height: 100%;
         width: 100%
+    }
+
+    .messages>div.received-message{
+        width: 50%;
+    }
+
+    .messages>div.sent-message{
+        width: 50%;
+    }
+
+    .messages>div.sent-message .left{
+        float: left;
+        width: 30%;
+    }
+
+    .messages>div.received-message .left{
+        float: left;
+        width: 30%;
     }
 
     .text-input {
