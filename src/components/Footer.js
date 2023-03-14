@@ -1,5 +1,5 @@
 import React from 'react';
-import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon} from 'react-share';
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, LinkedinShareButton, LinkedinIcon} from 'react-share';
 
 
 export default function Footer () {
@@ -18,7 +18,11 @@ const quote = 'Check out this awesome website that helps you focus on work!';
                 <TwitterIcon size={32} round={true} />
                 Share on Twitter
                 </TwitterShareButton>
+                <LinkedinShareButton url={shareUrl} quote={quote}>
+                Share on LinkedIn
+                </LinkedinShareButton>
             </div>
         </div>
     );
 }
+
