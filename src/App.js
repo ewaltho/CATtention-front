@@ -133,7 +133,7 @@ function App() {
           }
         />
         <Route
-          path="/joinchat"
+          path="/joinroom"
           element={
             <JoinChat
               setJoinExistingRoom={setJoinExistingRoom}
@@ -169,6 +169,7 @@ function App() {
               joinExistingRoom={joinExistingRoom}
               socket={socket}
               roomData={roomData}
+              setUserObject={setUserObject}
               userObject={userObject}
               currentUser={currentUser}
               roomPreferences={roomPreferences}

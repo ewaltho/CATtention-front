@@ -215,8 +215,8 @@ export default function CreateRoom({
           </div>
         </div>
       </form>
-      <Link to="/joinchat" className="btn join-link">
-        Join a Room Instead
+      <Link to="/joinroom" className="btn join-link">
+        Join A Room Instead
       </Link>
     </>
   );

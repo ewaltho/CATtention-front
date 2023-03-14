@@ -59,7 +59,7 @@ function HomePage(props) {
           <Link to="/createroom" className="register-btn">
             Create a Room
           </Link>
-          <Link to="/joinchat" className="register-btn">
+          <Link to="/joinroom" className="register-btn">
             Join a Room
           </Link>
         </div>
