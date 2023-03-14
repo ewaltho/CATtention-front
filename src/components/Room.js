@@ -22,6 +22,7 @@ export default function Room(props) {
           <Chat
             roomData={props.roomData}
             userObject={props.userObject}
+            setUserObject={props.setUserObject}
             currentUser={props.currentUser}
             roomPreferences={props.roomPreferences}
             socket={props.socket}
