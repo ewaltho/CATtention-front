@@ -125,7 +125,7 @@ function ChatFeature({ roomData, setUserObject, userObject, currentUser, profile
     </div>
         <form className="send-box" onSubmit={handleSend}>
           <input className="text-input" type="text" value={message} onChange={handleInputChange} placeholder="Type your message here..." maxLength="980"/>
-          <button type="submit">Send</button>
+          <button type="submit" className='send-btn'>Send</button>
         </form>
       </div>
     );

@@ -4,18 +4,21 @@
 }
 
 .dark .tipsBtn {
-    background-color: #C1CFDA;
+    background-color: #7B7F8A;
+    color: white;
+}
+
+.dark .tipsBtn:hover {
+    background: #C1CFDA;
+    color: black;
 }
 
 .dark .nav-btn a {
     color: white;
 }
 
-.dark .btn:hover {
-    color: #C1CFDA;
-}
-
-.dark .nav-btn a:hover {
+.dark .nav-btn a:hover,
+.dark .join-link:hover {
     text-shadow: 2px -2px #9e81bc;
 }
 
@@ -31,8 +34,12 @@
     background-color: #48406F;
 }
 
+.dark .timerCard h2 {
+    color: white;
+}
+
 .dark .text-input {
-    background-color: #333639;
+    background-color: #48406F;
 }
 
 .dark input {
@@ -52,6 +59,22 @@
     content: url("/public/CATtention-logo-dark.png")
 }
 
+.dark .cat-right {
+    content: url("/public/stretch-cat-white.png");
+}
+
+.dark .cat-left {
+    content: url("/public/wave-cat-white.png");
+}
+
 .dark .join-link {
     color: white;
+}
+
+.dark .slider:before {
+    background: #9e81bc;
+}
+
+.dark input:checked + .slider {
+    background-color: #C1CFDA;
 }
