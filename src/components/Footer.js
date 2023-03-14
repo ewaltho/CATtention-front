@@ -19,6 +19,7 @@ const quote = 'Check out this awesome website that helps you focus on work!';
                 Share on Twitter
                 </TwitterShareButton>
                 <LinkedinShareButton url={shareUrl} quote={quote}>
+                <LinkedinIcon size={32} round={true} />
                 Share on LinkedIn
                 </LinkedinShareButton>
             </div>
