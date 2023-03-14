@@ -55,6 +55,7 @@ body {
   text-align: center;
   margin-bottom: 50px;
   margin-top: 40px;
+  font-size: 40px;
 }
 
 .register-btn {
@@ -97,12 +98,13 @@ body {
 }
 
 .bottom-box {
-  position: relative;
+  position: absolute;
   bottom: 0;
+  margin-bottom: 15px;
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100vw;
 }
 
@@ -125,6 +127,7 @@ body {
 
   .bottom-box {
     justify-content: center;
+    /* margin-bottom: 30px; */
   }
 
   .register-btn {
@@ -132,7 +135,7 @@ body {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 882px) {
   .Nav {
     flex-direction: column;
   }
@@ -148,6 +151,11 @@ body {
   .bio {
     width: 80vw;
     margin: 0 0 10px 0;
+    font-size: 35px;
+  }
+
+  .bottom-box {
+    position: relative;
   }
 }
 
