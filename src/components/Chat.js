@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import '../assets/css/Room.css';
+import React, { useState, useEffect, useRef } from "react";
+import "../assets/css/Room.css";
 
-
-function ChatFeature({ roomData, userObject, currentUser, socket}) {
+function ChatFeature({ roomData, userObject, currentUser, socket }) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [room, setRoom] = useState({});
@@ -16,8 +15,6 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
     console.log("Listening for incoming messages...");
 
     socket.on("chat message", (msg) => {
-   
-
       setMessages((prevMessages) => [
         ...prevMessages,
         {
@@ -28,34 +25,27 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
         },
       ]);
       setUser(msg.userObject);
-      // sets the scroll position to the bottom of the chat box when a new message is received 
+      // sets the scroll position to the bottom of the chat box when a new message is received
       // with a delay so that the message can be rendered first without it cutting off mid auto scroll
       setTimeout(() => {
-        messageContainer.current.scrollTop = messageContainer.current.scrollHeight;
+        messageContainer.current.scrollTop =
+          messageContainer.current.scrollHeight;
       }, 10);
-
-
     });
 
- 
-
     // Join the room when the component mounts
-   socket.emit("join room", roomData.code, {userObject:{ ...userObject, socketId: socket.id }});
+    socket.emit("join room", roomData.code, {
+      userObject: { ...userObject, socketId: socket.id },
+    });
 
     socket.on("users in room", (userList) => {
-  
       setUsers(userList);
     });
 
-
     return () => {
       socket.off("chat message");
- 
-
     };
   }, [roomData, userObject, user]);
-
-
 
   const handleInputChange = (event) => {
     setMessage(event.target.value);
@@ -70,7 +60,7 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
         message: message,
         userObject: userObject,
       });
-       // sets the scroll position to the bottom of the chat box when a new message is sent 
+      // sets the scroll position to the bottom of the chat box when a new message is sent
       // with a delay so that the message can be rendered first without it cutting off mid auto scroll
       setTimeout(() => {
         messageContainer.current.scrollTop =
@@ -95,26 +85,40 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
         </ul>
       </div>
       <div className="messages" ref={messageContainer}>
-      {messages.map(({ message, timestamp, userObject }, index) => {
-      const isSentMessage = userObject && userObject.username === currentUser;
-      const messageClass = isSentMessage ? 'sent-message' : 'received-message';
-      
-      return (
-        <div key={index} className={`message ${messageClass}`}>
-          <span className="timestamp">{userObject ? `${timestamp} - ` : ''}</span>
-          <span className="username">{userObject && userObject.username}</span>
-          <br />
-          <span className="message">{message}</span>
-        </div>
-      );
-    })}
-    </div>
-        <form className="send-box" onSubmit={handleSend}>
-          <input className="text-input" type="text" value={message} onChange={handleInputChange} placeholder="Type your message here..." maxLength="980"/>
-          <button type="submit">Send</button>
-        </form>
+        {messages.map(({ message, timestamp, userObject }, index) => {
+          const isSentMessage =
+            userObject && userObject.username === currentUser;
+          const messageClass = isSentMessage
+            ? "sent-message"
+            : "received-message";
+
+          return (
+            <div key={index} className={`message ${messageClass}`}>
+              <span className="timestamp">
+                {userObject ? `${timestamp} - ` : ""}
+              </span>
+              <span className="username">
+                {userObject && userObject.username}
+              </span>
+              <br />
+              <span className="message">{message}</span>
+            </div>
+          );
+        })}
       </div>
-    );
+      <form className="send-box" onSubmit={handleSend}>
+        <input
+          className="text-input"
+          type="text"
+          value={message}
+          onChange={handleInputChange}
+          placeholder="Type your message here..."
+          maxLength="980"
+        />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  );
 }
 
 export default ChatFeature;
