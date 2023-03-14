@@ -12,10 +12,16 @@ export default function Profile(props) {
       if (res.data.isValid) {
         props.setUserObject(res.data.user);
         checkForAvailableCats(res.data.user.id);
+        API.getOneUser(res.data.user.id).then((res) => {
+          if (res.status !== 404) {
+            props.setProfileBadge(res.data.profile_badge);
+          }
+        });
       }
     });
   }, []);
-  // check for achievements
+
+  // check for achievements and then map over arr returned to show on page.
   const checkForAvailableCats = async (userId) => {
     const user = await API.getOneUser(userId);
     setUserWorkTime(user.data.work_time);
@@ -35,6 +41,7 @@ export default function Profile(props) {
 
   const changeProfileBadge = (e) => {
     props.setProfileBadge(e.target.src);
+    API.updateUser({ profile_badge: e.target.src }, props.userObject.id);
   };
 
   const [theme, setTheme] = useState("light");

@@ -15,9 +15,9 @@ import Community from "./components/Community";
 import { io } from "socket.io-client";
 
 // Dev URL
-// const socket = io("http://localhost:3001");
+const socket = io("http://localhost:3001");
 // Production Build
-const socket = io("https://cattention-api.herokuapp.com");
+// const socket = io("https://cattention-api.herokuapp.com");
 
 function App() {
   // profile badge state
