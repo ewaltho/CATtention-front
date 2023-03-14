@@ -118,6 +118,26 @@ body {
   justify-content: center;
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; 
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footer a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
 @media screen and (max-width: 670px) {
   .cat {
     display: none;
