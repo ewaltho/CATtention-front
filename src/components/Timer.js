@@ -31,6 +31,7 @@ export default function Timer({
       setWorkState(true);
       setBreakState(false);
     }
+    // setStarted(false)
     // eslint-disable-next-line
   }, [timerText]);
   // Starts work timer, this will count down on the page.
