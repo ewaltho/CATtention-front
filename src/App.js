@@ -169,6 +169,7 @@ function App() {
               joinExistingRoom={joinExistingRoom}
               socket={socket}
               roomData={roomData}
+              setUserObject={setUserObject}
               userObject={userObject}
               currentUser={currentUser}
               roomPreferences={roomPreferences}
