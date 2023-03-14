@@ -119,15 +119,14 @@ body {
 }
 
 .footer {
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
   padding: 10px;
-  width: 100%; 
-}
-
-.footer-content {
+  width: 100%;
+  font-size: 20px;  */
   display: flex;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 .footer a {

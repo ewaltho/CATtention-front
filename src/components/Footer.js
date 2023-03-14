@@ -8,8 +8,6 @@ const quote = 'Check out this awesome website that helps you focus on work!';
     return (
         <div className='footer'>
             <div className='footer-content'>
-                <b>&copy; CATtention 2023 </b>
-                <a href='https://github.com/ewaltho/CATtention-front' target="_blank"><img height="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg" /></a>
                 <FacebookShareButton url={shareUrl} quote={quote}>
                 <FacebookIcon size={32} round={true} />
                  Share on Facebook
@@ -18,6 +16,7 @@ const quote = 'Check out this awesome website that helps you focus on work!';
                 <TwitterIcon size={32} round={true} />
                 Share on Twitter
                 </TwitterShareButton>
+                <b>&copy; CATtention 2023 </b>
                 <LinkedinShareButton url={shareUrl} quote={quote}>
                 <LinkedinIcon size={32} round={true} />
                 Share on LinkedIn
