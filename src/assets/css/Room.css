@@ -13,6 +13,7 @@ body {
 }
 
 .chatbox {
+    position: relative;
     width: 50vw;
     background-color: white;
     text-align: center;
@@ -84,6 +85,9 @@ body {
 }
 
 .send-box {
+    /* position: absolute;
+    bottom: 0; */
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,12 +127,6 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    .room {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
     .chatbox {
         height: 100%;
     }

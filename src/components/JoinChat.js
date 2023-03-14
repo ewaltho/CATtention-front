@@ -110,7 +110,7 @@ function JoinChat(props) {
         <button type="submit">Join Room</button>
       </form>
       <Link to="/createroom" className="btn join-link">
-        Create A Room Instead
+        Create a Room Instead
       </Link>
     </div>
   );
