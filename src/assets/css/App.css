@@ -103,7 +103,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
+  width: 90vw;
 }
 
 .bottom-btn {
@@ -119,14 +119,10 @@ body {
 }
 
 .footer {
-  /* position: absolute;
-  bottom: 0;
-  padding: 10px;
-  width: 100%;
-  font-size: 20px;  */
   display: flex;
   justify-content: space-evenly;
-  width: 100%;
+  width: 99%;
+  height: 5vh;
 }
 
 .footer a {

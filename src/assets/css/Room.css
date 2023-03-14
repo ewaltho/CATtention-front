@@ -16,7 +16,7 @@ body {
     width: 50vw;
     background-color: white;
     text-align: center;
-    height: 75vh;
+    height: 70vh;
 }
 
 .room-title {
@@ -71,8 +71,6 @@ body {
     float: left;
     width: 20%;
 }
-
-
 
 .username, .timestamp {
     font-weight: bold;
