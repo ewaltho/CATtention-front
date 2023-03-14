@@ -29,7 +29,7 @@ export default function Trivia({ userObject }) {
   };
 
   return (
-    <div>
+    <div className='triviaBox'>
       <h2 className="triviaTitle">A wild trivia question spawned!</h2>
       <h3 className="questionTitle">{question}</h3>
       {!questionAnswered ? (

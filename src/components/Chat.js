@@ -139,7 +139,9 @@ function ChatFeature({
           placeholder="Type your message here..."
           maxLength="980"
         />
-        <button type="submit">Send</button>
+        <button type="submit" className="send-btn">
+          Send
+        </button>
       </form>
     </div>
   );

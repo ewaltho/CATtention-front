@@ -55,6 +55,7 @@ body {
   text-align: center;
   margin-bottom: 50px;
   margin-top: 40px;
+  font-size: 35px;
 }
 
 .register-btn {
@@ -97,13 +98,16 @@ body {
 }
 
 .bottom-box {
-  position: relative;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
+  margin-top: 10%;
+  margin-bottom: 40px;
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100vw;
+  height: 10vh;
 }
 
 .bottom-btn {
@@ -116,18 +120,23 @@ body {
 .join-link {
   display: flex;
   justify-content: center;
+  text-decoration: underline;
 }
 
 .footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   padding: 10px;
   width: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .footer a {
@@ -143,6 +152,7 @@ body {
 
   .bottom-box {
     justify-content: center;
+    /* margin-bottom: 30px; */
   }
 
   .register-btn {
@@ -150,7 +160,7 @@ body {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 882px) {
   .Nav {
     flex-direction: column;
   }
@@ -166,6 +176,11 @@ body {
   .bio {
     width: 80vw;
     margin: 0 0 10px 0;
+    font-size: 35px;
+  }
+
+  .footer {
+    bottom: initial;
   }
 }
 
@@ -174,7 +189,6 @@ body {
     width: 300px;
   }
 }
-
 
 .fourfour {
   display: block;
