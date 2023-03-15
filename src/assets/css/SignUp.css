@@ -53,6 +53,10 @@ button:hover {
     background: #48406F;
 }
 
+.join-chat {
+    height: auto;
+}
+
 @media screen and (max-width: 670px) {
     form {
         display: flex;

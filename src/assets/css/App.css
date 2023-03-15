@@ -107,7 +107,7 @@ body {
   align-items: center;
   justify-content: space-evenly;
   width: 100vw;
-  height: 10vh;
+  height: 8vh;
 }
 
 .bottom-btn {
@@ -124,24 +124,12 @@ body {
 }
 
 .footer {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  margin-top: auto;
-  /* position: relative;
+  position: absolute;
+  right: 0;
+  left: 0;
   bottom: 0;
-  padding: 10px;
-  width: 100%; 
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%; */
+  text-align: center;
 }
-
-/* .footer-content {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-} */
 
 .footer a {
   text-decoration: none;

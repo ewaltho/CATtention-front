@@ -12,9 +12,8 @@ body {
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 80vw;
+    width: 75vw;
     background: white;
-    overflow: auto;
 }
 
 .tip {
