@@ -134,6 +134,11 @@ body {
   color: black;
 }
 
+.footer-content button {
+  width: 15%;
+  margin-bottom: 0px, 0px, 20px, 0px;
+}
+
 @media screen and (max-width: 670px) {
   .cat {
     display: none;
@@ -152,15 +157,15 @@ body {
   .Nav {
     flex-direction: column;
   }
-  
+
   .btn {
     padding: 10px;
   }
-  
+
   .logo {
     width: 350px;
   }
-  
+
   .bio {
     width: 80vw;
     margin: 0 0 10px 0;
@@ -174,16 +179,16 @@ body {
 
 @media screen and (max-width: 1280px) {
   .footer-content {
-      position: absolute;
+    position: absolute;
   }
 }
 
 @media screen and (max-width: 800px) {
   .footer-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
