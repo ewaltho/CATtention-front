@@ -1,6 +1,6 @@
-body {
+/* body {
     height: 100%;
-}
+} */
 
 .title {
     font-size: 32px;
@@ -29,9 +29,9 @@ body {
 
 }
 
-.tip:hover {
+/* .tip:hover {
     background: #48406F;
-}
+} */
 
 .tips>div:nth-child(even){
     background-color:#C1CFDA;
@@ -39,9 +39,9 @@ body {
     text-align: right;
 }
 
-.tips>div:nth-child(even):hover{
+/* .tips>div:nth-child(even):hover{
     background: #48406F;
-}
+} */
 
 @media screen and (max-width: 1280px) {
     .tips {
