@@ -119,8 +119,12 @@
     transform: translateX(26px);
   }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 768px) {
   .user {
+    flex-direction: column;
+  }
+
+  .info {
     flex-direction: column;
   }
 

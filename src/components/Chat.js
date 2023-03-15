@@ -116,7 +116,6 @@ function ChatFeature({ roomData, setUserObject, userObject, currentUser, profile
           <div className='right'> 
             <span className="timestamp">{userObject ? `${timestamp} - ` : ''}</span>
             <span className="username">{userObject && userObject.username}</span>
-            {/* <br /> */}
             <span className="message">{message}</span>
           </div>
         </div>

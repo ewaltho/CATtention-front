@@ -12,17 +12,18 @@ body {
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 80vw;
+    padding: 20px;
+    width: 60vw;
     background: white;
-    overflow: auto;
 }
 
 .tip {
     padding: 10px;
-    margin: 15px;
-    width: 50%;
+    margin: 10px auto 10px auto;
+    width: 80%;
     height: min-content;
     font-size: 20px;
+    text-align: center;
     word-wrap: break-word;
     transition: ease-in-out 0.7s;
     background-color: #9e81bc;
@@ -35,8 +36,6 @@ body {
 
 .tips>div:nth-child(even){
     background-color:#C1CFDA;
-    margin-left: auto;
-    text-align: right;
 }
 
 .tips>div:nth-child(even):hover{
@@ -55,13 +54,6 @@ body {
 
     .tips>div:nth-child(even){
         text-align: center;
-    }
-
-    .footer-content {
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       width: 100%;
     }
 }
 
@@ -82,12 +74,5 @@ body {
         margin: auto;
         text-align: center;
         margin-bottom: 5px;
-    }
-
-    .footer-content {
-       display: flex;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
     }
 }
