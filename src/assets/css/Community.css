@@ -1,7 +1,3 @@
-/* body {
-    height: 100%;
-} */
-
 .title {
     font-size: 32px;
     text-align: center;
@@ -15,6 +11,7 @@
     padding: 20px;
     width: 60vw;
     background: white;
+    margin-bottom: 50px;
 }
 
 .tip {
@@ -30,17 +27,9 @@
 
 }
 
-/* .tip:hover {
-    background: #48406F;
-} */
-
 .tips>div:nth-child(even){
     background-color:#C1CFDA;
 }
-
-/* .tips>div:nth-child(even):hover{
-    background: #48406F;
-} */
 
 @media screen and (max-width: 1280px) {
     .tips {
