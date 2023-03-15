@@ -1,7 +1,3 @@
-/* body {
-    height: 100%;
-} */
-
 .room {
     display: flex;
     padding: 15px;
@@ -98,65 +94,41 @@
     background-color: #C1CFDA;
 }
 
-@media screen and (max-width: 1880px) {
-    .chatbox {
-        height: 100%;
-        width: 100%
-    }
-
-    .text-input {
-        margin: 20px;
-        width: 80%;
-    }
-}
 
 @media screen and (max-width: 1280px) {
-    .room {
-        flex-direction: column;
-    }
-
-    .chatbox {
-        height: 100%;
-        width: 100%
-    }
-
-    .messages>div.received-message{
-        width: 50%;
-    }
-
-    .messages>div.sent-message{
-        width: 50%;
-    }
-
-    .messages>div.sent-message .left{
-        float: left;
-        width: 30%;
-    }
-
-    .messages>div.received-message .left{
-        float: left;
-        width: 30%;
-    }
-
     .text-input {
         margin: 20px;
         width: 80%;
     }
+
+    .footer-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    
 }
 
 @media screen and (max-width: 768px) {
+    .room {
+        flex-direction: column;
+    }
     .chatbox {
         height: 100%;
+        width: 100%;
     }
 
     .text-input {
         width: 90%;
     }
-}
 
-@media screen and (max-width: 320px) {
-    .send-box {
-        height: 50vh;
+    .footer-content {
+        width: 100%;
     }
 
+    .text-input {
+        margin: 20px;
+        width: 80%;
+    }
 }

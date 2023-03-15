@@ -8,7 +8,6 @@
 
 body {
   background-color: #c1cfda;
-  /* height: 100%; */
 }
 
 .home {
@@ -170,6 +169,21 @@ body {
 
   .footer {
     bottom: initial;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .footer-content {
+      position: absolute;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .footer-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
   }
 }
 
