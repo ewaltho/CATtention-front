@@ -32,14 +32,6 @@ export default function SignUp({
       <h1>Create an Account</h1>
       <form onSubmit={handleSignUpFormSubmit}>
         <div className="table">
-          {/* <div className="input">
-          <label htmlFor="email">Email:</label>
-          <input           
-            onChange={handleSignUpFormChange}
-            value={signUpFormData.email}
-            name="email"
-            placeholder="email"></input>
-        </div> */}
           <div className="input">
             <label htmlFor="username">Username:</label>
             <input
