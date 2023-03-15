@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Navigation from "./components/Navigation";
 import Profile from "./components/Profile";
 import Community from "./components/Community";
+import Footer from "./components/Footer";
 import { io } from "socket.io-client";
 
 // Dev URL
@@ -20,6 +21,8 @@ import { io } from "socket.io-client";
 const socket = io("https://cattention-api.herokuapp.com");
 
 function App() {
+  // profile badge state
+  const [profileBadge, setProfileBadge] = useState("rested.jpg");
   // eslint-disable-next-line
   const [userToken, setUserToken] = useState("");
   const [userObject, setUserObject] = useState({});
@@ -93,31 +96,10 @@ function App() {
     });
   };
 
-  // const [theme, setTheme] = useState('light');
-
-  // const toggleTheme = () => {
-  //   if (theme === 'light') {
-  //     setTheme('dark')
-  //   } else {
-  //     setTheme('light')
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.body.className = theme;
-  // }, [theme]);
-
   // paths and navigation for all pages
   return (
     <BrowserRouter>
       <Navigation socket={socket} />
-      {/* <div className="theme">
-            <p>Theme:</p>
-            <label className="switch">
-              <input type="checkbox" onClick={toggleTheme}/>
-              <span className="slider"></span>
-            </label>
-          </div> */}
       <Routes>
         <Route
           path="/"
@@ -151,7 +133,7 @@ function App() {
           }
         />
         <Route
-          path="/joinchat"
+          path="/joinroom"
           element={
             <JoinChat
               setJoinExistingRoom={setJoinExistingRoom}
@@ -187,6 +169,7 @@ function App() {
               joinExistingRoom={joinExistingRoom}
               socket={socket}
               roomData={roomData}
+              setUserObject={setUserObject}
               userObject={userObject}
               currentUser={currentUser}
               roomPreferences={roomPreferences}
@@ -196,7 +179,12 @@ function App() {
         <Route
           path="/profile"
           element={
-            <Profile userObject={userObject} setUserObject={setUserObject} />
+            <Profile
+              profileBadge={profileBadge}
+              setProfileBadge={setProfileBadge}
+              userObject={userObject}
+              setUserObject={setUserObject}
+            />
           }
         />
         <Route path="/community" element={<Community />} />
@@ -212,6 +200,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

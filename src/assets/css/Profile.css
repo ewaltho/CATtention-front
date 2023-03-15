@@ -1,7 +1,3 @@
-body {
-    margin: 15px;
-}
-
 .user {
     display: flex;
     justify-content: space-evenly;
@@ -9,6 +5,7 @@ body {
     height: 20%;
     font-size: 40px;
     background-color: white;
+    margin: 25px;
 }
 
 .profile-username {
@@ -122,8 +119,12 @@ body {
     transform: translateX(26px);
   }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 768px) {
   .user {
+    flex-direction: column;
+  }
+
+  .info {
     flex-direction: column;
   }
 

@@ -52,14 +52,6 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Rounded sliders */
-/* .slider.round {
-  border-radius: 34px;
-}
-.slider.round:before {
-  border-radius: 50%;
-} */
-
 .row {
   flex: 1;
   justify-content: center;
@@ -77,6 +69,7 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 100%;
 }
 
 .row input {
@@ -99,11 +92,6 @@ input:checked + .slider:before {
 }
 
 .timerCard {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 40vw; */
   margin: 30px;
 }
 

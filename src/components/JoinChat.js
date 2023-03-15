@@ -17,8 +17,6 @@ function JoinChat(props) {
     });
     redirectIfTokenOrNotRegistered(props.userToken);
     const roomCode = Math.random().toString(36).substring(2, 8);
-
-    // eslint-disable-next-line
   }, []);
 
   const redirectIfTokenOrNotRegistered = async (token) => {
@@ -110,7 +108,7 @@ function JoinChat(props) {
         <button type="submit">Join Room</button>
       </form>
       <Link to="/createroom" className="btn join-link">
-        Create A Room Instead
+        Create a Room Instead
       </Link>
     </div>
   );

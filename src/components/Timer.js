@@ -10,6 +10,7 @@ export default function Timer({
   socket,
   roomData,
 }) {
+  const [running, setRunning] = useState(false);
   const [timerText, setTimerText] = useState("");
   const [started, setStarted] = useState(false);
   const [workState, setWorkState] = useState(true);
@@ -24,13 +25,16 @@ export default function Timer({
       API.addTimeToUser(userObject.id, minutesWorked)
         .then((res) => {
           setWorkState(false);
+          setRunning(false);
           // setBreakState(true);
         })
         .catch((err) => console.log(err));
     } else if (timerText === "Time's up!" && workState === false) {
+      setRunning(false);
       setWorkState(true);
       setBreakState(false);
     }
+    // setStarted(false)
     // eslint-disable-next-line
   }, [timerText]);
   // Starts work timer, this will count down on the page.
@@ -38,6 +42,7 @@ export default function Timer({
     if (timerText !== "Time's up!" && started === true) {
       return;
     }
+    setRunning(true);
     setBreakState(false);
     if (started === false) {
       setStarted(true);
@@ -74,6 +79,7 @@ export default function Timer({
     if (timerText !== "Time's up!") {
       return;
     }
+    setRunning(true);
     !breakState && setBreakState(true);
     socket.emit("timer", {
       roomCode: roomData.code,
@@ -86,9 +92,15 @@ export default function Timer({
     <div className="timerCard">
       {workState ? <h2>Work Time!</h2> : <h2>Break Time</h2>}
       <h1 className="counter">{timerText}</h1>
-      {workState === true && joinExistingRoom === false ? (
+      {running === true ? (
+        <></>
+      ) : workState === true &&
+        joinExistingRoom === false &&
+        running === false ? (
         <button onClick={startWorkTimer}>Get to work!</button>
-      ) : workState === false && joinExistingRoom === false ? (
+      ) : workState === false &&
+        joinExistingRoom === false &&
+        running === false ? (
         <button onClick={startBreakTimer}>Start Break</button>
       ) : (
         <></>

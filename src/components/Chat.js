@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import API from "../utils/API";
 import '../assets/css/Room.css';
 
 
-function ChatFeature({ roomData, userObject, currentUser, socket}) {
+function ChatFeature({ roomData, setUserObject, userObject, currentUser, profileBadge, socket}) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [room, setRoom] = useState({});
@@ -80,6 +81,14 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
     }
   };
 
+
+  useEffect(() => {
+    API.getOneUser(userObject.id) 
+    .then((response) => {
+      setUserObject({...userObject, profileBadge:response.data.profile_badge})
+    })
+  },[])
+
   // TODO: remove room name label and just render state value
   return (
     <div className="chat-box">
@@ -101,17 +110,21 @@ function ChatFeature({ roomData, userObject, currentUser, socket}) {
       
       return (
         <div key={index} className={`message ${messageClass}`}>
-          <span className="timestamp">{userObject ? `${timestamp} - ` : ''}</span>
-          <span className="username">{userObject && userObject.username}</span>
-          <br />
-          <span className="message">{message}</span>
+          <div className='left'> 
+            <span><img className='chat-img' src={userObject?.profileBadge} /></span>
+          </div>
+          <div className='right'> 
+            <span className="timestamp">{userObject ? `${timestamp} - ` : ''}</span>
+            <span className="username">{userObject && userObject.username}</span>
+            <span className="message">{message}</span>
+          </div>
         </div>
       );
     })}
     </div>
         <form className="send-box" onSubmit={handleSend}>
           <input className="text-input" type="text" value={message} onChange={handleInputChange} placeholder="Type your message here..." maxLength="980"/>
-          <button type="submit">Send</button>
+          <button type="submit" className='send-btn'>Send</button>
         </form>
       </div>
     );

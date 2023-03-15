@@ -74,7 +74,7 @@ export default function Navigation({ socket, setCurrentUser, setUserObject, setU
         </div>
       </div>
     );
-  } else if (currentlocation.pathname === "/joinchat") {
+  } else if (currentlocation.pathname === "/joinroom") {
     return (
       <div className="Nav">
         <Link to="/home">
@@ -128,6 +128,10 @@ export default function Navigation({ socket, setCurrentUser, setUserObject, setU
           />
         </Link>
         <div className="nav-btn">
+          <Link to="/home" className="btn"  onClick={disconnectSocket}>
+            Leave Room
+          </Link>
+         
           <Link to="/profile" className="btn">
             Profile
           </Link>

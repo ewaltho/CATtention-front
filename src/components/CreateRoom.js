@@ -14,7 +14,7 @@ export default function CreateRoom({
   userToken,
 }) {
   const navigate = useNavigate();
-  //   room prefs need the following keys: minigames bool, workTime, breakTime, room name needs to create a room with socket.
+ 
 
   // ! Removed saved room object. This was causing bugs with joining a room.
   // 6 random characters FOR ROOM CODE
@@ -33,7 +33,7 @@ export default function CreateRoom({
       roomCode: roomCode,
     });
 
-    // eslint-disable-next-line
+
   }, []);
 
   const redirectIfTokenOrNotRegistered = async (token) => {
@@ -144,10 +144,10 @@ export default function CreateRoom({
         const response = await API.createNewRoom({
           room_name: roomPreferences.roomName,
           code: roomPreferences.roomCode,
+          UserId: userObject.id
         });
 
         setRoomData(response.data);
-        // console.log(roomPreferences);
         // Redirect the user to the chat room with the assigned ID and room code
         navigate(`/chat`);
       } catch (error) {
@@ -180,7 +180,7 @@ export default function CreateRoom({
             ></input>
           </div>
         </div>
-        {/* ! This needs to be made to create a room. I will speak with alex about how to do this later this evening. */}
+
         <div className="column">
           <div className="row">
             <label htmlFor="workTime">Break Timer:</label>
@@ -215,7 +215,7 @@ export default function CreateRoom({
           </div>
         </div>
       </form>
-      <Link to="/joinchat" className="btn join-link">
+      <Link to="/joinroom" className="btn join-link">
         Join A Room Instead
       </Link>
     </>

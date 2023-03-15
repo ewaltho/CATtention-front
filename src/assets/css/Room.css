@@ -1,6 +1,6 @@
-body {
+/* body {
     height: 100%;
-}
+} */
 
 .room {
     display: flex;
@@ -13,10 +13,11 @@ body {
 }
 
 .chatbox {
+    position: relative;
     width: 50vw;
     background-color: white;
     text-align: center;
-    height: 75vh;
+    height: 70vh;
 }
 
 .room-title {
@@ -36,6 +37,10 @@ body {
     max-height: 40vh;
 }
 
+.message {
+    display: flex;
+}
+
 .messages::-webkit-scrollbar {
     display: none;
 }
@@ -50,27 +55,42 @@ body {
 
 .messages>div.sent-message{
     padding: 5px;
-    text-align: right;
-    margin-left: auto; 
+    text-align: left;
+    margin-left: auto;
     margin-right: 0;
     margin-bottom: 10px;
     width: 45%;
     background-color: #C1CFDA;
 }
 
-/* .message {
-    display: flex;
-    justify-content: space-evenly;
-} */
+.messages>div.sent-message .left{
+    float: left;
+    width: 20%;
+}
+
+.messages>div.received-message .left{
+    float: left;
+    width: 20%;
+}
+
+.username, .timestamp {
+    font-weight: bold;
+}
+
+.chat-img {
+    height: 50px;
+    border-radius: 100%;
+}
 
 .send-box {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .text-input {
-    width: 20vw;
+    width: 25vw;
     border: none;
     font-size: 20px;
     line-height: 3em;
@@ -91,9 +111,31 @@ body {
 }
 
 @media screen and (max-width: 1280px) {
+    .room {
+        flex-direction: column;
+    }
+
     .chatbox {
         height: 100%;
         width: 100%
+    }
+
+    .messages>div.received-message{
+        width: 50%;
+    }
+
+    .messages>div.sent-message{
+        width: 50%;
+    }
+
+    .messages>div.sent-message .left{
+        float: left;
+        width: 30%;
+    }
+
+    .messages>div.received-message .left{
+        float: left;
+        width: 30%;
     }
 
     .text-input {
@@ -103,12 +145,6 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    .room {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
     .chatbox {
         height: 100%;
     }

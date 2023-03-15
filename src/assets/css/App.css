@@ -8,7 +8,7 @@
 
 body {
   background-color: #c1cfda;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .home {
@@ -55,6 +55,7 @@ body {
   text-align: center;
   margin-bottom: 50px;
   margin-top: 40px;
+  font-size: 35px;
 }
 
 .register-btn {
@@ -97,13 +98,14 @@ body {
 }
 
 .bottom-box {
-  position: relative;
-  bottom: 0;
+  margin-top: 10%;
+  margin-bottom: 90px;
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100vw;
+  height: 8vh;
 }
 
 .bottom-btn {
@@ -116,6 +118,21 @@ body {
 .join-link {
   display: flex;
   justify-content: center;
+  text-decoration: underline;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.footer a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
 }
 
 @media screen and (max-width: 670px) {
@@ -132,7 +149,7 @@ body {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 882px) {
   .Nav {
     flex-direction: column;
   }
@@ -148,6 +165,11 @@ body {
   .bio {
     width: 80vw;
     margin: 0 0 10px 0;
+    font-size: 35px;
+  }
+
+  .footer {
+    bottom: initial;
   }
 }
 
@@ -156,7 +178,6 @@ body {
     width: 300px;
   }
 }
-
 
 .fourfour {
   display: block;
